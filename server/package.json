@@ -1,0 +1,36 @@
+{
+  "name": "e-medica-server",
+  "version": "1.0.0",
+  "description": "Plataforma para el agendamiento y la realización de citas médicas virtuales",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/No-Country/NC-C11-31-E-Medica.git"
+  },
+  "keywords": [
+    "e-medica",
+    "mongodb",
+    "mongo",
+    "mongoose",
+    "express",
+    "nextjs",
+    "sass",
+    "bootstrap",
+    "typescript",
+    "healthtech",
+    "appointment",
+    "scheduling",
+    "meeting",
+    "calendar",
+    "doctor"
+  ],
+  "author": "Juan Leiton & Cristian Robles",
+  "license": "GPL-2.0-only",
+  "bugs": {
+    "url": "https://github.com/No-Country/NC-C11-31-E-Medica/issues"
+  },
+  "homepage": "https://github.com/No-Country/NC-C11-31-E-Medica#readme"
+}
