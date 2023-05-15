@@ -1,0 +1,25 @@
+{
+  "name": "nc-c11-31-e-medica",
+  "version": "1.0.0",
+  "description": "Plataforma para el agendamiento y la realización de consultas médicas virtuales",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/No-Country/NC-C11-31-E-Medica.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/No-Country/NC-C11-31-E-Medica/issues"
+  },
+  "homepage": "https://github.com/No-Country/NC-C11-31-E-Medica#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "husky": "^8.0.3"
+  }
+}
