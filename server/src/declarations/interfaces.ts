@@ -11,3 +11,9 @@ export interface IExample extends Document {
   propExample7: Date
   propExample8: EnumExample
 }
+
+export interface ISpecialty extends Document {
+  name: string
+  description: string
+  active: boolean
+}

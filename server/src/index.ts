@@ -2,7 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import templateRouter from './routes/templateRoutes'
+import router from './routes/router'
 
 const app = express()
 
@@ -20,7 +20,7 @@ app.use(morgan('dev'))
 app.use(cors())
 
 // routes
-app.use('/', templateRouter)
+app.use('/', router)
 
 app.listen(app.get('port'), () => {
   console.log('Server on port', app.get('port'))
