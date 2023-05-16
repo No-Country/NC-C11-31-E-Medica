@@ -1,68 +1,86 @@
-import express, { Request, Response } from 'express';
+import '../db-connection'
 import Patient from "../models/patient";
 import { IPatient } from "../declarations/interfaces";
-
-const router = express.Router();
-
+import { EnumGender } from '../declarations/enums';
+import { ObjectId } from 'mongoose';
 // Obtener todos los pacientes
-router.get('/patients', async (req: Request, res: Response) => {
+export async function getPatients() {
   try {
-    const patients = await Patient.find();
-    res.status(201).json(patients);
+    const patients: IPatient[] = await Patient.find();
+    return patients
   } catch (error) {
-    res.status(500).json({ error: 'Error al obtener los pacientes' });
+    // Manejar el error
+    console.error(error)
+    throw new Error('No se pudieron obtener los pacientes')
   }
-});
+}
 
 // Obtener un paciente por ID
-router.get('/patients/:id', async (req: Request, res: Response) => {
+export async function getPatientById(id: ObjectId) {
   try {
-    const patient = await Patient.findById(req.params.id);
-    if (!patient) {
-      return res.status(404).json({ error: 'Paciente no encontrado' });
-    }
-    res.json(patient);
+    const patient: IPatient | null = await Patient.findById(id);
+
+    return patient
   } catch (error) {
-    res.status(500).json({ error: 'Error al obtener el paciente' });
+    // Manejar el error
+    console.error(error)
+    throw new Error('No se pudo obtener el paciente')
   }
-});
+}
 
 // Crear un nuevo paciente
-router.post('/patients', async (req: Request, res: Response) => {
+export async function createPatient(
+  firstName: string,
+  lastName: string,
+  age: number,
+  gender: EnumGender,
+  dni: string,
+  email: string,
+) {
   try {
-    const newPatient: IPatient = req.body;
-    const patient = await Patient.create(newPatient);
-    res.status(201).json(patient);
+    const newPatient = { firstName, lastName, age, gender, dni, email };
+    const patient = new Patient(newPatient);
+    const savedPatient: IPatient = await patient.save()
+    return savedPatient
   } catch (error) {
-    res.status(500).json({ error: 'Error al crear el paciente' });
+    // Manejar el error
+    console.error(error)
+    throw new Error('No se pudo crear paciente')
   }
-});
+}
 
 // Actualizar un paciente
-router.put('/patients/:id', async (req: Request, res: Response) => {
+export async function updatePatient(
+  id: ObjectId,
+  firstName: string,
+  lastName: string,
+  age: number,
+  gender: EnumGender,
+  dni: string,
+  email: string,
+) {
   try {
-    const updatedPatient: IPatient = req.body;
-    const patient = await Patient.findByIdAndUpdate(req.params.id, updatedPatient, { new: true });
-    if (!patient) {
-      return res.status(404).json({ error: 'Paciente no encontrado' });
-    }
-    res.json(patient);
+    const updatedPatient = { firstName, lastName, age, gender, dni, email };
+    const patient: IPatient | null = await Patient.findByIdAndUpdate(id, updatedPatient, { new: true });
+
+    return patient
   } catch (error) {
-    res.status(500).json({ error: 'Error al actualizar el paciente' });
+    // Manejar el error
+    console.error(error)
+    throw new Error('No se pudo actualizar paciente')
   }
-});
+}
 
 // Eliminar un paciente
-router.delete('/patients/:id', async (req: Request, res: Response) => {
+export async function deletePatient(id: ObjectId) {
   try {
-    const patient = await Patient.findByIdAndDelete(req.params.id);
-    if (!patient) {
-      return res.status(404).json({ error: 'Paciente no encontrado' });
-    }
-    res.json({ message: 'Paciente eliminado exitosamente' });
-  } catch (error) {
-    res.status(500).json({ error: 'Error al eliminar el paciente' });
-  }
-});
+    const patient = await Patient.findByIdAndDelete(id);
 
-export default router;
+    return patient
+  } catch (error) {
+    // Manejar el error
+    console.error(error)
+    throw new Error('No se pudo eliminar el paciente')
+  }
+}
+
