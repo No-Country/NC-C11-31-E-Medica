@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Navbar() {
@@ -7,13 +8,13 @@ export default function Navbar() {
       <input type="text" placeholder="Buscar especialista" />
       <ul>
         <li>
-          <a href="#">Médico</a>
+          <Link href="/medic">Médico</Link>
         </li>
         <li>
-          <a href="#">Registro</a>
+          <Link href="/register">Registro</Link>
         </li>
         <li>
-          <a href="#">Ingresar</a>
+          <Link href="/login">Ingresar</Link>
         </li>
       </ul>
     </header>
