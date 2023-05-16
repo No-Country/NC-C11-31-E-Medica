@@ -1,5 +1,5 @@
-import { Date, Types, Document } from 'mongoose'
-import { EnumExample } from './enums'
+import { Date, Types, Document, ObjectId } from 'mongoose'
+import { EnumExample, EnumGender, EnumStatus } from './enums'
 
 export interface IExample extends Document {
   propExample1: string
@@ -16,4 +16,40 @@ export interface ISpecialty extends Document {
   name: string
   description: string
   active: boolean
+}
+
+export interface IPatient extends Document {
+  firstName: string
+  lastName: string
+  age: number
+  gender: EnumGender
+  dni: string
+  email: string
+  active?: boolean
+}
+export interface ISpecialist extends Document {
+  firstName: string
+  lastName: string
+  dni: string
+  rup: string
+  email: string
+  signatureLink: string
+  calendarLink: string
+  mercadoPago: string
+  active: boolean
+  specialty: ObjectId
+  reviews: ObjectId
+}
+export interface IAppointment extends Document {
+  dateTime: Date
+  reason: string
+  status: EnumStatus
+  meetingLink: string
+  paymentId: string
+  paid: boolean
+  active: boolean
+  patient: ObjectId
+  specialist: ObjectId
+  specialty: ObjectId
+  review: ObjectId
 }
