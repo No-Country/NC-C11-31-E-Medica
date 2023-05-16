@@ -1,5 +1,5 @@
-import React from "react";
-
-export default function Page() {
-  return <div>Hola Mundo</div>;
+const Page = () => {
+  return <div>page</div>
 }
+
+export default Page

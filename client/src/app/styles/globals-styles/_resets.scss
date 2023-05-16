@@ -1,0 +1,61 @@
+@use 'variables' as *;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: clamp(0.7rem, 1.5vw, 3rem);
+  line-height: 1.5;
+  color: #ffff;
+  gap: 3rem;
+}
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6.125rem;
+  padding-bottom: clamp(5rem, 7vw, 12rem);
+}
+
+ul,
+ol li,
+span,
+h1,
+h2,
+h3,
+h4,
+p {
+  list-style: none;
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+button {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+button:focus {
+  outline: 0.125rem solid #4d90fe;
+}
