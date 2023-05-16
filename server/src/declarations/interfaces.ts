@@ -25,7 +25,7 @@ export interface IPatient extends Document {
   gender: EnumGender
   dni: string
   email: string
-  active: boolean
+  active?: boolean
 }
 export interface ISpecialist extends Document {
   firstName: string
