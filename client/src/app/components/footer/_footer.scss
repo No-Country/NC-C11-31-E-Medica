@@ -1,0 +1,22 @@
+@use '../../styles/globals-styles/variables' as *;
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18.5rem, 1fr));
+  gap: clamp(2.875rem, 3vw, 6rem);
+  background-color: #333333;
+  color: #fff;
+  font-size: clamp(1rem, 1.2vw, 2.4rem);
+  padding: clamp(3rem, 5vw, 10rem) clamp(1rem, 3vw, 6rem) clamp(3rem, 5vw, 10rem) clamp(1rem, 3vw, 6rem);
+  font-family: $font-family;
+
+  @media (min-width: 90rem) {
+    justify-items: center;
+  }
+  &-list {
+    padding-left: 2rem;
+  }
+  &-li {
+    list-style: disc;
+  }
+}
