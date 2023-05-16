@@ -1,26 +1,23 @@
 import { Schema, model } from 'mongoose'
-import { ISpecialty } from '../declarations/interfaces'
+import { IAppointment } from '../declarations/interfaces'
+import { EnumStatus } from '../declarations/enums'
 
-const specialtySchema = new Schema(
-  {
-    name: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: true
-    },
-    active: {
-      type: Boolean,
-      default: true
-    }
-  },
-  {
-    timestamps: true
-  }
-)
+const appointmentSchema = new Schema<IAppointment>({
+  dateTime: { type: Date, required: true },
+  reason: { type: String },
+  status: { type: String, enum: Object.values(EnumStatus), default: EnumStatus.Schedule },
+  meetingLink: { type: String, required: true },
+  paymentId: { type: String, required: true },
+  paid: { type: Boolean },
+  active: { type: Boolean, default: true },
+  patient: { type: Schema.Types.ObjectId, ref: 'Patient', required: true },
+  specialist: { type: Schema.Types.ObjectId, ref: 'Specialist', required: true },
+  specialty: { type: Schema.Types.ObjectId, ref: 'Specialty', required: true },
+  review: { type: Schema.Types.ObjectId, ref: 'Review' }
+}, {
+  timestamps: true
+});
 
-const Specialty = model<ISpecialty>('Specialty', specialtySchema)
+const Appointment = model<IAppointment>('Appointment', appointmentSchema)
 
-export default Specialty
+export default Appointment

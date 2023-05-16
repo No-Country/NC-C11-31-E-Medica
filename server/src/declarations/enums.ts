@@ -5,15 +5,15 @@ export enum EnumExample {
 }
 
 export enum EnumGender {
-  value1 = 'male',
-  value2 = 'female',
-  value3 = 'other',
+  Male = 'male',
+  Female = 'female',
+  Other = 'other',
 }
 
 export enum EnumStatus {
-  value1 = 'schedule',
-  value2 = 'canceled',
-  value3 = 'missed',
-  value4 = 'attended',
-  value5 = 'rated',
+  Schedule = 'schedule',
+  Canceled = 'canceled',
+  Missed = 'missed',
+  Attended = 'attended',
+  Rated = 'rated',
 }

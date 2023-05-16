@@ -1,26 +1,23 @@
 import { Schema, model } from 'mongoose'
-import { ISpecialty } from '../declarations/interfaces'
+import { ISpecialist } from '../declarations/interfaces'
 
-const specialtySchema = new Schema(
-	{
-		name: {
-			type: String,
-			required: true
-		},
-		description: {
-			type: String,
-			required: true
-		},
-		active: {
-			type: Boolean,
-			default: true
-		}
-	},
-	{
-		timestamps: true
-	}
-)
+const specialistSchema = new Schema({
+	firstName: { type: String, required: true },
+	lastName: { type: String, required: true },
+	dni: { type: String, required: true },
+	rup: { type: String, required: true },
+	email: { type: String, required: true },
+	signatureLink: { type: String, required: true },
+	calendarLink: { type: String },
+	mercadoPago: { type: String, required: true },
+	active: { type: Boolean, default: true },
+	specialty: { type: Schema.Types.ObjectId, ref: 'Specialty', required: true },
+	reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }]
+}, {
+	timestamps: true
+});
 
-const Specialty = model<ISpecialty>('Specialty', specialtySchema)
 
-export default Specialty
+const Specialist = model<ISpecialist>('Specialist', specialistSchema)
+
+export default Specialist
