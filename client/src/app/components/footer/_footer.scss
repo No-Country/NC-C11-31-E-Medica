@@ -9,6 +9,11 @@
   font-size: clamp(1rem, 1.2vw, 2.4rem);
   padding: clamp(3rem, 5vw, 10rem) clamp(1rem, 3vw, 6rem) clamp(3rem, 5vw, 10rem) clamp(1rem, 3vw, 6rem);
   font-family: $font-family;
+  padding-bottom: 7rem;
+
+  @media (min-width: 48rem) {
+    padding: clamp(3rem, 5vw, 10rem) clamp(1rem, 3vw, 6rem) clamp(3rem, 5vw, 10rem) clamp(1rem, 3vw, 6rem);
+  }
 
   @media (min-width: 90rem) {
     justify-items: center;
