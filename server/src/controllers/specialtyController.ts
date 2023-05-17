@@ -3,7 +3,7 @@ import Specialty from '../models/specialty'
 import { ISpecialty } from '../declarations/interfaces'
 
 // Crear una nueva especialidad
-export async function createSpecialty(
+export async function createSpecialty (
   name: string,
   description: string,
   active: boolean
@@ -14,7 +14,6 @@ export async function createSpecialty(
       description,
       active
     })
-
     const savedSpecialty: ISpecialty = await newSpecialty.save()
     return savedSpecialty
   } catch (error) {
@@ -25,7 +24,7 @@ export async function createSpecialty(
 }
 
 // Obtener todas las especialidades
-export async function getAllSpecialties(): Promise<ISpecialty[]> {
+export async function getAllSpecialties (): Promise<ISpecialty[]> {
   try {
     const specialties: ISpecialty[] = await Specialty.find()
     return specialties
@@ -37,7 +36,7 @@ export async function getAllSpecialties(): Promise<ISpecialty[]> {
 }
 
 // Obtener una especialidad por ID
-export async function getSpecialtyById(specialtyId: string): Promise<ISpecialty | null> {
+export async function getSpecialtyById (specialtyId: string): Promise<ISpecialty | null> {
   try {
     const specialty: ISpecialty | null = await Specialty.findById(specialtyId)
     return specialty
@@ -47,4 +46,3 @@ export async function getSpecialtyById(specialtyId: string): Promise<ISpecialty 
     throw new Error('No se pudo obtener la especialidad')
   }
 }
-

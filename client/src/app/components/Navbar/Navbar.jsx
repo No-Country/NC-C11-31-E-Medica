@@ -1,28 +1,28 @@
-import Link from "next/link";
-import React from "react";
-import "./Navbar.css";
-export default function Navbar() {
+'use client'
+import Link from 'next/link'
+
+const Navbar = ({ valueNavbar }) => {
   return (
-    <header className="navbar-container">
-      <input type="text" className="navbar-input" />
-      <ul className="navbar-ul-container">
-        <li className="navbar-li-container">
-          <div className="navbar-img" />
-          <label>Label</label>
+    <nav className={`nav ${valueNavbar ? 'openNavbar' : 'closeNavbar'}`}>
+      <ul className='nav-list'>
+        <li>
+          <Link href='/medic' className='nav-link'>
+            Médico
+          </Link>
         </li>
-        <li className="navbar-li-container">
-          <div className="navbar-img" />
-          <label>Label</label>
+        <li>
+          <Link href='/register' className='nav-link'>
+            Registro
+          </Link>
         </li>
-        <li className="navbar-li-container">
-          <div className="navbar-img" />
-          <label>Label</label>
-        </li>
-        <li className="navbar-li-container">
-          <div className="navbar-img" />
-          <label>Label</label>
+        <li>
+          <Link href='/login' className='nav-link'>
+            Ingresar
+          </Link>
         </li>
       </ul>
-    </header>
-  );
+    </nav>
+  )
 }
+
+export default Navbar
