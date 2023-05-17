@@ -1,3 +1,5 @@
+
+"use client";
 import {Hero} from './components/Hero/Hero'
 import { CardSpecialties } from './components/CardSpecialties/CardSpecialties'
 import TurnSteps from './components/turnSteps/TurnSteps'
@@ -23,3 +25,4 @@ const Page = () => {
 }
 
 export default page
+
