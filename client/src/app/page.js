@@ -1,5 +1,11 @@
+"use client";
+import ChatBotComponent from "./components/Chatbot/Chatbot";
 const Page = () => {
-  return <div>page</div>
-}
+  return (
+    <div>
+      <ChatBotComponent />
+    </div>
+  );
+};
 
-export default Page
+export default Page;
