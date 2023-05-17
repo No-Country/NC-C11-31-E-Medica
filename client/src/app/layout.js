@@ -1,6 +1,7 @@
 import './styles/main.scss'
 import { Footer } from './components/footer/Footer'
 import Header from './components/Navbar/Header'
+
 const RootLayout = ({ children }) => {
   return (
     <html lang='en'>
