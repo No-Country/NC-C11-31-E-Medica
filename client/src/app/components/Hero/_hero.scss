@@ -1,0 +1,43 @@
+@use '../../styles/globals-styles/variables' as *;
+
+.heroContainer{
+    background-color: aquamarine;
+    background-image: url(/images/hero-image.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 0.5rem;
+        &-title, &-detail{
+        color: #fff;
+        font-size: clamp(1.2rem, 1.2vw, 2.4rem);
+        font-family: $font-family;
+        padding: 0.5rem;
+    }
+}
+
+.heroContainer-detail{
+    font-weight:normal;
+    }
+
+@media (min-width: 768px ){
+    .heroContainer{
+        height: 15rem;
+    }
+}
+
+@media (min-width: 1024px){
+    .heroContainer{
+        height: 16rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .heroContainer-detail{
+        display: none;
+    }
+}
