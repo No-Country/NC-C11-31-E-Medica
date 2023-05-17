@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import ChatBot from "react-simple-chatbot";
 export default function ChatBotComponent() {
@@ -165,7 +166,12 @@ export default function ChatBotComponent() {
 
   return (
     <div>
-      <ChatBot steps={steps} />
+      <ChatBot
+        steps={steps}
+        headerTitle="E-Medica Bot"
+        placeholder="Escribe tu pregunta"
+        floating="true"
+      />
     </div>
   );
 }
