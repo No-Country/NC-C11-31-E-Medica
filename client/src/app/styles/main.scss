@@ -5,3 +5,40 @@
 // ? GLOBALS COMPONENTS
 
 @use '../components';
+
+.wrapperGrid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+    margin: 2rem;
+    align-content: center;
+}
+
+.wrapperTexts{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2rem;
+    font-size: clamp(1rem, 1.2vw, 2.4rem);
+    font-family: 'Poppins', sans-serif;
+}
+
+@media (min-width: 768px ){
+    .wrapperGrid{
+        grid-template-columns: repeat(2, 1fr);
+        align-content: center;
+    }
+    .wrapperTexts{
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 1024px){
+    .wrapperGrid{
+        grid-template-columns: repeat(4, 1fr);
+        align-content: center;
+    }
+    .wrapperTexts{
+        flex-direction: row;
+    }
+}
