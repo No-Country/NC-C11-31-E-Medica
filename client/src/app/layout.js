@@ -1,4 +1,6 @@
 import './styles/main.scss'
+import { Footer } from './components/footer/Footer'
+import Header from './components/Navbar/Header'
 
 const RootLayout = ({ children }) => {
   return (
@@ -6,7 +8,11 @@ const RootLayout = ({ children }) => {
       <head>
         <title>E-Medica</title>
       </head>
-      <body>{children}</body>
+      <body>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   )
 }
