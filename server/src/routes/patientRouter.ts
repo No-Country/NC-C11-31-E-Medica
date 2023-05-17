@@ -4,13 +4,13 @@ import {
   getPatientById,
   createPatient,
   updatePatient,
-  deletePatient,
+  deletePatient
 } from '../controllers/patientController'
 
 const patientRouter = express.Router()
 
 // Obtener todos los pacientes
-patientRouter.get('/', (async (req: Request, res: Response) => {
+patientRouter.get('/', (async (_req: Request, res: Response) => {
   try {
     const patients = await getPatients()
     res.json(patients)
@@ -25,7 +25,7 @@ patientRouter.get('/:id', (async (req: Request, res: Response) => {
   const { id } = req.params
   try {
     const patient = await getPatientById(id)
-    if (!patient) {
+    if (patient === null) {
       return res.status(404).json({ error: 'Paciente no encontrado' })
     }
     res.json(patient)
@@ -53,7 +53,7 @@ patientRouter.put('/:id', (async (req: Request, res: Response) => {
   const updatedPatient = req.body
   try {
     const patient = await updatePatient(id, updatedPatient)
-    if (!patient) {
+    if (patient === null) {
       return res.status(404).json({ error: 'Paciente no encontrado' })
     }
     res.json(patient)
@@ -68,7 +68,7 @@ patientRouter.delete('/:id', (async (req: Request, res: Response) => {
   const { id } = req.params
   try {
     const patient = await deletePatient(id)
-    if (!patient) {
+    if (patient === null) {
       return res.status(404).json({ error: 'Paciente no encontrado' })
     }
     res.json({ message: 'Paciente eliminado correctamente' })
