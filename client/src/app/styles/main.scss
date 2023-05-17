@@ -10,17 +10,22 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 10px;
-    margin: 2rem;
-    align-content: center;
+    margin: 1rem;
+    justify-items: center;
 }
 
 .wrapperTexts{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 2rem;
+    padding: 1rem;
+    padding-bottom: 0;
     font-size: clamp(1rem, 1.2vw, 2.4rem);
     font-family: 'Poppins', sans-serif;
+}
+
+.wrapperTexts h2{
+    padding-bottom: 0.5rem;
 }
 
 @media (min-width: 768px ){
@@ -30,15 +35,23 @@
     }
     .wrapperTexts{
         flex-direction: row;
+        margin: 2rem;
+    }
+    .wrapperTexts h2{
+        margin-bottom: 0;
     }
 }
 
 @media (min-width: 1024px){
     .wrapperGrid{
         grid-template-columns: repeat(4, 1fr);
-        align-content: center;
+        justify-content: center;
     }
     .wrapperTexts{
         flex-direction: row;
+        margin: 2rem;
+    }
+    .wrapperTexts h2{
+        margin-bottom: 0;
     }
 }

@@ -6,19 +6,19 @@ import { faBaby, faTooth, faHeartPulse, faPersonPregnant, faGlasses, faFaceSmile
 export const CardSpecialties = ({specielty}) => {
 
   const icons = {
-    Cardiology: faHeartPulse,
-    Dentist: faTooth,
-    Traumatologist: faXRay,
-    Obstetrician: faPersonPregnant,
-    Oculist: faGlasses,
-    Dermatologist: faFaceSmileBeam,
-    Pediatrician: faBaby,
-    Surgeon: faBriefcaseMedical
+    Cardiología: faHeartPulse,
+    Odontología: faTooth,
+    Traumatología: faXRay,
+    Obstetricia: faPersonPregnant,
+    Oftalmología: faGlasses,
+    Dermatología: faFaceSmileBeam,
+    Pediatría: faBaby,
+    Cirugía: faBriefcaseMedical
   }
 
   return (
     <div className='CardSpecialtiesContainer'>
-      <FontAwesomeIcon style={{size: 'xs'}} icon={icons[specielty] }/>
+      <FontAwesomeIcon className='CardSpecialtiesContainer-icon' icon={icons[specielty] }/>
       <button> 
         <h2>{specielty}</h2>
       </button>

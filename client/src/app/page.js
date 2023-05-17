@@ -3,7 +3,7 @@ import { CardSpecialties } from './components/CardSpecialties/CardSpecialties'
 
 const Page = () => {
   
-  const specialties = ['Cardiology','Dentist', 'Traumatologist', 'Obstetrician', 'Oculist', 'Dermatologist', 'Pediatrician', 'Surgeon']
+  const specialties = ['Cardiología','Odontología', 'Traumatología', 'Obstetricia', 'Oftalmología', 'Dermatología', 'Pediatría', 'Cirugía']
   
   return (
     <div>
