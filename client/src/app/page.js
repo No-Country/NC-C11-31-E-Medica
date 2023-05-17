@@ -1,11 +1,6 @@
-import React from "react";
-
-function page() {
-  return (
-    <div>
-      <h1>Page</h1>
-    </div>
-  );
+import TurnSteps from './components/turnSteps/TurnSteps'
+const page = () => {
+  return <TurnSteps />
 }
 
-export default page;
+export default page
