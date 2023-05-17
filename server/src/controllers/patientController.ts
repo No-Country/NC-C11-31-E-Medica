@@ -1,11 +1,9 @@
 import '../db-connection'
 import Patient from '../models/patient'
 import { IPatient } from '../declarations/interfaces'
-import { EnumGender } from '../declarations/enums'
-import { ObjectId } from 'mongoose'
 
 // Obtener todos los pacientes
-export async function getPatients (): Promise<IPatient[]> {
+export async function getPatients(): Promise<IPatient[]> {
   try {
     const patients: IPatient[] = await Patient.find()
     return patients
@@ -17,7 +15,7 @@ export async function getPatients (): Promise<IPatient[]> {
 }
 
 // Obtener un paciente por ID
-export async function getPatientById (id: ObjectId): Promise<IPatient | null> {
+export async function getPatientById(id: string): Promise<IPatient | null> {
   try {
     const patient: IPatient | null = await Patient.findById(id)
     return patient
@@ -29,16 +27,8 @@ export async function getPatientById (id: ObjectId): Promise<IPatient | null> {
 }
 
 // Crear un nuevo paciente
-export async function createPatient (
-  firstName: string,
-  lastName: string,
-  age: number,
-  gender: EnumGender,
-  dni: string,
-  email: string
-): Promise<IPatient | null> {
+export async function createPatient(newPatient: IPatient): Promise<IPatient | null> {
   try {
-    const newPatient = { firstName, lastName, age, gender, dni, email }
     const patient = new Patient(newPatient)
     const savedPatient: IPatient = await patient.save()
     return savedPatient
@@ -50,17 +40,8 @@ export async function createPatient (
 }
 
 // Actualizar un paciente
-export async function updatePatient (
-  id: ObjectId,
-  firstName: string,
-  lastName: string,
-  age: number,
-  gender: EnumGender,
-  dni: string,
-  email: string
-): Promise<IPatient | null> {
+export async function updatePatient(id: string, updatedPatient: IPatient): Promise<IPatient | null> {
   try {
-    const updatedPatient = { firstName, lastName, age, gender, dni, email }
     const patient: IPatient | null = await Patient.findByIdAndUpdate(id, updatedPatient, { new: true })
     return patient
   } catch (error) {
@@ -71,7 +52,7 @@ export async function updatePatient (
 }
 
 // Eliminar un paciente
-export async function deletePatient (id: ObjectId): Promise<IPatient | null> {
+export async function deletePatient(id: string): Promise<IPatient | null> {
   try {
     const patient = await Patient.findByIdAndDelete(id)
     return patient
