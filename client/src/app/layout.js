@@ -1,6 +1,6 @@
 import './styles/main.scss'
 import { Footer } from './components/footer/Footer'
-import Navbar from './components/Navbar/Navbar'
+import Header from './components/Navbar/Header'
 const RootLayout = ({ children }) => {
   return (
     <html lang='en'>
@@ -8,7 +8,7 @@ const RootLayout = ({ children }) => {
         <title>E-Medica</title>
       </head>
       <body>
-        <Navbar />
+        <Header />
         <main>{children}</main>
         <Footer />
       </body>

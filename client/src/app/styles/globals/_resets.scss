@@ -1,4 +1,4 @@
-@use "variables" as *;
+@use 'variables' as *;
 * {
   box-sizing: border-box;
   margin: 0;
@@ -22,7 +22,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 6.125rem;
-  padding-bottom: clamp(5rem, 7vw, 12rem);
+  padding-bottom: clamp(7rem, 7vw, 12rem);
 }
 
 ul,
