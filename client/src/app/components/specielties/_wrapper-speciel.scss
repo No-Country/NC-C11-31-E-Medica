@@ -12,13 +12,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
   padding: 1rem;
   padding-bottom: 0;
   font-size: clamp(1rem, 1.2vw, 2.4rem);
-  font-family: 'Poppins', sans-serif;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
   .wrapperGrid {
     grid-template-columns: repeat(2, 1fr);
     align-content: center;
@@ -31,7 +31,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 64rem) {
   .wrapperGrid {
     grid-template-columns: repeat(4, 1fr);
     justify-content: center;
