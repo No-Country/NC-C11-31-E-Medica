@@ -37,7 +37,7 @@ patientRouter.get('/:id', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Obtener un paciente por email
-patientRouter.get('/:email', (async (req: Request, res: Response) => {
+patientRouter.get('/user/:email', (async (req: Request, res: Response) => {
   const { email } = req.params
   try {
     const patient = await getPatientByEmail(email)
