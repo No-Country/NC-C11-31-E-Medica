@@ -1,0 +1,14 @@
+openapi: 3.0.0
+info:
+  title: E-Medica API
+  version: 1.0.0
+  description: Documentación de la API de E-Medica
+servers:
+  - url: https://e-medica-api.onrender.com
+paths:
+  /health-check:
+    get:
+      summary: Verificar el estado de salud del servidor
+      responses:
+        '200':
+          description: OK
