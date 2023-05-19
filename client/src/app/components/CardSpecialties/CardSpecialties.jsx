@@ -1,16 +1,23 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBaby, faTooth, faHeartPulse, faPersonPregnant, faGlasses, faFaceSmileBeam, faBriefcaseMedical, faXRay } from '@fortawesome/free-solid-svg-icons'
+import { faChildReaching, faBrain, faHandshakeAngle, faHandHoldingHeart, faDice,  faHeartPulse, faComments, faPersonPregnant, faFaceSmileBeam, faXRay, faNotesMedical, faHouseChimneyMedical, faPersonDress, faUsersLine, faPersonCane, faSuitcaseMedical} from '@fortawesome/free-solid-svg-icons'
+
 
 export const CardSpecialties = ({ specielty }) => {
   const icons = {
-    Cardiología: faHeartPulse,
-    Odontología: faTooth,
-    Traumatología: faXRay,
-    Obstetricia: faPersonPregnant,
-    Oftalmología: faGlasses,
-    Dermatología: faFaceSmileBeam,
-    Pediatría: faBaby,
-    Cirugía: faBriefcaseMedical
+    'Medicina General': faNotesMedical,
+    'Medicina Interna': faHouseChimneyMedical,
+    'Ginecología': faPersonDress,
+    'Geriatría': faPersonCane,
+    'Cardiología adulto': faHeartPulse,
+    'Dermatología': faFaceSmileBeam,
+    'Pediatría': faChildReaching,
+    'Neurología adulto': faBrain,
+    'Psicología adulto': faHandshakeAngle,
+    'Psiquiatría adulto': faHandHoldingHeart,
+    'Matrona': faPersonPregnant,
+    'Cardiolología infantil': faHeartPulse,
+    'Psicología infanto-juvenil': faDice,
+    'Fonoaudiología': faComments
   }
 
   return (

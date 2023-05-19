@@ -3,3 +3,9 @@
 @use './globals';
 
 @use '../components';
+
+// ? LOGIN-REGISTER
+
+@use '../login/login-register';
+@use '../login/components/form-login/form-login';
+@use '../login/components/form-register/form-register';
