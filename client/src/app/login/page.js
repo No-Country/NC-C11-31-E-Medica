@@ -1,9 +1,13 @@
-const Page = () => {
+import React from 'react'
+import FormLogin from './components/form-login/Form-login'
+import '../login/components/_index'
+
+const page = () => {
   return (
-    <section>
-      <article>Usuario</ariticle>
-    </section>
+    <>
+      <FormLogin />
+    </>
   )
 }
 
-export default Page
+export default page
