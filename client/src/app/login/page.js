@@ -1,8 +1,12 @@
+import { FormRegister } from './components/form-register/Form-register'
+
+FormRegister
 const Page = () => {
   return (
-    <section>
-      <article>Usuario</ariticle>
-    </section>
+    <>
+      <article>Usuario</article>
+      <FormRegister />
+    </>
   )
 }
 

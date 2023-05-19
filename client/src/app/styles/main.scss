@@ -4,6 +4,8 @@
 
 @use '../components';
 
-// ? LOGIN PAGE
+// ? LOGIN-REGISTER
 
-@use '../login/components';
+@use '../login/login-register';
+@use '../login/components/form-login/form-login';
+@use '../login/components/form-register/form-register';
