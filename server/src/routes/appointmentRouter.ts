@@ -16,10 +16,10 @@ appointmentRouter.get('/appointments', (async (req: Request, res: Response) => {
 
 // Ruta para obtener un appointment por su ID
 appointmentRouter.get('/:appointmentId', (async (req: Request, res: Response) => {
-  const { appointmentId } = req.params
   try {
+    const { appointmentId } = req.params
     const appointment = await getAppointmentById(appointmentId)
-    if (!appointment) {
+    if (appointment === null) {
       return res.status(404).json({ error: 'Appointment no encontrado.' })
     }
     res.json(appointment)
@@ -31,8 +31,8 @@ appointmentRouter.get('/:appointmentId', (async (req: Request, res: Response) =>
 
 // Ruta para crear un nuevo appointment
 appointmentRouter.post('/', (async (req: Request, res: Response) => {
-  const newAppointment = req.body
   try {
+    const newAppointment = req.body
     const appointment = await createAppointment(newAppointment)
     res.json(appointment)
   } catch (error) {
@@ -43,11 +43,11 @@ appointmentRouter.post('/', (async (req: Request, res: Response) => {
 
 // Ruta para actualizar un appointment por su ID
 appointmentRouter.put('/:appointmentId', (async (req: Request, res: Response) => {
-  const { appointmentId } = req.params
-  const updatedAppointment = req.body
   try {
+    const { appointmentId } = req.params
+    const updatedAppointment = req.body
     const appointment = await updateAppointmentById(appointmentId, updatedAppointment)
-    if (!appointment) {
+    if (appointment === null) {
       return res.status(404).json({ error: 'Appointment no encontrado.' })
     }
     res.json(appointment)
