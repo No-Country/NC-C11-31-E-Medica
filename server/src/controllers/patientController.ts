@@ -14,6 +14,18 @@ export async function getPatients (): Promise<IPatient[]> {
   }
 }
 
+// Obtener paciente por email
+export async function getPatientByEmail (email: string): Promise<IPatient | null> {
+  try {
+    const patient: IPatient | null = await Patient.findOne({ email })
+    return patient
+  } catch (error) {
+    // Manejar el error
+    console.error(error)
+    throw new Error('No se pudo obtener el paciente.')
+  }
+}
+
 // Obtener un paciente por ID
 export async function getPatientById (id: string): Promise<IPatient | null> {
   try {
@@ -22,7 +34,7 @@ export async function getPatientById (id: string): Promise<IPatient | null> {
   } catch (error) {
     // Manejar el error
     console.error(error)
-    throw new Error('No se pudo obtener el paciente')
+    throw new Error('No se pudo obtener el paciente.')
   }
 }
 
