@@ -25,8 +25,9 @@ export interface IPatient extends Document {
   gender: EnumGender
   dni: string
   email: string
-  active?: boolean
+  active: boolean
 }
+
 export interface ISpecialist extends Document {
   firstName: string
   lastName: string
@@ -36,10 +37,11 @@ export interface ISpecialist extends Document {
   signatureLink: string
   calendarLink: string
   mercadoPago: string
-  active: boolean
   specialty: ObjectId
   reviews: ObjectId
+  active: boolean
 }
+
 export interface IAppointment extends Document {
   dateTime: Date
   reason: string
@@ -47,9 +49,9 @@ export interface IAppointment extends Document {
   meetingLink: string
   paymentId: string
   paid: boolean
-  active: boolean
   patient: ObjectId
   specialist: ObjectId
   specialty: ObjectId
   review: ObjectId
+  active: boolean
 }

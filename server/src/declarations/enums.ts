@@ -11,7 +11,7 @@ export enum EnumGender {
 }
 
 export enum EnumStatus {
-  Schedule = 'schedule',
+  Schedule = 'scheduled',
   Canceled = 'canceled',
   Missed = 'missed',
   Attended = 'attended',
@@ -74,4 +74,4 @@ export enum StatusCode {
   HTTP_VERSION_NOT_SUPPORTED = 505,
   INSUFFICIENT_STORAGE = 507,
   NETWORK_AUTHENTICATION_REQUIRED = 511,
-};
+}

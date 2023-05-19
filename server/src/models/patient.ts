@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 import { IPatient } from '../declarations/interfaces'
-import { EnumGender } from '../declarations/enums';
+import { EnumGender } from '../declarations/enums'
 
 const patientSchema = new Schema({
 
@@ -13,7 +13,7 @@ const patientSchema = new Schema({
   active: { type: Boolean, default: true }
 }, {
   timestamps: true
-});
+})
 
 const Patient = model<IPatient>('Patient', patientSchema)
 

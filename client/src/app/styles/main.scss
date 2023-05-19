@@ -1,3 +1,9 @@
 // ? GLOBALS
 
-@use './globals-styles';
+@use './globals';
+
+@use '../components';
+
+// ? LOGIN PAGE
+
+@use '../login/components';

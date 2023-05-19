@@ -1,22 +1,28 @@
-import Link from "next/link";
-import React from "react";
+'use client'
+import Link from 'next/link'
 
-export default function Navbar() {
+const Navbar = ({ valueNavbar }) => {
   return (
-    <header>
-      <h1>E-Medica</h1>
-      <input type="text" placeholder="Buscar especialista" />
-      <ul>
+    <nav className={`nav ${valueNavbar ? 'openNavbar' : 'closeNavbar'}`}>
+      <ul className='nav-list'>
         <li>
-          <Link href="/medic">Médico</Link>
+          <Link href='/medic' className='nav-link'>
+            Médico
+          </Link>
         </li>
         <li>
-          <Link href="/register">Registro</Link>
+          <Link href='/register' className='nav-link'>
+            Registro
+          </Link>
         </li>
         <li>
-          <Link href="/login">Ingresar</Link>
+          <Link href='/login' className='nav-link'>
+            Ingresar
+          </Link>
         </li>
       </ul>
-    </header>
-  );
+    </nav>
+  )
 }
+
+export default Navbar

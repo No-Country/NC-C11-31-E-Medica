@@ -9,14 +9,14 @@ const appointmentSchema = new Schema<IAppointment>({
   meetingLink: { type: String, required: true },
   paymentId: { type: String, required: true },
   paid: { type: Boolean },
-  active: { type: Boolean, default: true },
   patient: { type: Schema.Types.ObjectId, ref: 'Patient', required: true },
   specialist: { type: Schema.Types.ObjectId, ref: 'Specialist', required: true },
   specialty: { type: Schema.Types.ObjectId, ref: 'Specialty', required: true },
-  review: { type: Schema.Types.ObjectId, ref: 'Review' }
+  review: { type: Schema.Types.ObjectId, ref: 'Review' },
+  active: { type: Boolean, default: true }
 }, {
   timestamps: true
-});
+})
 
 const Appointment = model<IAppointment>('Appointment', appointmentSchema)
 
