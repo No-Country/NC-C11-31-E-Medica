@@ -4,7 +4,8 @@ import {
   getPatientById,
   createPatient,
   updatePatient,
-  deletePatient
+  deletePatient,
+  getPatientByEmail
 } from '../controllers/patientController'
 
 const patientRouter = express.Router()
@@ -26,7 +27,22 @@ patientRouter.get('/:id', (async (req: Request, res: Response) => {
   try {
     const patient = await getPatientById(id)
     if (patient === null) {
-      return res.status(404).json({ error: 'Paciente no encontrado' })
+      return res.status(404).json({ error: 'Paciente no encontrado.' })
+    }
+    res.json(patient)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'No se pudo obtener el paciente' })
+  }
+}) as RequestHandler)
+
+// Obtener un paciente por email
+patientRouter.get('/:email', (async (req: Request, res: Response) => {
+  const { email } = req.params
+  try {
+    const patient = await getPatientByEmail(email)
+    if (patient === null) {
+      return res.status(404).json({ error: 'Paciente no encontrado.' })
     }
     res.json(patient)
   } catch (error) {
