@@ -4,10 +4,11 @@ import { ISpecialist } from '../declarations/interfaces'
 import { ObjectId } from 'mongoose'
 
 // Obtener todos los especialistas
-export async function getSpecialists (): Promise<ISpecialist[]> {
+export async function getSpecialists (): Promise<ISpecialist[] | null> {
   try {
     const specialists: ISpecialist[] = await Specialist.find({})
-    // .populate('reviews')
+      .populate('specialty')
+      // .populate('reviews')
     // const specialistsWithRating = specialists.map(specialist => {
     //   return specialist.reviews.map(review => )
     // })
@@ -29,6 +30,7 @@ export async function getSpecialistsByName (terms: string): Promise<ISpecialist[
       .normalize('NFD')
       .replace(/\p{Diacritic}/gu, '')
     const specialists: ISpecialist[] | null = await Specialist.find()
+      .populate('specialty')
     // .populate('Review')
     const matches = specialists
       .filter(specialist => names.includes(specialist.firstName.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')) || names.includes(specialist.lastName.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')))
@@ -43,7 +45,9 @@ export async function getSpecialistsByName (terms: string): Promise<ISpecialist[
 // Obtener especialistas por especialidad
 export async function getSpecialistsBySpecialty (specialty: string): Promise<ISpecialist[]> {
   try {
-    const specialists: ISpecialist[] | null = await Specialist.find({ specialty }).exec()
+    const specialists: ISpecialist[] | null = await Specialist.find({ specialty })
+      .populate('specialty')
+      .exec()
     // .populate('Review')
     return specialists
   } catch (error) {
@@ -57,6 +61,7 @@ export async function getSpecialistsBySpecialty (specialty: string): Promise<ISp
 export async function getSpecialistById (id: string): Promise<ISpecialist | null> {
   try {
     const specialist: ISpecialist | null = await Specialist.findById(id)
+      .populate('specialty')
     return specialist
   } catch (error) {
     // Manejar el error
@@ -106,6 +111,7 @@ export async function updateSpecialist (
   try {
     const updatedSpecialist = { firstName, lastName, dni, rup, email, signatureLink, calendarLink, mercadoPago, specialty, reviews }
     const specialist: ISpecialist | null = await Specialist.findByIdAndUpdate(id, updatedSpecialist, { new: true })
+      .populate('specialty')
     return specialist
   } catch (error) {
     // Manejar el error
@@ -118,6 +124,7 @@ export async function updateSpecialist (
 export async function deleteSpecialist (id: string): Promise<ISpecialist | null> {
   try {
     const specialist = await Specialist.findByIdAndDelete(id)
+      .populate('specialty')
     return specialist
   } catch (error) {
     // Manejar el error
