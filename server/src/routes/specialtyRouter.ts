@@ -1,6 +1,7 @@
 import express, { Request, Response, RequestHandler } from 'express'
 import { getAllSpecialties, getSpecialtyById, getSpecialtyByName } from '../controllers/specialtyController'
-import { Types } from 'mongoose'
+import { validationResult } from 'express-validator'
+import { idValidation } from '../validations'
 const specialtyRouter = express.Router()
 
 specialtyRouter.get('/', (async (req: Request, res: Response) => {
@@ -34,13 +35,14 @@ specialtyRouter.get('/name/:name?', (async (req: Request, res: Response) => {
   }
 }) as RequestHandler)
 
-specialtyRouter.get('/:id', (async (req: Request, res: Response) => {
+specialtyRouter.get('/:id?', idValidation, (async (req: Request, res: Response) => {
   try {
-    const specialtyId = req.params.id;
+    const errors = validationResult(req);
 
-    if (!Types.ObjectId.isValid(specialtyId)) {
-      return res.status(400).json({ message: 'Identificador de especialidad inválido' });
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() });
     }
+    const specialtyId = req.params.id;
 
     const specialty = await getSpecialtyById(specialtyId);
 

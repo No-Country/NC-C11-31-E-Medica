@@ -7,7 +7,8 @@ import {
   deletePatient,
   getPatientByEmail
 } from '../controllers/patientController'
-import { Types } from 'mongoose'
+import { validationResult } from 'express-validator'
+import { patientValidation, idValidation } from '../validations'
 
 const patientRouter = express.Router()
 
@@ -43,16 +44,15 @@ patientRouter.get('/email/:email?', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Obtener un paciente por ID
-patientRouter.get('/:id?', (async (req: Request, res: Response) => {
+patientRouter.get('/:id?', idValidation, (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() });
+    }
     const id = req.params.id
 
-    if (!id) {
-      return res.status(400).json({ message: 'Id no ingresado' });
-    }
-    if (!Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ message: 'Identificador de paciente inválido' });
-    }
     const patient = await getPatientById(id)
     if (patient) {
       res.status(200).json(patient)
@@ -66,15 +66,15 @@ patientRouter.get('/:id?', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Crear un nuevo paciente
-patientRouter.post('/', (async (req: Request, res: Response) => {
-  const { firstName, lastName, dob, gender, dni, email } = req.body
-
-  // Verificar si se proporcionaron todas las propiedades
-  if (!firstName || !lastName || !dob || !gender || !dni || !email) {
-    return res.status(400).json({ error: 'Faltan propiedades en la solicitud' });
-  }
-  const newPatient = req.body
+patientRouter.post('/', patientValidation, (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() });
+    }
+    const newPatient = req.body
+
     const patient = await createPatient(newPatient)
     res.json(patient)
   } catch (error) {
@@ -84,22 +84,16 @@ patientRouter.post('/', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Actualizar un paciente
-patientRouter.put('/:id?', (async (req: Request, res: Response) => {
-  const { firstName, lastName, dob, gender, dni, email } = req.body
-
-  const { id } = req.params
-  if (!id) {
-    return res.status(400).json({ error: 'Id no ingresado' });
-  }
-  if (!Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ message: 'Identificador de especialidad inválido' });
-  }
-  // Verificar si se proporcionaron todas las propiedades
-  if (!firstName || !lastName || !dob || !gender || !dni || !email) {
-    return res.status(400).json({ error: 'Faltan propiedades en la solicitud' });
-  }
-  const updatedPatient = req.body
+patientRouter.put('/:id?', idValidation, patientValidation, (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() });
+    }
+
+    const updatedPatient = req.body
+    const id = req.params.id
     const patient = await updatePatient(id, updatedPatient)
     if (patient) {
       res.status(200).json(patient)
@@ -112,18 +106,17 @@ patientRouter.put('/:id?', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Eliminar un paciente
-patientRouter.delete('/:id?', (async (req: Request, res: Response) => {
-  const { id } = req.params
+patientRouter.delete('/:id?', idValidation, (async (req: Request, res: Response) => {
 
-  if (!id) {
-    return res.status(400).json({ error: 'Id no ingresado' });
-  }
-
-  if (!Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ message: 'Identificador de especialidad inválido' });
-  }
 
   try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() });
+    }
+    const { id } = req.params
+
     const patient = await deletePatient(id)
     if (patient) {
       res.json({ message: 'Paciente eliminado correctamente' })
