@@ -20,4 +20,28 @@ export const idValidation = [
     }),
 ];
 
+export const appointmentValidation = [
+  body('dateTime').notEmpty().withMessage('La fecha es obligatoria'),
+  body('meetingLink').notEmpty().withMessage('El meetingLink es obligatorio'),
+  body('paymentId').notEmpty().withMessage('El paymentId es obligatorio'),
+  body('patient').notEmpty().withMessage('El ID del paciente es obligatorio').custom((value) => {
+    if (!Types.ObjectId.isValid(value)) {
+      throw new Error('ID de paciente inválido');
+    }
+    return true;
+  }),
+  body('specialist').notEmpty().withMessage('El ID del profesional es obligatorio').custom((value) => {
+    if (!Types.ObjectId.isValid(value)) {
+      throw new Error('ID de profesional inválido');
+    }
+    return true;
+  }),
+  body('specialty').notEmpty().withMessage('El ID de la especialidad es obligatorio').custom((value) => {
+    if (!Types.ObjectId.isValid(value)) {
+      throw new Error('ID de especialidad inválido');
+    }
+    return true;
+  })
+]
+
 

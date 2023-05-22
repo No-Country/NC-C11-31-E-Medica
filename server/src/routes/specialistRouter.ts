@@ -7,7 +7,7 @@ const specialistRouter = Router()
 specialistRouter.get('/', (async (_req: Request, res: Response) => {
   try {
     const specialists = await getSpecialists()
-    res.json(specialists)
+    res.status(200).json(specialists)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'No se encontraron especialistas.' })
