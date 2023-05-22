@@ -6,7 +6,7 @@ import { validationResult } from 'express-validator'
 const appointmentRouter = Router()
 
 // Ruta para obtener todos los appointments
-appointmentRouter.get('/appointments', (async (req: Request, res: Response) => {
+appointmentRouter.get('/', (async (req: Request, res: Response) => {
   try {
     const appointments = await getAppointments()
     res.status(200).json(appointments)

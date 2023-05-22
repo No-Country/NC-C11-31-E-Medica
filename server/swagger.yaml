@@ -30,6 +30,8 @@ tags:
     description: Operaciones sobre el profesional
   - name: Patient
     description: Operaciones sobre el paciente
+  - name: Appointment
+    descripcion: Operacion relacionadas a la cita
 paths:
   /specialty:
     get:
@@ -53,36 +55,12 @@ paths:
       tags: 
         - Specialist
       summary: Crear un nuevo especialista
+      required: true
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                dni:
-                  type: string
-                rup:
-                  type: string
-                email:
-                  type: string
-                  format: email
-                signatureLink:
-                  type: string
-                  format: uri
-                calendarLink:
-                  type: string
-                  format: uri
-                mercadoPago:
-                  type: string
-                  format: uri
-                specialty:
-                  type: string
-                  pattern: "^[0-9a-fA-F]{24}$"
-                  description: ID de MongoDB
+              $ref: '#/components/schemas/Specialist'
       responses:
         '200':
           description: OK
@@ -101,35 +79,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                dni:
-                  type: string
-                rup:
-                  type: string
-                email:
-                  type: string
-                  format: email
-                signatureLink:
-                  type: string
-                calendarLink:
-                  type: string
-                mercadoPago:
-                  type: string
-                specialty:
-                  type: string
-                  pattern: "^[0-9a-fA-F]{24}$"
-                  description: ID de MongoDB
-                reviews:
-                  type: array
-                  items: 
-                    type: object
-                    pattern: "^[0-9a-fA-F]{24}$"
-                    description: ID de MongoDB
+              $ref: '#/components/schemas/Specialist'  
       responses:
         '200':
           description: OK
@@ -204,31 +154,11 @@ paths:
         - Patient
       summary: Crear un nuevo paciente
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                dob:
-                  type: string
-                  format: date
-                gender:
-                  type: string
-                  enum:
-                    - male
-                    - female
-                    - other
-                dni:
-                  type: string
-                email:
-                  type: string
-                  format: email
-                active:
-                  type: boolean
+              $ref: '#/components/schemas/Patient'
       responses:
         '200':
           description: OK
@@ -261,28 +191,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                dob:
-                  type: string
-                  format: date
-                gender:
-                  type: string
-                  enum:
-                    - male
-                    - female
-                    - other
-                dni:
-                  type: string
-                email:
-                  type: string
-                  format: email
-                active:
-                  type: boolean
+              $ref: '#/components/schemas/Patient'
       responses:
         '200':
           description: OK
@@ -300,3 +209,196 @@ paths:
       responses:
         '200':
           description: OK
+
+  /appointment:
+    get:
+      tags: 
+        - Appointment
+      summary: Obtener todas las citas
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appointment'
+    post:
+      tags: 
+        - Appointment
+      summary: Crear una nueva cita
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+  
+  /appointment/{Id}:
+    get:
+      tags: 
+        - Appointment
+      summary: Obtener una cita por su ID
+      parameters:
+        - name: appointmentId
+          in: path
+          required: true
+          description: ID de la cita
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+    put:
+      tags: 
+        - Appointment
+      summary: Actualizar una cita por su ID
+      parameters:
+        - name: appointmentId
+          in: path
+          required: true
+          description: ID de la cita
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+
+components:
+  schemas:
+    Specialty:
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean  
+    Patient:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - dob
+        - gender
+        - dni
+        - email
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dob:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum: [male, female, other]
+        dni:
+          type: string
+        email:
+          type: string
+        active:
+          type: boolean
+    Specialist:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - dni
+        - rup
+        - email
+        - signatureLink
+        - mercadoPago
+        - specialty
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dni:
+          type: string
+        rup:
+          type: string
+        email:
+          type: string
+        signatureLink:
+          type: string
+        calendarLink:
+          type: string
+        mercadoPago:
+          type: string
+        specialty:
+          type: string
+          format: objectId
+        reviews:
+          type: array
+          items:
+            type: string
+            format: objectId
+        active:
+          type: boolean
+    Appointment:
+      type: object
+      required: 
+        - dateTime
+        - meetingLink
+        - paymentId
+        - patient
+        - specialist
+        - specialty
+      properties:
+        dateTime:
+          type: string
+          format: date-time
+        reason:
+          type: string
+        status:
+          type: string
+          enum: ['scheduled', 'canceled', 'missed', 'attended', 'rated']
+        meetingLink:
+          type: string
+        paymentId:
+          type: string
+        paid:
+          type: boolean
+        patient:
+          type: string
+          format: objectId
+        specialist:
+          type: string
+          format: objectId
+        specialty:
+          type: string
+          format: objectId
+        review:
+          type: string
+          format: objectId
+        active:
+          type: boolean
