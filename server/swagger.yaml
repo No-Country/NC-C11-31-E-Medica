@@ -69,14 +69,20 @@ paths:
                   type: string
                 email:
                   type: string
+                  format: email
                 signatureLink:
                   type: string
+                  format: uri
                 calendarLink:
                   type: string
+                  format: uri
                 mercadoPago:
                   type: string
+                  format: uri
                 specialty:
                   type: string
+                  pattern: "^[0-9a-fA-F]{24}$"
+                  description: ID de MongoDB
       responses:
         '200':
           description: OK
@@ -107,6 +113,7 @@ paths:
                   type: string
                 email:
                   type: string
+                  format: email
                 signatureLink:
                   type: string
                 calendarLink:
@@ -115,10 +122,14 @@ paths:
                   type: string
                 specialty:
                   type: string
+                  pattern: "^[0-9a-fA-F]{24}$"
+                  description: ID de MongoDB
                 reviews:
                   type: array
-                  items:
+                  items: 
                     type: object
+                    pattern: "^[0-9a-fA-F]{24}$"
+                    description: ID de MongoDB
       responses:
         '200':
           description: OK
@@ -202,18 +213,20 @@ paths:
                   type: string
                 lastName:
                   type: string
-                age:
-                  type: number
+                dob:
+                  type: string
+                  format: date
                 gender:
                   type: string
                   enum:
-                    - Male
-                    - Female
-                    - Other
+                    - male
+                    - female
+                    - other
                 dni:
                   type: string
                 email:
                   type: string
+                  format: email
                 active:
                   type: boolean
       responses:
@@ -254,8 +267,9 @@ paths:
                   type: string
                 lastName:
                   type: string
-                age:
-                  type: number
+                dob:
+                  type: string
+                  format: date
                 gender:
                   type: string
                   enum:
@@ -266,6 +280,7 @@ paths:
                   type: string
                 email:
                   type: string
+                  format: email
                 active:
                   type: boolean
       responses:
