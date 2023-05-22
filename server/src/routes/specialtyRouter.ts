@@ -13,15 +13,16 @@ specialtyRouter.get('/', (async (req: Request, res: Response) => {
   }
 }) as RequestHandler)
 
-specialtyRouter.get('/:id', (async (req: Request, res: Response) => {
+specialtyRouter.get('/name/:name?', (async (req: Request, res: Response) => {
   try {
-    const specialtyId = req.params.id;
+    //   /name/Medicina General
+    const specialtyName = req.params.name
 
-    if (!Types.ObjectId.isValid(specialtyId)) {
-      return res.status(400).json({ message: 'Identificador de especialidad inválido' });
+    if (!specialtyName) {
+      return res.status(400).json({ message: 'Nombre no ingresado' });
     }
 
-    const specialty = await getSpecialtyById(specialtyId);
+    const specialty = await getSpecialtyByName(specialtyName);
 
     if (specialty) {
       return res.status(200).json(specialty);
@@ -33,16 +34,15 @@ specialtyRouter.get('/:id', (async (req: Request, res: Response) => {
   }
 }) as RequestHandler)
 
-specialtyRouter.get('/name/:name', (async (req: Request, res: Response) => {
+specialtyRouter.get('/:id', (async (req: Request, res: Response) => {
   try {
-    //   /name/Medicina General
-    const specialtyName = req.params.name
+    const specialtyId = req.params.id;
 
-    if (!specialtyName) {
-      return res.status(400).json({ message: 'Nombre no ingresado' });
+    if (!Types.ObjectId.isValid(specialtyId)) {
+      return res.status(400).json({ message: 'Identificador de especialidad inválido' });
     }
 
-    const specialty = await getSpecialtyByName(specialtyName);
+    const specialty = await getSpecialtyById(specialtyId);
 
     if (specialty) {
       return res.status(200).json(specialty);

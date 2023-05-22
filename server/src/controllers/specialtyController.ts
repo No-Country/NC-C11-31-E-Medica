@@ -1,7 +1,6 @@
 import '../db-connection'
 import Specialty from '../models/specialty'
 import { ISpecialty } from '../declarations/interfaces'
-import { ObjectId } from 'mongoose'
 
 // Obtener todas las especialidades
 export async function getAllSpecialties(): Promise<ISpecialty[]> {
