@@ -7,14 +7,10 @@ function InformationUser() {
       .then((response) => response.json())
       .then((data) => setPatient(data));
   }, []);
-  const { firstName, lastName } = patient[0];
 
   return (
     <div>
-      <h1>
-        {" "}
-        hola {firstName} {lastName}{" "}
-      </h1>
+      <h1></h1>
     </div>
   );
 }
