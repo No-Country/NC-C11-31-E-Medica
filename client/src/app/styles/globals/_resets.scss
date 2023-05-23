@@ -23,6 +23,9 @@ main {
   flex-direction: column;
   gap: 6.125rem;
   padding-bottom: clamp(7rem, 7vw, 12rem);
+  @media (min-width: 48rem) {
+    padding-top: clamp(4rem, 5.5vw, 11rem);
+  }
 }
 
 ul,

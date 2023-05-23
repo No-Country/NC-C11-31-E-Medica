@@ -1,11 +1,80 @@
 .form-register {
-  display: flex;
-  flex-direction: column;
-  gap: 1.875rem;
+  display: grid;
+  grid-template-areas: 'form';
   padding: clamp(1rem, 1.5vw, 3rem);
+
   &-cont {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
     gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr));
+    align-items: start;
+    grid-area: form;
+    grid-auto-rows: min-content;
+    transition: 0.5s ease-in-out;
+  }
+  &-cont-1-in {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  &-cont-1-out {
+    transform: translateX(-125%);
+    opacity: 0;
+  }
+  &-cont-2-in {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  &-cont-2-out {
+    transform: translateX(125%);
+    opacity: 0;
+  }
+
+  &-article {
+    display: flex;
+    flex-direction: column;
+    gap: 0.325rem;
+  }
+  &-label {
+    font-size: clamp(1rem, 1.5vw, 3rem);
+  }
+  &-input,
+  &-select {
+    font-size: clamp(1rem, 1.2vw, 2.4rem);
+    padding: 0.5rem;
+    border-radius: 1.875rem;
+    border: 0.0625rem solid #000;
+  }
+  &-select {
+    border-radius: 0.2rem;
+  }
+  &-submit {
+    font-size: clamp(1rem, 1.5vw, 3rem);
+    padding: clamp(0.5rem, 0.5vw, 1rem);
+    background-color: #001279;
+    color: #fff;
+    transition: 0.5s ease-in-out;
+    border-radius: 4.25rem;
+    border: none;
+    &:hover {
+      background-color: #00a300;
+    }
+  }
+  &-next,
+  &-back {
+    font-size: clamp(1rem, 1.5vw, 3rem);
+    padding: clamp(0.5rem, 0.5vw, 1rem);
+    background-color: #0012799c;
+    color: #fff;
+    transition: 0.5s ease-in-out;
+    border-radius: 4.25rem;
+    border: none;
+    &:hover {
+      background-color: #00a30077;
+    }
+  }
+  &-alert {
+    font-size: clamp(0.8rem, 1.4vw, 2.8rem);
+    color: #ff0000;
   }
 }
