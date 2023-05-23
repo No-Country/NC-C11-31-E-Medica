@@ -1,21 +1,18 @@
+'use client'
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import FormSubmitLogin from './Form-submit-login'
 
 const FormLogin = () => {
+
   return (
-  <form>
-    <input 
-    name='e-mail'
-    type='text'
-    placeholder='Ingresa tu e-mail'
-    />
-    <input 
-    name='password'
-    type='password'
-    placeholder='Ingresa tu e-mail'
-    />
-    <button>Ingresar</button>
-  </form>
+    <div className='login-cont'>
+      <h2>Inicia sesión</h2>
+      <FormSubmitLogin />
+      <div className='register-option'>
+        <p>¿Aún no tienes cuenta?</p>  
+        <span>Registrate</span>
+      </div>
+    </div> 
   )
 }
 

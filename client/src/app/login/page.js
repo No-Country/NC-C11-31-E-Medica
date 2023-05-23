@@ -1,10 +1,11 @@
-import React from 'react'
 import FormLogin from './components/form-login/Form-login'
-import '../login/components/_index'
+import { FormRegister } from './components/form-register/Form-register'
 
 const page = () => {
   return (
     <>
+      <article>Usuario</article>
+      <FormRegister />
       <FormLogin />
     </>
   )
