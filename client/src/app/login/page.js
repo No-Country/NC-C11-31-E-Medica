@@ -5,4 +5,6 @@ const page = () => {
     <>
       <FormLogin />
     </>
+  )
+}
 export default page
