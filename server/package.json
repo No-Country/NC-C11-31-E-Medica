@@ -4,10 +4,10 @@
   "description": "Plataforma para el agendamiento y la realización de consultas médicas virtuales",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node build/index.js",
+    "start": "node build/index.js",
     "dev": "ts-node-dev src/index.ts",
     "lint": "ts-standard",
-    "build": "tsc",
+    "build": "npm install && tsc",
     "clean": "rimraf build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

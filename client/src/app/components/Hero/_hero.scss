@@ -1,0 +1,33 @@
+@use '../../styles/globals/variables' as *;
+
+.heroContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: clamp(4rem, 15vw, 30rem) clamp(5rem, 30vw, 60rem) clamp(5rem, 8vw, 16rem) clamp(2rem, 8vw, 16rem);
+  background-color: rgba(0, 0, 0, 0.584);
+  background-image: url(/images/hero-image.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: darken;
+  border-bottom-left-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+
+  &-title,
+  &-detail {
+    color: #fff;
+    font-family: $font-family;
+    padding: 0.5rem;
+  }
+  &-detail {
+    font-size: clamp(1.2rem, 1.2vw, 2.4rem);
+    display: none;
+    @media (min-width: 48rem) {
+      display: block;
+    }
+  }
+  &-title {
+    font-size: clamp(1.2rem, 4.2vw, 8.4rem);
+  }
+}

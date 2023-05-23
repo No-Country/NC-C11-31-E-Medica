@@ -1,0 +1,32 @@
+@use '../../styles/globals/variables' as *;
+
+.information {
+  width: 100%;
+  color: #ffffff;
+  background-color: #787878;
+
+  &-h3 {
+    text-align: center;
+    padding: 2rem;
+    box-shadow: $shadow-ease;
+    border-block: solid 0.25rem #fafafa;
+    border-left: solid 0.0625rem #1e263d99;
+  }
+  &-h2 {
+    padding: 1rem;
+  }
+
+  &-p {
+    padding: 2.5rem 1rem;
+  }
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18.5rem, 1fr));
+  margin-top: 1rem;
+  grid-auto-flow: row;
+}
+
+.growUp {
+  font-size: 2.5rem;
+}
