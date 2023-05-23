@@ -6,14 +6,17 @@ import postDataRegister from '../../hook/post-data-register'
 
 export const FormRegister = () => {
   const [stateForm, setStateForm] = useState(false)
+
   function changeStateForm() {
     setStateForm(!stateForm)
   }
+
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm()
+
   const onSubmit = (data) => {
     console.log(data), postDataRegister(data)
   }
@@ -24,7 +27,7 @@ export const FormRegister = () => {
           valueInput={{
             label: 'Nombre',
             type: 'text',
-            useForm: {
+            Form: {
               ...register('firstName', {
                 required: true,
                 maxLength: {
@@ -49,7 +52,7 @@ export const FormRegister = () => {
           valueInput={{
             label: 'Apellido',
             type: 'text',
-            useForm: {
+            Form: {
               ...register('lastName', {
                 required: 'campo requerido',
                 maxLength: {
@@ -75,13 +78,13 @@ export const FormRegister = () => {
         </button>
       </div>
       <div className={`form-register-cont ${stateForm ? 'form-register-cont-2-in' : 'form-register-cont-2-out'} `}>
-        <FormInput valueInput={{ label: 'Fecha de nacimiento', type: 'date', useForm: { ...register('dob', { required: 'campo requerido' }) }, className: 'form-register-cont-2-in-dob' }} />
+        <FormInput valueInput={{ label: 'Fecha de nacimiento', type: 'date', Form: { ...register('dob', { required: 'campo requerido' }) } }} />
         {errors.dob?.type === 'required' && (
           <p role='alert' className='form-register-alert'>
             Campo requerido
           </p>
         )}
-        <select {...register('gender', { required: true })} className='form-register-select form-register-cont-2-in-select'>
+        <select {...register('gender', { required: true })} className='form-register-select'>
           <option value='female'>Mujer</option>
           <option value='male'>Hombre</option>
           <option value='other'>Indefinido</option>
@@ -90,32 +93,35 @@ export const FormRegister = () => {
           valueInput={{
             label: 'dni',
             type: 'number',
-            useForm: {
+            Form: {
               ...register('dni', {
                 required: 'campo requerido',
                 maxLength: {
                   value: 8,
-                  message: 'maximo 8 caracteres'
+                  message: 'este campo debe tener 8 caracteres'
+                },
+                minLength: {
+                  value: 8,
+                  message: 'este campo debe tener 8 caracteres'
                 }
               })
             }
           }}
         />
-        {errors.dni?.type === 'required' && (
-          <p role='alert' className='form-register-alert'>
-            Campo requerido
-          </p>
-        )}
-        {errors.dob?.type === 'maxlength' && (
+
+        {errors.dni?.type === 'maxLength' || 'minLength' ? (
           <p role='alert' className='form-register-alert'>
             {errors.dni?.message}
           </p>
+        ) : (
+          ''
         )}
+
         <FormInput
           valueInput={{
             label: 'Ingrese su email',
             type: 'email',
-            useForm: {
+            Form: {
               ...register('email', {
                 required: 'campo requerido',
                 pattern: {
