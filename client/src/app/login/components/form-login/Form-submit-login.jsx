@@ -17,7 +17,7 @@ const FormSubmitLogin = () => {
           <input
           name='email'
           type='email'
-          placeholder='Ingrese su email'
+          placeholder='juanperez@gmail.com'
           { ...register('email', { required: {value: true, message: 'Complete el campo de email'} }) }      
           />
           <span>{errors?.email?.message}</span>
