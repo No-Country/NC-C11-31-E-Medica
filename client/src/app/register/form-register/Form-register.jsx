@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import FormInput from './Form-input'
-import postDataRegister from '../../hook/post-data-register'
+import postDataRegister from '../hook/post-data-register'
 
 export const FormRegister = () => {
   const [stateForm, setStateForm] = useState(false)
