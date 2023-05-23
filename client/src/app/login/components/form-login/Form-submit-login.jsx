@@ -12,8 +12,8 @@ const FormSubmitLogin = () => {
   
   const{
     register,  
-    handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    handleSubmit
   } = useForm();
 
   const onSubmit = (data) =>{
@@ -34,7 +34,7 @@ const FormSubmitLogin = () => {
           { ...register('email', { 
             required: {
               value: true, 
-              message: 'Complete el campo de email'
+              message: 'Ingrese un email para continuar'
               } 
             }) 
           }/>
@@ -43,7 +43,7 @@ const FormSubmitLogin = () => {
             {errors.email?.message}
           </span>
           )}
-          <button className='login-form-button-next' onClick={handlerChangeClassName}>Siguiente</button>
+          <button type='submit' className='login-form-button-next' onClick={handlerChangeClassName}>Siguiente</button>
         </div>
 
         <div className={`${inputClassName ? 'login-form-password-cont-false' : 'login-form-password-cont-true'}`}>
@@ -53,10 +53,21 @@ const FormSubmitLogin = () => {
             name: 'password',
             type: 'password',
           }}
-          { ...register('email', { required: {value: true, message: 'Complete el campo de email'} }) }/>         
-          <span className='errors'>{errors?.password?.message}</span>
+          { ...register(
+            'password', { 
+              required: {
+                value: true, 
+                message: 'Ingrese una contraseña para ingresar'
+              } 
+            }) 
+          }/>
+          {errors.password?.type === 'required' && (
+          <span className='login-form-errors'> 
+            {errors.password?.message}
+          </span>
+          )}        
           <button className='login-form-button-back' onClick={handlerChangeClassName}>Volver</button>
-          <button className='login-form-button-submit'>Ingresar</button>
+          <button type='submit' className='login-form-button-submit'>Ingresar</button>
           <a>¿Olvidaste tu clave?</a>  
         </div>           
       </form>

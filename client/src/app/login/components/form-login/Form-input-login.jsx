@@ -9,7 +9,7 @@ const FormInputLogin = ({inputValue}) => {
             type={inputValue.type} 
             placeholder={inputValue.placeholder}
             className={`${inputValue.className}`}
-            {...inputValue.useForm}
+            
         />
     </div>
   )
