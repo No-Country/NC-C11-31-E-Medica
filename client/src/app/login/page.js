@@ -1,12 +1,12 @@
 import { FormRegister } from './components/form-register/Form-register'
 
-FormRegister
 const Page = () => {
   return (
-    <>
-      <article>Usuario</article>
+    <section className='register'>
+      <div className='register-img-cont'></div>
+      <h1 className='register-title'>Usuario</h1>
       <FormRegister />
-    </>
+    </section>
   )
 }
 
