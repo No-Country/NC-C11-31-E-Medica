@@ -14,7 +14,6 @@ body {
   font-size: clamp(0.7rem, 1.5vw, 3rem);
   line-height: 1.5;
   color: #000000;
-  gap: 3rem;
   width: -webkit-fill-available;
 }
 main {
@@ -24,6 +23,9 @@ main {
   flex-direction: column;
   gap: 6.125rem;
   padding-bottom: clamp(7rem, 7vw, 12rem);
+  @media (min-width: 48rem) {
+    padding-top: clamp(4rem, 5.5vw, 11rem);
+  }
 }
 
 ul,

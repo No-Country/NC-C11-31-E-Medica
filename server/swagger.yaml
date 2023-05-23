@@ -1,0 +1,404 @@
+openapi: 3.0.0
+info:
+  title: E-Medica API
+  version: 1.0.0
+  description: |-
+    Documentación de la API de E-Medica
+
+    Para usar la API :
+
+      consultas a http://ec2-18-228-59-5.sa-east-1.compute.amazonaws.com
+
+      y las rutas necesarias, ejemplo:
+
+      http://ec2-18-228-59-5.sa-east-1.compute.amazonaws.com/specialty
+
+    *Algunas rutas podrian tener errores.
+
+    *Las rutas importantes para crear usuarios, funcionan bien.
+
+    *Para probar las rutas en la documentacion, usar el servidor de produccion
+servers:
+  - url: http://ec2-18-228-59-5.sa-east-1.compute.amazonaws.com
+    description: Production server
+  - url: http://localhost:5000
+    description: Development server
+tags:
+  - name: Specialty
+    description: Todo sobre las especialidades
+  - name: Specialist
+    description: Operaciones sobre el profesional
+  - name: Patient
+    description: Operaciones sobre el paciente
+  - name: Appointment
+    descripcion: Operacion relacionadas a la cita
+paths:
+  /specialty:
+    get:
+      tags: 
+        - Specialty
+      summary: Obtener la lista de especialidades
+      responses:
+        '200':
+          description: OK
+
+  /specialist:
+    get:
+      tags: 
+        - Specialist
+      summary: Obtener la lista de profesionales
+      responses:
+        '200':
+          description: OK
+
+    post:
+      tags: 
+        - Specialist
+      summary: Crear un nuevo especialista
+      required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Specialist'
+      responses:
+        '200':
+          description: OK
+
+    put:
+      tags: 
+        - Specialist
+      summary: Actualizar un especialista por su ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Specialist'  
+      responses:
+        '200':
+          description: OK
+
+    delete:
+      tags: 
+        - Specialist
+      summary: Eliminar un especialista por su ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+
+  /specialist/search:
+    get:
+      tags: 
+        - Specialist
+      summary: Encontrar especialistas por nombre o apellido
+      parameters:
+        - in: query
+          name: terms
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /specialist/category:
+    get:
+      tags: 
+        - Specialist
+      summary: Encontrar especialistas por especialidad
+      parameters:
+        - in: query
+          name: specialty
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /specialist/{id}:
+    get:
+      tags: 
+        - Specialist
+      summary: Obtener un especialista por su ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+  /patient:
+    get:
+      tags: 
+        - Patient
+      summary: Obtener la lista de pacientes
+      responses:
+        '200':
+          description: OK
+
+    post:
+      tags: 
+        - Patient
+      summary: Crear un nuevo paciente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '200':
+          description: OK
+
+  /patient/{id}:
+    get:
+      tags: 
+        - Patient
+      summary: Obtener un paciente por su ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+
+    put:
+      tags: 
+        - Patient
+      summary: Actualizar un paciente por su ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '200':
+          description: OK
+
+    delete:
+      tags: 
+        - Patient
+      summary: Eliminar un paciente por su ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+
+  /appointment:
+    get:
+      tags: 
+        - Appointment
+      summary: Obtener todas las citas
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appointment'
+    post:
+      tags: 
+        - Appointment
+      summary: Crear una nueva cita
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+  
+  /appointment/{Id}:
+    get:
+      tags: 
+        - Appointment
+      summary: Obtener una cita por su ID
+      parameters:
+        - name: appointmentId
+          in: path
+          required: true
+          description: ID de la cita
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+    put:
+      tags: 
+        - Appointment
+      summary: Actualizar una cita por su ID
+      parameters:
+        - name: appointmentId
+          in: path
+          required: true
+          description: ID de la cita
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+
+components:
+  schemas:
+    Specialty:
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean  
+    Patient:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - dob
+        - gender
+        - dni
+        - email
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dob:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum: [male, female, other]
+        dni:
+          type: string
+        email:
+          type: string
+        active:
+          type: boolean
+    Specialist:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - dni
+        - rup
+        - email
+        - signatureLink
+        - mercadoPago
+        - specialty
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dni:
+          type: string
+        rup:
+          type: string
+        email:
+          type: string
+        signatureLink:
+          type: string
+        calendarLink:
+          type: string
+        mercadoPago:
+          type: string
+        specialty:
+          type: string
+          format: objectId
+        reviews:
+          type: array
+          items:
+            type: string
+            format: objectId
+        active:
+          type: boolean
+    Appointment:
+      type: object
+      required: 
+        - dateTime
+        - meetingLink
+        - paymentId
+        - patient
+        - specialist
+        - specialty
+      properties:
+        dateTime:
+          type: string
+          format: date-time
+        reason:
+          type: string
+        status:
+          type: string
+          enum: ['scheduled', 'canceled', 'missed', 'attended', 'rated']
+        meetingLink:
+          type: string
+        paymentId:
+          type: string
+        paid:
+          type: boolean
+        patient:
+          type: string
+          format: objectId
+        specialist:
+          type: string
+          format: objectId
+        specialty:
+          type: string
+          format: objectId
+        review:
+          type: string
+          format: objectId
+        active:
+          type: boolean
