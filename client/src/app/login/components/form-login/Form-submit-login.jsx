@@ -35,7 +35,7 @@ const FormSubmitLogin = () => {
             required: {
               value: true, 
               message: 'Ingrese un email para continuar'
-              } 
+            } 
             }) 
           }/>
           {errors.email?.type === 'required' && (
@@ -43,7 +43,7 @@ const FormSubmitLogin = () => {
             {errors.email?.message}
           </span>
           )}
-          <button type='submit' className='login-form-button-next' onClick={handlerChangeClassName}>Siguiente</button>
+          <button className='login-form-button-next' onClick={handlerChangeClassName}>Siguiente</button>
         </div>
 
         <div className={`${inputClassName ? 'login-form-password-cont-false' : 'login-form-password-cont-true'}`}>
