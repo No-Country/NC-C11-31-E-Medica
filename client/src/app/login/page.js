@@ -1,13 +1,8 @@
-import { FormRegister } from './components/form-register/Form-register'
+import FormLogin from './components/form-login/Form-login'
 
-const Page = () => {
+const page = () => {
   return (
-    <section className='register'>
-      <div className='register-img-cont'></div>
-      <h1 className='register-title'>Usuario</h1>
-      <FormRegister />
-    </section>
-  )
-}
-
-export default Page
+    <>
+      <FormLogin />
+    </>
+export default page
