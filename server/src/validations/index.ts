@@ -44,4 +44,17 @@ export const appointmentValidation = [
   })
 ]
 
-
+export const specialistValidation = [
+  body('firstName').notEmpty().withMessage('El nombre es obligatorio.'),
+  body('lastName').notEmpty().withMessage('El apellido es obligatorio.'),
+  body('dni').notEmpty().withMessage('El dni es obligatorio.'),
+  body('rup').notEmpty().withMessage('El rup es obligatorio.'),
+  body('email').notEmpty().withMessage('El email es obligatorio.'),
+  body('signatureLink').notEmpty().withMessage('El enlace de la imagen de la firma es obligatorio.'),
+  body('mercadoPago').notEmpty().withMessage('El enlace de mercadoPago es obligatorio.'),
+  body('specialty').notEmpty().withMessage('La especialidad es obligatoria.').custom(value => {
+    if (!Types.ObjectId.isValid(value)) {
+      throw new Error('ID de especialidad inválido.')
+    }
+  })
+]
