@@ -13,7 +13,6 @@ const Page = () => {
       <WrapperGrid />
       <TurnSteps />
       <Gallery />
-      <VideoCalling />
     </>
   );
 };

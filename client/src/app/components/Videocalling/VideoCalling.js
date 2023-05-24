@@ -1,18 +1,36 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { JaaSMeeting } from "@jitsi/react-sdk";
 import { useEffect } from "react";
+import InformationUser from "./InformationUser";
+import { Report } from "notiflix/build/notiflix-report-aio";
+// import { userInfo } from "./InformationUser";
+// import { useCalling } from "./../../context/CallingContext";
 
 function VideoCalling() {
+  const router = useRouter();
+  const userInfo = {
+    _id: "6467879c465bf1347b5246c5",
+    firstName: "John",
+    lastName: "Doe",
+    dni: 123456789,
+    rup: "RUP123",
+    email: "john.doe@example.com",
+    signatureLink: "https://example.com/signature",
+    calendarLink: "",
+    mercadoPago: "",
+    reviews: [],
+    active: true,
+    createdAt: "2023-05-19 T14:28:44.763+00:00",
+    updatedAt: "2023-05-19 T14:28:44.763+00:00",
+  };
+
+  const { firstName, lastName, email, _id: id, rup, dni } = userInfo;
+
   let jitsiAPI; // variable que guarda la API
   let alertShowed = false; // comprobante de la alerta a los 5 minutos
-  const userInfo = {
-    displayName: "John Doe",
-    email: "john.doe@example.com",
-    avatar: "https://example.com/avatar.jpg",
-  }; // info del usuario
-  let startTime = new Date(
-    "Mon May 22 2023 17:45:51 GMT-0400 (hora de Venezuela)"
-  ); // info de la fecha agendada en la API server
+  // info del usuario
+  let startTime = new Date(); // info de la fecha agendada en la API server
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,7 +39,6 @@ function VideoCalling() {
         // mientras que startime este disponible va a ser lo siguiente
         const currentTime = new Date(); // Obtiene el tiempo actual
         const elapsedSeconds = Math.floor((currentTime - startTime) / 1000); // calcula el tiempo transcurrido en segundos
-        console.log("Tiempo transcurrido:", elapsedSeconds, "segundos");
         const elapsedMinutes = elapsedSeconds / 60; // el tiempo  transcurrido a segundos se trasnforma a minutos
         if (elapsedMinutes > 25 && !alertShowed) {
           alert("Quedan 5 minutos"); // cuando a la llamada le queden 5 minutos desplegara una notificacion
@@ -37,11 +54,16 @@ function VideoCalling() {
   return (
     <div className="videocalling">
       <JaaSMeeting
-        userInfo={userInfo} // info del usuario que tiene que ser suministrada de la API de authentication
-        appId="vpaas-magic-cookie-cbde2f015c1541469a2074684145eddd"
-        roomName="aqui deberia estar el id" // NECESARIO Nombre de la sala seria "Nombre patient + Nombre Specialist + Appoiment ID"
+        userInfo={{
+          displayName: firstName + " " + lastName,
+          email: email,
+          rup: rup,
+          dni: dni,
+        }} // info del usuario que tiene que ser suministrada de la API de authentication
+        appId="vpaas-magic-cookie-cbde2f015c1541469a2074684145eddd" //NECESARIO
+        roomName={id} // NECESARIO Nombre de la sala seria "Nombre patient + Nombre Specialist + Appoiment ID"
         configOverwrite={{
-          toolbarButtons: ["camera", "hangup", "microphone"], // Iconos que se desplegaran en la interfaz
+          toolbarButtons: ["camera", "hangup", "microphone", "chat"], // Iconos que se desplegaran en la interfaz
           disableThirdPartyRequests: true,
           disableLocalVideoFlip: true,
           backgroundAlpha: 0.5,
@@ -65,12 +87,18 @@ function VideoCalling() {
           iframeRef.style.height = "100%"; //ampliar el componente segun lo que mida la division donde este se encuentra
         }}
         onReadyToClose={() => {
-          alert("Me cerre jaja salu2"); // cuando se seleccione el boton de cerrar deberia mostrar un review
+          router.push("/");
+          Report.success(
+            "Notiflix Success",
+            '"Do not try to become a person of success but try to become a person of value." <br/><br/>- Albert Einstein',
+            "Okay"
+          ); // cuando se seleccione el boton de cerrar deberia mostrar un review
         }}
         onApiReady={(api) => {
           jitsiAPI = api; // llamada a la API de Jitsi la cual se guarda en la variable JitsiAPI
         }}
       />
+      <InformationUser />
     </div>
   );
 }
