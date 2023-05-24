@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import FormInput from './Form-input'
@@ -76,6 +77,9 @@ export const FormRegister = () => {
         <button className='form-register-next' onClick={changeStateForm}>
           Siguiente
         </button>
+        <Link className='form-register-link' href='/login'>
+          ¿Ya tienes una cuenta <span className='form-register-link-span'>ingresar</span> ?
+        </Link>
       </div>
       <div className={`form-register-cont ${stateForm ? 'form-register-cont-2-in' : 'form-register-cont-2-out'} `}>
         <FormInput valueInput={{ label: 'Fecha de nacimiento', type: 'date', Form: { ...register('dob', { required: 'campo requerido' }) } }} />

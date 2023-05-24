@@ -29,6 +29,13 @@
     transform: translateX(125%);
     opacity: 0;
   }
+  &-link {
+    font-size: clamp(0.8rem, 1.2vw, 2.2rem);
+    color: #00000098;
+    &-span {
+      color: #0e3b00;
+    }
+  }
 
   &-article {
     display: flex;
