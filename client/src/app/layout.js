@@ -1,10 +1,10 @@
-import './styles/main.scss'
-import { Footer } from './components/footer/Footer'
-import Header from './components/Navbar/Header'
-
+import "./styles/main.scss";
+import { Footer } from "./components/footer/Footer";
+import Header from "./components/Navbar/Header";
+// import { CallingProvider } from "./context/CallingContext";
 const RootLayout = ({ children }) => {
   return (
-    <html lang='en'>
+    <html lang="en">
       <head>
         <title>E-Medica</title>
       </head>
@@ -14,6 +14,6 @@ const RootLayout = ({ children }) => {
         <Footer />
       </body>
     </html>
-  )
-}
-export default RootLayout
+  );
+};
+export default RootLayout;
