@@ -33,10 +33,10 @@ patientRouter.get('/email/:email?', (async (req: Request, res: Response) => {
     // TODO: Validacion email valido
 
     const patient = await getPatientByEmail(email)
-    if (patient === null) {
-      return res.status(404).json({ error: 'Paciente no encontrado.' })
-    } else {
+    if (patient !== null) {
       res.status(200).json(patient)
+    } else {
+      return res.status(404).json({ error: 'Paciente no encontrado.' })
     }
   } catch (error) {
     res.status(500).json({ error: 'No se pudo obtener el paciente' })
@@ -54,10 +54,10 @@ patientRouter.get('/:id?', idValidation, (async (req: Request, res: Response) =>
     const id = req.params.id
 
     const patient = await getPatientById(id)
-    if (patient === null) {
-      return res.status(404).json({ error: 'Paciente no encontrado.' })
-    } else {
+    if (patient !== null) {
       res.status(200).json(patient)
+    } else {
+      return res.status(404).json({ error: 'Paciente no encontrado.' })
     }
   } catch (error) {
     console.error(error)
@@ -94,10 +94,10 @@ patientRouter.put('/:id?', idValidation, patientValidation, (async (req: Request
     const updatedPatient = req.body
     const id = req.params.id
     const patient = await updatePatient(id, updatedPatient)
-    if (patient === null) {
-      return res.status(404).json({ error: 'Paciente no encontrado' })
-    } else {
+    if (patient !== null) {
       res.status(200).json(patient)
+    } else {
+      return res.status(404).json({ error: 'Paciente no encontrado' })
     }
   } catch (error) {
     res.status(500).json({ error: 'No se pudo actualizar el paciente' })
@@ -115,10 +115,10 @@ patientRouter.delete('/:id?', idValidation, (async (req: Request, res: Response)
     const { id } = req.params
 
     const patient = await deletePatient(id)
-    if (patient === null) {
-      return res.status(404).json({ error: 'Paciente no encontrado' })
-    } else {
+    if (patient !== null) {
       res.json({ message: 'Paciente eliminado correctamente' })
+    } else {
+      return res.status(404).json({ error: 'Paciente no encontrado' })
     }
   } catch (error) {
     res.status(500).json({ error: 'No se pudo eliminar el paciente' })
