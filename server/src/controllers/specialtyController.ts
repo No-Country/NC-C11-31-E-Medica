@@ -3,7 +3,7 @@ import Specialty from '../models/specialty'
 import { ISpecialty } from '../declarations/interfaces'
 
 // Obtener todas las especialidades
-export async function getAllSpecialties(): Promise<ISpecialty[]> {
+export async function getAllSpecialties (): Promise<ISpecialty[]> {
   try {
     const specialties: ISpecialty[] = await Specialty.find()
     return specialties
@@ -15,7 +15,7 @@ export async function getAllSpecialties(): Promise<ISpecialty[]> {
 }
 
 // Obtener una especialidad por ID
-export async function getSpecialtyById(specialtyId: string): Promise<ISpecialty | null> {
+export async function getSpecialtyById (specialtyId: string): Promise<ISpecialty | null> {
   try {
     const specialty: ISpecialty | null = await Specialty.findById(specialtyId)
     return specialty
@@ -23,10 +23,10 @@ export async function getSpecialtyById(specialtyId: string): Promise<ISpecialty 
     throw new Error('No se pudo obtener la especialidad')
   }
 }
-export async function getSpecialtyByName(specialtyName: string): Promise<ISpecialty | null> {
+export async function getSpecialtyByName (specialtyName: string): Promise<ISpecialty | null> {
   try {
     const specialty: ISpecialty | null = await Specialty.findOne({ name: specialtyName })
-    return specialty // Envía la especialidad encontrada 
+    return specialty // Envía la especialidad encontrada
   } catch (error) {
     throw new Error('No se pudo obtener la especialidad')
   }
