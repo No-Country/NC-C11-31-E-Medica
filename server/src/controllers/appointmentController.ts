@@ -34,7 +34,7 @@ export const createAppointment = async (newAppointment: IAppointment): Promise<I
 // Actualizar un appointment por su ID
 export const updateAppointmentById = async (appointmentId: string, updatedAppointment: Partial<IAppointment>): Promise<IAppointment | null> => {
   try {
-    const appointment = await Appointment.findByIdAndUpdate(appointmentId, updatedAppointment, { new: true })
+    const appointment = await Appointment.findByIdAndUpdate(appointmentId, updatedAppointment)
     return appointment
   } catch (error) {
     throw new Error('Error al actualizar el appointment por su ID.')

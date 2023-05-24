@@ -1,13 +1,10 @@
-import { FormRegister } from './components/form-register/Form-register'
+import FormLogin from './components/form-login/Form-login'
 
-FormRegister
-const Page = () => {
+const page = () => {
   return (
     <>
-      <article>Usuario</article>
-      <FormRegister />
+      <FormLogin />
     </>
   )
 }
-
-export default Page
+export default page
