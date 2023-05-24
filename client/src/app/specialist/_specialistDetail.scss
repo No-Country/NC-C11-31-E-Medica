@@ -1,0 +1,57 @@
+.specialist-detail{
+    margin: 2rem;
+    h2{
+        margin-bottom: 1rem;
+    }
+    &-description{
+        margin-top: 1rem;
+    }
+}
+.specialist-detail-card{
+    display: flex;
+    justify-content: space-around;
+    background-color: #EEEEEE;
+    border-radius: 15px;
+    padding: 1rem;
+    &-image{
+        width: 5rem;
+        height: 5rem;
+        border-radius: 100%;
+        margin-right: 2rem;
+    }
+}
+.specialist-detail{
+    &-button1{
+        cursor: pointer;
+        font-size: clamp(0.6rem, 1.5vw, 2rem);
+        padding: clamp(0.5rem, 0.5vw, 1rem);
+        background-color: white;
+        color: black;
+        transition: 0.5s ease-in-out;
+        border-radius: 15px;
+        border:black;
+        width: 100%;
+        margin:0.5rem;
+    }&-button{
+        cursor: pointer;
+        font-size: clamp(0.6rem, 1.5vw, 2rem);
+        padding: clamp(0.5rem, 0.5vw, 1rem);
+        background-color: #0012799c;
+        color: #fff;
+        transition: 0.5s ease-in-out;
+        border-radius: 15px;
+        width: 100%;
+        margin:0.5rem;
+    &-cont{
+        margin-top: 0.5rem;
+    }
+    }
+}
+
+@media (min-width: 768px) {
+    .specialist-detail-card-image{
+        width: 15rem;
+        height: 15rem;
+
+    }
+}
