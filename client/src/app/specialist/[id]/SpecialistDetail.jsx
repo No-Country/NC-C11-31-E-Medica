@@ -11,6 +11,7 @@ const SpecialistDetail = () => {
   console.log('estado', dataSpecialistDetail)
 
     useEffect(()=> {
+      console.log('useffect ejecutado')
         getSpecialistDetail(params.id).then(data => setDataSpecialistDetail(data))       
     }, [])
     
@@ -26,8 +27,8 @@ const SpecialistDetail = () => {
         className='specialist-detail-card-image'
         /> 
         <div>
-            <h2>Dr. {dataSpecialistDetail.firstName} {dataSpecialistDetail.lastName} </h2>
-            <p>{dataSpecialistDetail.specialty.name}</p>
+            <h2>Dr. {dataSpecialistDetail.firstName} {dataSpecialistDetail.lastName}  </h2>
+            <p> {dataSpecialistDetail.specialty.name} </p>
         </div>
       </div>
       <div className='specialist-detail-description'>
