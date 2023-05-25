@@ -135,9 +135,6 @@ export async function deleteSpecialist(id: string): Promise<ISpecialist | null> 
 }
 
 export async function getRefreshToken(code: string): Promise<void> {
-  console.log("****")
-  console.log(code);
-
   try {
     const options = {
       method: 'POST',
@@ -152,16 +149,14 @@ export async function getRefreshToken(code: string): Promise<void> {
       })
     };
 
-    fetch('https://auth.calendly.com/oauth/token', options)
+    const refreshToken = fetch('https://auth.calendly.com/oauth/token', options)
       .then(response => response.json())
-      .then(response => {
-        const refreshToken = response.refresh_token
-        return refreshToken;
-      })
+      .then(response => response.refresh_token)
       .catch(err => {
         console.error(err);
         throw new Error('No se pudo obtener el refreshToken.');
       });
+    return refreshToken
   } catch (error) {
     throw new Error('No se pudo obtener el refreshToken.')
   }

@@ -133,6 +133,7 @@ specialistRouter.post('/calendly', (async (req: Request, res: Response) => {
 
     const refreshToken = await getRefreshToken(code)
 
+
     res.json({ refreshToken: refreshToken })
 
   } catch (error) {
