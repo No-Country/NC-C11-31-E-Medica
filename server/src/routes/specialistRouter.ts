@@ -40,22 +40,21 @@ specialistRouter.get('/search', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Ruta para encontrar especialistas por especialidad
-specialistRouter.get('/category', (async (req: Request, res: Response) => {
+specialistRouter.get('/category/:id', idValidation, (async (req: Request, res: Response) => {
   try {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       return res.status(400).json({ error: 'Errores de validación.', errors: errors.array() })
     }
-    const specialty = req.query.specialty
-    if (typeof specialty === 'string') {
-      const specialists = await getSpecialistsBySpecialty(specialty)
-      res.json(specialists)
-    } else {
-      res.json('La especialidad ingresada no existe.')
+    const { id } = req.params
+    const specialists = await getSpecialistsBySpecialty(id)
+    if (specialists === null) {
+      return res.status(404).json({ error: 'No se encontraron especialistas con la especialidad ingresada.' })
     }
+    res.json(specialists)
   } catch (error) {
     console.error(error)
-    res.status(500).json({ error: 'No se pudo obtener el especialista.' })
+    res.status(500).json({ error: 'No se pudieron obtener los especialistas.' })
   }
 }) as RequestHandler)
 
