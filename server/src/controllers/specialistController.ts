@@ -2,7 +2,6 @@ import '../db-connection'
 import Specialist from '../models/specialist'
 import { ISpecialist } from '../declarations/interfaces'
 import { ObjectId } from 'mongoose'
-import axios from 'axios'
 
 // Obtener todos los especialistas
 export async function getSpecialists(): Promise<ISpecialist[] | null> {
@@ -72,20 +71,14 @@ export async function getSpecialistById(id: string): Promise<ISpecialist | null>
 }
 
 // Crear un nuevo especialista
-export async function createSpecialist(
-  firstName: string,
-  lastName: string,
-  dni: string,
-  rup: string,
-  email: string,
-  signatureLink: string,
-  calendarLink: string,
-  mercadoPago: string,
-  specialty: ObjectId
-): Promise<ISpecialist | null> {
+export async function createSpecialist(newSpecialist: any, refreshToken: string): Promise<ISpecialist | null> {
   try {
-    const newSpecialist = { firstName, lastName, dni, rup, email, signatureLink, calendarLink, mercadoPago, specialty }
-    const specialist = new Specialist(newSpecialist)
+    // Verificar si el usuario ya existe en la base de datos
+    const existingSpecialist = await Specialist.findOne({ email: newSpecialist.email }).exec();
+    if (existingSpecialist) {
+      throw new Error('El especialista ya existe en la base de datos');
+    }
+    const specialist = new Specialist({ ...newSpecialist, calendlyToken: refreshToken })
     const savedSpecialist: ISpecialist = await specialist.save()
     return savedSpecialist
   } catch (error) {
@@ -134,7 +127,7 @@ export async function deleteSpecialist(id: string): Promise<ISpecialist | null> 
   }
 }
 
-export async function getRefreshToken(code: string): Promise<void> {
+export async function getRefreshToken(code: string): Promise<string> {
   try {
     const options = {
       method: 'POST',
@@ -161,3 +154,61 @@ export async function getRefreshToken(code: string): Promise<void> {
     throw new Error('No se pudo obtener el refreshToken.')
   }
 }
+
+export async function getCalendlyCredendtials(refreshToken: string) {
+  try {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: 'Basic ' + btoa('uoB6oI_BXqLz8yWmKInA9YZ4VLEAsbjuSU_BCl4pzhI:yv8XODn_azGYc8zFtTQogE3FwXsBLqtYv4kKwOtBDes')
+      },
+      body: new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken,
+      })
+    };
+
+    const response = await fetch('https://auth.calendly.com/oauth/token', options)
+    const responseJson = await response.json()
+    const { access_token, owner } = responseJson
+    //actualizar refresh_token
+    const credentials = {
+      accessToken: String(access_token),
+      owner: String(owner)
+    }
+    return credentials
+  } catch (error) {
+    console.log(error);
+
+  }
+}
+
+export async function getCalendlyData(accessToken: string, owner: string) {
+  try {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`
+      }
+    };
+
+    const response = await fetch(`${owner}`, options)
+    const responseJson = await response.json()
+
+    const names = responseJson.resource.name.split(" ")
+    const userFormat = {
+      email: String(responseJson.resource.email),
+      firstName: String(names[0]),
+      lastName: String(names[1]),
+      calendlyLink: String(responseJson.resource.scheduling_url),
+    }
+
+    return userFormat
+  } catch (error) {
+    console.log(error);
+
+  }
+}
+

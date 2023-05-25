@@ -20,17 +20,18 @@ export interface IPatient extends Document {
 export interface ISpecialist extends Document {
   firstName: string
   lastName: string
-  picture: string
-  bio: string
-  dni: string
-  rup: string
   email: string
-  signatureLink: string
-  calendarLink: string
-  mercadoPago: string
-  specialty: ObjectId
-  reviews: ObjectId
-  active: boolean
+  calendlyToken: string
+  calendlyLink: string
+  picture?: string
+  bio?: string
+  dni?: string
+  rup?: string
+  signatureLink?: string
+  mercadoPago?: string
+  specialty?: ObjectId
+  reviews?: ObjectId
+  active?: boolean
 }
 
 export interface IAppointment extends Document {
