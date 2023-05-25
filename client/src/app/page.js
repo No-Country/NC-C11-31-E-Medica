@@ -8,9 +8,11 @@ import { useEffect } from "react";
 
 const Page = () => {
   useEffect(() => {
+    console.log("das");
     const queryParams = new URLSearchParams(window.location.search); //window is not defined deploy fallido
     const codeValue = queryParams.get("code");
     console.log(codeValue);
+    console.log("asd");
   }, []);
   return (
     <>
