@@ -1,12 +1,10 @@
 import { Router, Request, Response, RequestHandler } from 'express'
-
 import { getSpecialists, getSpecialistById, createSpecialist, updateSpecialist, deleteSpecialist, getSpecialistsByName, getSpecialistsBySpecialty, getRefreshToken } from '../controllers/specialistController'
 import { validationResult } from 'express-validator'
 import { specialistValidation, idValidation } from '../validations'
 
 const specialistRouter = Router()
-//TODO: Ruta que traiga el promedio de estrellas en las reviews de medicos
-
+// TODO: Ruta que traiga el promedio de estrellas en las reviews de medicos
 
 // Ruta para obtener todos los especialistas
 specialistRouter.get('/', (async (_req: Request, res: Response) => {
@@ -154,19 +152,14 @@ specialistRouter.delete('/:id', idValidation, (async (req: Request, res: Respons
 
 specialistRouter.post('/calendly', (async (req: Request, res: Response) => {
   try {
-    //Obtengo el codigo para el refresh token
+    // Obtengo el código para el refresh token
     const { code } = req.body
-
     const refreshToken = await getRefreshToken(code)
-
-
-    res.json({ refreshToken: refreshToken })
-
+    res.json({ refreshToken })
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'No se pudo crear el especialista.' })
   }
 }) as RequestHandler)
-
 
 export default specialistRouter
