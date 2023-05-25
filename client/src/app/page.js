@@ -6,6 +6,9 @@ import Gallery from "./components/Gallery/Gallery";
 import ChatBotComponent from "./components/Chatbot/Chatbot";
 
 const Page = () => {
+  const queryParams = new URLSearchParams(window.location.search);
+  const codeValue = queryParams.get("code");
+  console.log(codeValue);
   return (
     <>
       <Hero />
