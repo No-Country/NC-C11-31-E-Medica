@@ -2,13 +2,14 @@ import '../db-connection'
 import Specialist from '../models/specialist'
 import { ISpecialist } from '../declarations/interfaces'
 import { ObjectId } from 'mongoose'
+import axios from 'axios'
 
 // Obtener todos los especialistas
-export async function getSpecialists (): Promise<ISpecialist[] | null> {
+export async function getSpecialists(): Promise<ISpecialist[] | null> {
   try {
     const specialists: ISpecialist[] = await Specialist.find({})
       .populate('specialty')
-      // .populate('reviews')
+    // .populate('reviews')
     // const specialistsWithRating = specialists.map(specialist => {
     //   return specialist.reviews.map(review => )
     // })
@@ -21,7 +22,7 @@ export async function getSpecialists (): Promise<ISpecialist[] | null> {
 }
 
 // Obtener especialistas por nombre/apellido
-export async function getSpecialistsByName (terms: string): Promise<ISpecialist[]> {
+export async function getSpecialistsByName(terms: string): Promise<ISpecialist[]> {
   try {
     const names = terms.toLowerCase()
       .split(' ')
@@ -43,7 +44,7 @@ export async function getSpecialistsByName (terms: string): Promise<ISpecialist[
 }
 
 // Obtener especialistas por especialidad
-export async function getSpecialistsBySpecialty (specialty: string): Promise<ISpecialist[]> {
+export async function getSpecialistsBySpecialty(specialty: string): Promise<ISpecialist[]> {
   try {
     const specialists: ISpecialist[] | null = await Specialist.find({ specialty })
       .populate('specialty')
@@ -58,7 +59,7 @@ export async function getSpecialistsBySpecialty (specialty: string): Promise<ISp
 }
 
 // Obtener un especialista por ID
-export async function getSpecialistById (id: string): Promise<ISpecialist | null> {
+export async function getSpecialistById(id: string): Promise<ISpecialist | null> {
   try {
     const specialist: ISpecialist | null = await Specialist.findById(id)
       .populate('specialty')
@@ -71,7 +72,7 @@ export async function getSpecialistById (id: string): Promise<ISpecialist | null
 }
 
 // Crear un nuevo especialista
-export async function createSpecialist (
+export async function createSpecialist(
   firstName: string,
   lastName: string,
   dni: string,
@@ -95,7 +96,7 @@ export async function createSpecialist (
 }
 
 // Actualizar un especialista
-export async function updateSpecialist (
+export async function updateSpecialist(
   id: string,
   firstName: string,
   lastName: string,
@@ -121,7 +122,7 @@ export async function updateSpecialist (
 }
 
 // Eliminar un especialista
-export async function deleteSpecialist (id: string): Promise<ISpecialist | null> {
+export async function deleteSpecialist(id: string): Promise<ISpecialist | null> {
   try {
     const specialist = await Specialist.findByIdAndDelete(id)
       .populate('specialty')
@@ -130,5 +131,38 @@ export async function deleteSpecialist (id: string): Promise<ISpecialist | null>
     // Manejar el error
     console.error(error)
     throw new Error('No se pudo eliminar el especialista.')
+  }
+}
+
+export async function getRefreshToken(code: string): Promise<void> {
+  console.log("****")
+  console.log(code);
+
+  try {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: 'Basic ' + btoa('uoB6oI_BXqLz8yWmKInA9YZ4VLEAsbjuSU_BCl4pzhI:yv8XODn_azGYc8zFtTQogE3FwXsBLqtYv4kKwOtBDes')
+      },
+      body: new URLSearchParams({
+        grant_type: 'authorization_code',
+        code: code,
+        redirect_uri: 'https://dev.d2mgpjd3ipukhz.amplifyapp.com/'
+      })
+    };
+
+    fetch('https://auth.calendly.com/oauth/token', options)
+      .then(response => response.json())
+      .then(response => {
+        const refreshToken = response.refresh_token
+        return refreshToken;
+      })
+      .catch(err => {
+        console.error(err);
+        throw new Error('No se pudo obtener el refreshToken.');
+      });
+  } catch (error) {
+    throw new Error('No se pudo obtener el refreshToken.')
   }
 }
