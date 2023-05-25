@@ -2,7 +2,7 @@ import '../db-connection'
 import Specialist from '../models/specialist'
 import { ISpecialist } from '../declarations/interfaces'
 import { ObjectId } from 'mongoose'
-
+const fs = require('fs');
 // Obtener todos los especialistas
 export async function getSpecialists(): Promise<ISpecialist[] | null> {
   try {
@@ -212,3 +212,20 @@ export async function getCalendlyData(accessToken: string, owner: string) {
   }
 }
 
+/*
+export async function crearUsuariosDesdeJSON() {
+  try {
+    const data = await fs.promises.readFile('./seed.json', 'utf8');
+    const usuariosJSON = JSON.parse(data);
+
+    for (const usuarioData of usuariosJSON) {
+      const usuario = new Specialist(usuarioData);
+      await usuario.save();
+      console.log(`Usuario creado: ${usuario.firstName} ${usuario.lastName}`);
+    }
+
+    console.log('Todos los usuarios han sido creados correctamente.');
+  } catch (error) {
+    console.error('Error al crear los usuarios:', error);
+  }
+}*/

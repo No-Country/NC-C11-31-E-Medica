@@ -60,7 +60,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Specialist'
+              type: object
+              properties:
+                code:
+                  type: string
       responses:
         '200':
           description: OK
@@ -120,6 +123,7 @@ paths:
       parameters:
         - in: query
           name: specialty
+          description: ID de la especialidad
           schema:
             type: string
       responses:
@@ -242,13 +246,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Appointment'
   
-  /appointment/{Id}:
+  /appointment/{id}:
     get:
       tags: 
         - Appointment
       summary: Obtener una cita por su ID
       parameters:
-        - name: appointmentId
+        - name: id
           in: path
           required: true
           description: ID de la cita
@@ -379,9 +383,6 @@ components:
           format: date-time
         reason:
           type: string
-        status:
-          type: string
-          enum: ['scheduled', 'canceled', 'missed', 'attended', 'rated']
         meetingLink:
           type: string
         paymentId:
@@ -397,8 +398,3 @@ components:
         specialty:
           type: string
           format: objectId
-        review:
-          type: string
-          format: objectId
-        active:
-          type: boolean

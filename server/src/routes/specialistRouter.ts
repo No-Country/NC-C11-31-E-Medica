@@ -153,4 +153,5 @@ specialistRouter.delete('/:id', idValidation, (async (req: Request, res: Respons
   }
 }) as RequestHandler)
 
+
 export default specialistRouter
