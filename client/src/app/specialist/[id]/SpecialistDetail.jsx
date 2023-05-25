@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Image from "next/image";
 import {useParams} from 'next/navigation'
 import getSpecialistDetail from '@/app/services/getSpecialistDetail';
+import Loading from '@/app/components/Loading/Loading';
 
 const SpecialistDetail = () => {
   const params = useParams()
@@ -34,18 +35,18 @@ const SpecialistDetail = () => {
     </div>
     <div className='specialist-detail-description'>
         <h4>Se destaca en</h4>
-        <ul>
-            <li>Manejo de insulinoterapia en pacientes con enfermedades agudas. Bomba de insulina.</li>
-            <li>Control glucémico en el acto quirúrgico. Control glucémico durante el transplante pancreático y de islotes. Tratamiento de la crisis tirotóxica. Suspensión de corticorterapia: intervención del endocrinólogo. Evaluación y seguimiento de pacientes pre y postransplante (renal, hepático, reno-pancreático, cardíaco y pulmonar).</li>
-            <li>Infusiones de medicamentos antiresortivos en osteoporosis secundaria y en enfermedades malignas.</li>
-        </ul>
+        <p>
+            Manejo de insulinoterapia en pacientes con enfermedades agudas. Bomba de insulina.
+            Control glucémico en el acto quirúrgico. Control glucémico durante el transplante pancreático y de islotes. Tratamiento de la crisis tirotóxica. Suspensión de corticorterapia: intervención del endocrinólogo. Evaluación y seguimiento de pacientes pre y postransplante (renal, hepático, reno-pancreático, cardíaco y pulmonar).
+            Infusiones de medicamentos antiresortivos en osteoporosis secundaria y en enfermedades malignas.
+        </p>
     </div>
     <div className='specialist-detail-button-cont'>
       <button className='specialist-detail-button1'>Ver reseñas de pacientes</button>
       <button className='specialist-detail-button specialist-detail-button2'>Volver</button>
       <button className='specialist-detail-button'>Ver agenda</button>
     </div>
-  </div> ) : ''  
+  </div> ) : <Loading />  
   )
 }
 
