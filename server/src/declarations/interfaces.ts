@@ -20,6 +20,8 @@ export interface IPatient extends Document {
 export interface ISpecialist extends Document {
   firstName: string
   lastName: string
+  picture: string
+  bio: string
   dni: string
   rup: string
   email: string
