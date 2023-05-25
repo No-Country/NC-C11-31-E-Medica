@@ -1,5 +1,4 @@
 @use './globals';
-
 @use '../components';
 
 // ? LOGIN-REGISTER
@@ -10,5 +9,9 @@
 
 // ? SPECIALIST DETAIL
 
-@use '../specialist/specialistDetail'
+@use '../specialist/specialistDetail';
+
+// ? LOADING COMPONENT
+
+@use '../components/Loading/loading'
 
