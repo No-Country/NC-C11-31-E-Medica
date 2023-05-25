@@ -12,12 +12,10 @@ router.use('/health-check', healthCheckRouter)
 
 router.use('/specialty', specialtyRouter)
 
-
 router.use('/specialist', specialistRouter)
 
 router.use('/appointment', appointmentRouter)
 
 router.use('/patient', patientRouter)
-
 
 export default router

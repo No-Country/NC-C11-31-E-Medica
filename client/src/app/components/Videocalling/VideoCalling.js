@@ -32,24 +32,23 @@ function VideoCalling() {
   // info del usuario
   let startTime = new Date(); // info de la fecha agendada en la API server
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // validaciones del tiempo transcurrido en la reunion
-      if (startTime) {
-        // mientras que startime este disponible va a ser lo siguiente
-        const currentTime = new Date(); // Obtiene el tiempo actual
-        const elapsedSeconds = Math.floor((currentTime - startTime) / 1000); // calcula el tiempo transcurrido en segundos
-        const elapsedMinutes = elapsedSeconds / 60; // el tiempo  transcurrido a segundos se trasnforma a minutos
-        if (elapsedMinutes > 25 && !alertShowed) {
-          alert("Quedan 5 minutos"); // cuando a la llamada le queden 5 minutos desplegara una notificacion
-          alertShowed = true;
-        }
-        if (elapsedMinutes >= 30 && jitsiAPI) {
-          jitsiAPI.dispose(); // mientras que la API de jitsi este disponible realizara la funcion "colgar "
-        }
+
+  const interval = setInterval(() => {
+    // validaciones del tiempo transcurrido en la reunion
+    if (startTime) {
+      // mientras que startime este disponible va a ser lo siguiente
+      const currentTime = new Date(); // Obtiene el tiempo actual
+      const elapsedSeconds = Math.floor((currentTime - startTime) / 1000); // calcula el tiempo transcurrido en segundos
+      const elapsedMinutes = elapsedSeconds / 60; // el tiempo  transcurrido a segundos se trasnforma a minutos
+      if (elapsedMinutes > 25 && !alertShowed) {
+        alert("Quedan 5 minutos"); // cuando a la llamada le queden 5 minutos desplegara una notificacion
+        alertShowed = true;
       }
-    }, 1000);
-  }, []);
+      if (elapsedMinutes >= 30 && jitsiAPI) {
+        jitsiAPI.dispose(); // mientras que la API de jitsi este disponible realizara la funcion "colgar "
+      }
+    }
+  }, 1000);
 
   return (
     <div className="videocalling">

@@ -4,7 +4,7 @@ import { useState } from 'react'
 const GlobalProvider = ({ children }) => {
   const [stateFilter, setStateFilter] = useState('')
 
-  return <GlobalContext.Provider value={}>{children}</GlobalContext.Provider>
+  return <GlobalContext.Provider>{children}</GlobalContext.Provider>
 }
 
 export { GlobalProvider }

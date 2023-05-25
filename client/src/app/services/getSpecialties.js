@@ -1,5 +1,5 @@
 
-const apiURL = 'https://e-medica-api.onrender.com/specialty';
+const apiURL = 'http://ec2-18-228-59-5.sa-east-1.compute.amazonaws.com/specialty';
 
 export default function getSpecialties() {
     return fetch(apiURL)

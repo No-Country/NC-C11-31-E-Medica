@@ -1,5 +1,8 @@
 import { Router, Request, Response, RequestHandler } from 'express'
+
 import { getSpecialists, getSpecialistById, createSpecialist, updateSpecialist, deleteSpecialist, getSpecialistsByName, getSpecialistsBySpecialty, getRefreshToken } from '../controllers/specialistController'
+import { validationResult } from 'express-validator'
+import { specialistValidation, idValidation } from '../validations'
 
 const specialistRouter = Router()
 //TODO: Ruta que traiga el promedio de estrellas en las reviews de medicos
@@ -19,6 +22,10 @@ specialistRouter.get('/', (async (_req: Request, res: Response) => {
 // Ruta para encontrar especialistas por nombre o apellido
 specialistRouter.get('/search', (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación.', errors: errors.array() })
+    }
     const terms = req.query.terms
     if (typeof terms === 'string') {
       const specialists = await getSpecialistsByName(terms)
@@ -35,6 +42,10 @@ specialistRouter.get('/search', (async (req: Request, res: Response) => {
 // Ruta para encontrar especialistas por especialidad
 specialistRouter.get('/category', (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación.', errors: errors.array() })
+    }
     const specialty = req.query.specialty
     if (typeof specialty === 'string') {
       const specialists = await getSpecialistsBySpecialty(specialty)
@@ -49,8 +60,12 @@ specialistRouter.get('/category', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Ruta para obtener un especialista por su ID
-specialistRouter.get('/:id', (async (req: Request, res: Response) => {
+specialistRouter.get('/:id', idValidation, (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación.', errors: errors.array() })
+    }
     const { id } = req.params
     const specialist = await getSpecialistById(id)
     if (specialist === null) {
@@ -64,8 +79,12 @@ specialistRouter.get('/:id', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Ruta para crear un nuevo especialista
-specialistRouter.post('/', (async (req: Request, res: Response) => {
+specialistRouter.post('/', specialistValidation, (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación.', errors: errors.array() })
+    }
     const { firstName, lastName, dni, rup, email, signatureLink, calendarLink, mercadoPago, specialty } = req.body
     const newSpecialist = await createSpecialist(
       firstName,
@@ -85,8 +104,12 @@ specialistRouter.post('/', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Ruta para actualizar un especialista por su ID
-specialistRouter.put('/:id', (async (req: Request, res: Response) => {
+specialistRouter.put('/:id', idValidation, specialistValidation, (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación.', errors: errors.array() })
+    }
     const { id } = req.params
     const { firstName, lastName, dni, rup, email, signatureLink, calendarLink, mercadoPago, specialty, reviews } = req.body
     const specialist = await updateSpecialist(
@@ -112,8 +135,12 @@ specialistRouter.put('/:id', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Ruta para eliminar un especialista por su ID
-specialistRouter.delete('/:id', (async (req: Request, res: Response) => {
+specialistRouter.delete('/:id', idValidation, (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación.', errors: errors.array() })
+    }
     const { id } = req.params
     const specialist = await deleteSpecialist(id)
     if (specialist === null) {
