@@ -27,13 +27,13 @@ patientRouter.get('/', (async (_req: Request, res: Response) => {
 patientRouter.get('/email/:email?', (async (req: Request, res: Response) => {
   try {
     const email = req.params.email
-    if (!email) {
-      return res.status(400).json({ message: 'Email no ingresado' });
+    if (email === null) {
+      return res.status(400).json({ message: 'Email no ingresado' })
     }
-    //TODO: Validacion email valido
+    // TODO: Validacion email valido
 
     const patient = await getPatientByEmail(email)
-    if (patient) {
+    if (patient !== null) {
       res.status(200).json(patient)
     } else {
       return res.status(404).json({ error: 'Paciente no encontrado.' })
@@ -46,15 +46,15 @@ patientRouter.get('/email/:email?', (async (req: Request, res: Response) => {
 // Obtener un paciente por ID
 patientRouter.get('/:id?', idValidation, (async (req: Request, res: Response) => {
   try {
-    const errors = validationResult(req);
+    const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() });
+      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() })
     }
     const id = req.params.id
 
     const patient = await getPatientById(id)
-    if (patient) {
+    if (patient !== null) {
       res.status(200).json(patient)
     } else {
       return res.status(404).json({ error: 'Paciente no encontrado.' })
@@ -68,10 +68,9 @@ patientRouter.get('/:id?', idValidation, (async (req: Request, res: Response) =>
 // Crear un nuevo paciente
 patientRouter.post('/', patientValidation, (async (req: Request, res: Response) => {
   try {
-    const errors = validationResult(req);
-
+    const errors = validationResult(req)
     if (!errors.isEmpty()) {
-      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() });
+      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() })
     }
     const newPatient = req.body
 
@@ -86,16 +85,16 @@ patientRouter.post('/', patientValidation, (async (req: Request, res: Response) 
 // Actualizar un paciente
 patientRouter.put('/:id?', idValidation, patientValidation, (async (req: Request, res: Response) => {
   try {
-    const errors = validationResult(req);
+    const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() });
+      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() })
     }
 
     const updatedPatient = req.body
     const id = req.params.id
     const patient = await updatePatient(id, updatedPatient)
-    if (patient) {
+    if (patient !== null) {
       res.status(200).json(patient)
     } else {
       return res.status(404).json({ error: 'Paciente no encontrado' })
@@ -107,18 +106,16 @@ patientRouter.put('/:id?', idValidation, patientValidation, (async (req: Request
 
 // Eliminar un paciente
 patientRouter.delete('/:id?', idValidation, (async (req: Request, res: Response) => {
-
-
   try {
-    const errors = validationResult(req);
+    const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() });
+      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() })
     }
     const { id } = req.params
 
     const patient = await deletePatient(id)
-    if (patient) {
+    if (patient !== null) {
       res.json({ message: 'Paciente eliminado correctamente' })
     } else {
       return res.status(404).json({ error: 'Paciente no encontrado' })
