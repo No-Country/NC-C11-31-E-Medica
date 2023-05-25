@@ -7,9 +7,9 @@ import ChatBotComponent from "./components/Chatbot/Chatbot";
 
 
 const Page = () => {
-  const queryParams = new URLSearchParams(window.location.search);
+  /*const queryParams = new URLSearchParams(window.location.search); //window is not defined deploy fallido
   const codeValue = queryParams.get("code");
-  console.log(codeValue);
+  console.log(codeValue);*/
   return (
     <>
       <Hero />
