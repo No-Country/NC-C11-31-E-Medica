@@ -2,17 +2,13 @@ import '../db-connection'
 import Specialist from '../models/specialist'
 import { ISpecialist } from '../declarations/interfaces'
 import { ObjectId } from 'mongoose'
-import axios from 'axios'
 
 // Obtener todos los especialistas
-export async function getSpecialists(): Promise<ISpecialist[] | null> {
+export async function getSpecialists (): Promise<ISpecialist[] | null> {
   try {
     const specialists: ISpecialist[] = await Specialist.find({})
       .populate('specialty')
     // .populate('reviews')
-    // const specialistsWithRating = specialists.map(specialist => {
-    //   return specialist.reviews.map(review => )
-    // })
     return specialists
   } catch (error) {
     // Manejar el error
@@ -22,7 +18,7 @@ export async function getSpecialists(): Promise<ISpecialist[] | null> {
 }
 
 // Obtener especialistas por nombre/apellido
-export async function getSpecialistsByName(terms: string): Promise<ISpecialist[]> {
+export async function getSpecialistsByName (terms: string): Promise<ISpecialist[]> {
   try {
     const names = terms.toLowerCase()
       .split(' ')
@@ -44,7 +40,7 @@ export async function getSpecialistsByName(terms: string): Promise<ISpecialist[]
 }
 
 // Obtener especialistas por especialidad
-export async function getSpecialistsBySpecialty(specialty: string): Promise<ISpecialist[]> {
+export async function getSpecialistsBySpecialty (specialty: string): Promise<ISpecialist[]> {
   try {
     const specialists: ISpecialist[] | null = await Specialist.find({ specialty })
       .populate('specialty')
@@ -59,7 +55,7 @@ export async function getSpecialistsBySpecialty(specialty: string): Promise<ISpe
 }
 
 // Obtener un especialista por ID
-export async function getSpecialistById(id: string): Promise<ISpecialist | null> {
+export async function getSpecialistById (id: string): Promise<ISpecialist | null> {
   try {
     const specialist: ISpecialist | null = await Specialist.findById(id)
       .populate('specialty')
@@ -71,8 +67,18 @@ export async function getSpecialistById(id: string): Promise<ISpecialist | null>
   }
 }
 
+// Obtener un especialista por email
+export async function getSpecialistByEmail (email: string): Promise<ISpecialist | null> {
+  try {
+    const specialist: ISpecialist | null = await Specialist.findOne({ email })
+    return specialist
+  } catch (error) {
+    throw new Error('No se pudo obtener el especialista.')
+  }
+}
+
 // Crear un nuevo especialista
-export async function createSpecialist(
+export async function createSpecialist (
   firstName: string,
   lastName: string,
   dni: string,
@@ -96,7 +102,7 @@ export async function createSpecialist(
 }
 
 // Actualizar un especialista
-export async function updateSpecialist(
+export async function updateSpecialist (
   id: string,
   firstName: string,
   lastName: string,
@@ -122,7 +128,7 @@ export async function updateSpecialist(
 }
 
 // Eliminar un especialista
-export async function deleteSpecialist(id: string): Promise<ISpecialist | null> {
+export async function deleteSpecialist (id: string): Promise<ISpecialist | null> {
   try {
     const specialist = await Specialist.findByIdAndDelete(id)
       .populate('specialty')
@@ -134,7 +140,7 @@ export async function deleteSpecialist(id: string): Promise<ISpecialist | null> 
   }
 }
 
-export async function getRefreshToken(code: string): Promise<void> {
+export async function getRefreshToken (code: string): Promise<void> {
   try {
     const options = {
       method: 'POST',
@@ -144,19 +150,19 @@ export async function getRefreshToken(code: string): Promise<void> {
       },
       body: new URLSearchParams({
         grant_type: 'authorization_code',
-        code: code,
+        code,
         redirect_uri: 'https://dev.d2mgpjd3ipukhz.amplifyapp.com/'
       })
-    };
+    }
 
     const refreshToken = fetch('https://auth.calendly.com/oauth/token', options)
-      .then(response => response.json())
+      .then(async response => await response.json())
       .then(response => response.refresh_token)
       .catch(err => {
-        console.error(err);
-        throw new Error('No se pudo obtener el refreshToken.');
-      });
-    return refreshToken
+        console.error(err)
+        throw new Error('No se pudo obtener el refreshToken.')
+      })
+    return await refreshToken
   } catch (error) {
     throw new Error('No se pudo obtener el refreshToken.')
   }
