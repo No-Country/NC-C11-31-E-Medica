@@ -24,6 +24,7 @@ export interface ISpecialist extends Document {
   calendlyToken: string
   calendlyLink: string
   picture?: string
+  fee?: number
   bio?: string
   dni?: string
   rup?: string
