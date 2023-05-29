@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import FormInputLogin from './Form-input-login';
+import getPatientsData from '@/app/services/getPatientsData';
 
 const FormSubmitLogin = () => {
   
@@ -16,6 +17,7 @@ const FormSubmitLogin = () => {
   console.log('errors:', errors)
 
   const onSubmit = (data) =>{
+    getPatientsData(data.email)
     setData(data)
     console.log('data',data)
   }
