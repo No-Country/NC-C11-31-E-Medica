@@ -22,9 +22,9 @@ const SpecialistDetail = () => {
     <h2>Conoce más a</h2>
     <div className='specialist-detail-card'>
       <Image 
-      src="/images/doctor.jpg"
-      width={50}
-      height={50}
+      src={dataSpecialistDetail.picture}
+      width={500}
+      height={500}
       alt="Foto de perfil del especialista"
       className='specialist-detail-card-image'
       /> 
@@ -35,11 +35,7 @@ const SpecialistDetail = () => {
     </div>
     <div className='specialist-detail-description'>
         <h4>Se destaca en</h4>
-        <p>
-            Manejo de insulinoterapia en pacientes con enfermedades agudas. Bomba de insulina.
-            Control glucémico en el acto quirúrgico. Control glucémico durante el transplante pancreático y de islotes. Tratamiento de la crisis tirotóxica. Suspensión de corticorterapia: intervención del endocrinólogo. Evaluación y seguimiento de pacientes pre y postransplante (renal, hepático, reno-pancreático, cardíaco y pulmonar).
-            Infusiones de medicamentos antiresortivos en osteoporosis secundaria y en enfermedades malignas.
-        </p>
+        <p> {dataSpecialistDetail.bio} </p>
     </div>
     <div className='specialist-detail-button-cont'>
       <button className='specialist-detail-button1'>Ver reseñas de pacientes</button>
