@@ -5,6 +5,7 @@ const specialistSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   picture: { type: String, required: false },
+  fee: { type: Number, required: false },
   bio: { type: String, required: false },
   dni: { type: String, required: false },
   rup: { type: String, required: false },
