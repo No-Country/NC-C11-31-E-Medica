@@ -17,17 +17,17 @@ appointmentRouter.get('/', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Ruta para obtener un appointment por su ID
-appointmentRouter.get('/:appointmentId?', idValidation, (async (req: Request, res: Response) => {
+appointmentRouter.get('/:id?', idValidation, (async (req: Request, res: Response) => {
   try {
-    const errors = validationResult(req);
+    const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() });
+      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() })
     }
-    const { appointmentId } = req.params
+    const { id } = req.params
 
-    const appointment = await getAppointmentById(appointmentId)
-    if (appointment) {
+    const appointment = await getAppointmentById(id)
+    if (appointment !== null) {
       res.status(200).json(appointment)
     } else {
       return res.status(404).json({ error: 'Appointment no encontrado.' })
@@ -40,10 +40,10 @@ appointmentRouter.get('/:appointmentId?', idValidation, (async (req: Request, re
 // Ruta para crear un nuevo appointment
 appointmentRouter.post('/', appointmentValidation, (async (req: Request, res: Response) => {
   try {
-    const errors = validationResult(req);
+    const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() });
+      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() })
     }
     const newAppointment = req.body
     const appointment = await createAppointment(newAppointment)
@@ -55,16 +55,16 @@ appointmentRouter.post('/', appointmentValidation, (async (req: Request, res: Re
 }) as RequestHandler)
 
 // Ruta para actualizar un appointment por su ID
-appointmentRouter.put('/:appointmentId', idValidation, appointmentValidation, (async (req: Request, res: Response) => {
+appointmentRouter.put('/:id', idValidation, appointmentValidation, (async (req: Request, res: Response) => {
   try {
-    const errors = validationResult(req);
+    const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() });
+      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() })
     }
-    const { appointmentId } = req.params
+    const { id } = req.params
     const updatedAppointment = req.body
-    const appointment = await updateAppointmentById(appointmentId, updatedAppointment)
+    const appointment = await updateAppointmentById(id, updatedAppointment)
     if (appointment === null) {
       return res.status(404).json({ error: 'Appointment no encontrado.' })
     }

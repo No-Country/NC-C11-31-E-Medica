@@ -1,9 +1,17 @@
 @use './globals';
-
 @use '../components';
 
 // ? LOGIN-REGISTER
 
 @use '../login/components/form-login/form-login';
 @use '../register/form-register/form-register';
+@use '../register/login-register';
+
+// ? SPECIALIST DETAIL
+
+@use '../specialist/specialistDetail';
+
+// ? LOADING COMPONENT
+
+@use '../components/Loading/loading'
 

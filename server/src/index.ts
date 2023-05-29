@@ -22,8 +22,8 @@ app.use(morgan('dev'))
 app.use(cors())
 
 // Docs de swagger
-const swaggerDocs = YAML.load('./swagger.yaml');
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+const swaggerDocs = YAML.load('./swagger.yaml')
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 // routes
 app.use('/', router)

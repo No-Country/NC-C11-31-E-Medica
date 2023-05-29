@@ -82,33 +82,6 @@ async function VideoCalling({ appointmentId = null }) {
   );
 }
 
-/* async function VideoCalling({ appointmentId }) {
-  const appointmentInfo = await getAppointmentInfo(appointmentId);
-  console.log({ appointmentInfo });
-  const router = useRouter();
-  const { patients, dateTime, _id: id } = appointmentInfo;
-  const { alertShowed, setAlertShowed } = useState(false);
-  let jitsiAPI; // variable que guarda la API
-  let startTime = new Date(dateTime);
-  let newStatus = "";
-
-  const handlePost = async () => {
-    const response = await fetch(
-      `http://ec2-18-228-59-5.sa-east-1.compute.amazonaws.com/appointment/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          status: newStatus,
-        }),
-      }
-    );
-    const data = await response.json();
-    console.log({ data });
-  };
-
   return (
     <div className="jitsiCalling">
       <JaaSMeeting

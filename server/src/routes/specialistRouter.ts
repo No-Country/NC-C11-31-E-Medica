@@ -1,7 +1,13 @@
 import { Router, Request, Response, RequestHandler } from 'express'
-import { getSpecialists, getSpecialistById, createSpecialist, updateSpecialist, deleteSpecialist, getSpecialistsByName, getSpecialistsBySpecialty } from '../controllers/specialistController'
+
+import { getSpecialists, getSpecialistById, createSpecialist, updateSpecialist, deleteSpecialist, getSpecialistsByName, getSpecialistsBySpecialty, getRefreshToken, getCalendlyCredendtials, getCalendlyData } from '../controllers/specialistController'
+
+import { validationResult } from 'express-validator'
+import { specialistValidation, idValidation } from '../validations'
+
 
 const specialistRouter = Router()
+// TODO: Ruta que traiga el promedio de estrellas en las reviews de medicos
 
 // Ruta para obtener todos los especialistas
 specialistRouter.get('/', (async (_req: Request, res: Response) => {
@@ -17,6 +23,10 @@ specialistRouter.get('/', (async (_req: Request, res: Response) => {
 // Ruta para encontrar especialistas por nombre o apellido
 specialistRouter.get('/search', (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación.', errors: errors.array() })
+    }
     const terms = req.query.terms
     if (typeof terms === 'string') {
       const specialists = await getSpecialistsByName(terms)
@@ -31,24 +41,31 @@ specialistRouter.get('/search', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Ruta para encontrar especialistas por especialidad
-specialistRouter.get('/category', (async (req: Request, res: Response) => {
+specialistRouter.get('/category/:id', idValidation, (async (req: Request, res: Response) => {
   try {
-    const specialty = req.query.specialty
-    if (typeof specialty === 'string') {
-      const specialists = await getSpecialistsBySpecialty(specialty)
-      res.json(specialists)
-    } else {
-      res.json('La especialidad ingresada no existe.')
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación.', errors: errors.array() })
     }
+    const { id } = req.params
+    const specialists = await getSpecialistsBySpecialty(id)
+    if (specialists === null) {
+      return res.status(404).json({ error: 'No se encontraron especialistas con la especialidad ingresada.' })
+    }
+    res.json(specialists)
   } catch (error) {
     console.error(error)
-    res.status(500).json({ error: 'No se pudo obtener el especialista.' })
+    res.status(500).json({ error: 'No se pudieron obtener los especialistas.' })
   }
 }) as RequestHandler)
 
 // Ruta para obtener un especialista por su ID
-specialistRouter.get('/:id', (async (req: Request, res: Response) => {
+specialistRouter.get('/:id', idValidation, (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación.', errors: errors.array() })
+    }
     const { id } = req.params
     const specialist = await getSpecialistById(id)
     if (specialist === null) {
@@ -64,18 +81,21 @@ specialistRouter.get('/:id', (async (req: Request, res: Response) => {
 // Ruta para crear un nuevo especialista
 specialistRouter.post('/', (async (req: Request, res: Response) => {
   try {
-    const { firstName, lastName, dni, rup, email, signatureLink, calendarLink, mercadoPago, specialty } = req.body
-    const newSpecialist = await createSpecialist(
-      firstName,
-      lastName,
-      dni,
-      rup,
-      email,
-      signatureLink,
-      calendarLink,
-      mercadoPago,
-      specialty)
-    res.json(newSpecialist)
+    //Obtengo el codigo para el refresh token
+    const { code } = req.body
+
+    const refreshToken = await getRefreshToken(String(code))
+
+    const credentials = await getCalendlyCredendtials(refreshToken)
+    if (!credentials) {
+      throw new Error('No se pudieron obtener las credenciales de Calendly');
+    }
+    //busca user en calendly
+    const user = await getCalendlyData(credentials.accessToken, credentials.owner)
+    const specialist = await createSpecialist(user, refreshToken)
+
+    res.json(specialist)
+
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'No se pudo crear el especialista.' })
@@ -83,8 +103,12 @@ specialistRouter.post('/', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Ruta para actualizar un especialista por su ID
-specialistRouter.put('/:id', (async (req: Request, res: Response) => {
+specialistRouter.put('/:id', idValidation, specialistValidation, (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación.', errors: errors.array() })
+    }
     const { id } = req.params
     const { firstName, lastName, dni, rup, email, signatureLink, calendarLink, mercadoPago, specialty, reviews } = req.body
     const specialist = await updateSpecialist(
@@ -110,8 +134,12 @@ specialistRouter.put('/:id', (async (req: Request, res: Response) => {
 }) as RequestHandler)
 
 // Ruta para eliminar un especialista por su ID
-specialistRouter.delete('/:id', (async (req: Request, res: Response) => {
+specialistRouter.delete('/:id', idValidation, (async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: 'Errores de validación.', errors: errors.array() })
+    }
     const { id } = req.params
     const specialist = await deleteSpecialist(id)
     if (specialist === null) {

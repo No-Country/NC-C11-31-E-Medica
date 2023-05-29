@@ -1,75 +1,92 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import FormInputLogin from './Form-input-login';
+import getPatientsData from '@/app/services/getPatientsData';
 
 const FormSubmitLogin = () => {
   
-  const[inputClassName, setInputClassName] = useState(true)
-
-  const handlerChangeClassName = ()=> {
-    setInputClassName(!inputClassName)
-  }
+  const[firstStep, setFirstStep] = useState(true)
+  const[data, setData] = useState('')
+  console.log('estado', data)
   
   const{
     register,  
     formState: { errors },
     handleSubmit
   } = useForm();
+  console.log('errors:', errors)
 
   const onSubmit = (data) =>{
-    console.log(data)
+    getPatientsData(data.email)
+    setData(data)
+    console.log('data',data)
+  }
+
+  const handlerChangeFistStep = ()=> {
+    data.email &&
+    setFirstStep(!firstStep)
   }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={`${inputClassName ? 'login-form-email-cont-true' : 'login-form-email-cont-false'}`}>
-          <FormInputLogin 
-          inputValue={{
-            label: 'Correo electrónico',
-            name: 'email',
-            type: 'email',
-            placeholder: 'juanperez@gmail.com'
-          }}
-          { ...register('email', { 
-            required: {
-              value: true, 
-              message: 'Ingrese un email para continuar'
-            } 
-            }) 
-          }/>
-          {errors.email?.type === 'required' && (
-          <span className='login-form-errors'> 
+    <div className='login-form-submit-cont'>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {
+          firstStep ? 
+          <div>
+            <FormInputLogin 
+            inputValue={{
+              label: 'Correo electrónico',
+              name: 'email',
+              type: 'email',
+              placeholder: 'juanperez@gmail.com',
+              Form:{
+                ...register('email',{
+                  required:{
+                    value: true,
+                    message: 'Ingrese un email para continuar'
+                  }
+                })
+              }
+            }}
+            />
+            {errors.email?.type === 'required' && (
+            <span className='login-form-errors'> 
             {errors.email?.message}
-          </span>
+            </span>
           )}
-          <button className='login-form-button-next' onClick={handlerChangeClassName}>Siguiente</button>
-        </div>
-
-        <div className={`${inputClassName ? 'login-form-password-cont-false' : 'login-form-password-cont-true'}`}>
-          <FormInputLogin 
-          inputValue={{
-            label: 'Contraseña',
-            name: 'password',
-            type: 'password',
-          }}
-          { ...register(
-            'password', { 
-              required: {
-                value: true, 
-                message: 'Ingrese una contraseña para ingresar'
-              } 
-            }) 
-          }/>
-          {errors.password?.type === 'required' && (
-          <span className='login-form-errors'> 
+          <div className='login-form-button-cont'>
+            <button className='login-form-button-next' disabled={errors.email?.type} onClick={handlerChangeFistStep}>Siguiente</button>
+          </div>
+          </div> 
+          : 
+          <div>
+            <FormInputLogin 
+            inputValue={{
+              label: 'Contraseña',
+              name: 'password',
+              type: 'password',
+              Form:{
+                ...register('password',{
+                  required:{
+                    value: true,
+                    message: 'Ingrese su clave para ingresar'
+                  }
+                })
+              }
+            }}
+            />
+            {errors.password?.type === 'required' && (
+            <span className='login-form-errors'> 
             {errors.password?.message}
-          </span>
-          )}        
-          <button className='login-form-button-back' onClick={handlerChangeClassName}>Volver</button>
-          <button type='submit' className='login-form-button-submit'>Ingresar</button>
-          <a>¿Olvidaste tu clave?</a>  
-        </div>           
+            </span>
+          )}
+          <div className='login-form-button-cont'>
+            <button className='login-form-button-back' onClick={handlerChangeFistStep}>Volver</button>
+            <button type='submit' className='login-form-button-submit'>Ingresar</button>
+            <a className='login-form-forget-password'>¿Olvidaste tu contraseña?</a>  
+          </div>
+          </div>
+        }          
       </form>
     </div>
   )
