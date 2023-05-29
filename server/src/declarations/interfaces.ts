@@ -1,16 +1,5 @@
 import { Date, Document, ObjectId } from 'mongoose'
-import { EnumExample, EnumGender, EnumStatus } from './enums'
-
-export interface IExample extends Document {
-  propExample1: string
-  propExample2: ObjectId
-  propExample3: number
-  propExample4: string[]
-  propExample5: ObjectId[]
-  propExample6: boolean
-  propExample7: Date
-  propExample8: EnumExample
-}
+import { EnumGender, EnumStatus } from './enums'
 
 export interface ISpecialty extends Document {
   name: string

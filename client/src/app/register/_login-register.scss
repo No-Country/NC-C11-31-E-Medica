@@ -1,0 +1,21 @@
+.register {
+  padding: 1rem;
+  min-height: 80vh;
+  display: grid;
+  grid-template-rows: 0.3fr 0.2fr 0.5fr;
+  gap: 0.325rem;
+  justify-items: center;
+  overflow: hidden;
+  padding-top: 2rem;
+
+  &-img-cont {
+    width: 8.5625rem;
+    height: 8.5625rem;
+    background-color: #d9d9d9;
+    border-radius: 50%;
+  }
+  &-title {
+    font-size: clamp(1rem, 2rem, 4rem);
+    font-weight: 400;
+  }
+}
