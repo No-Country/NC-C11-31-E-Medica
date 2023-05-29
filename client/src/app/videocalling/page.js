@@ -1,13 +1,9 @@
-"use client";
 import React from "react";
-import VideoCalling from "../components/Videocalling/VideoCalling";
-import InformationUser from "../components/Videocalling/InformationUser";
-
+import CallingDetail from "../components/Videocalling/CallingDetail";
 function page() {
   return (
-    <div className="videocalling">
-      <VideoCalling />
-      <InformationUser />
+    <div>
+      <CallingDetail />
     </div>
   );
 }

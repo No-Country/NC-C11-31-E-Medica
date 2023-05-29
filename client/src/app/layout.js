@@ -1,7 +1,7 @@
 import "./styles/main.scss";
 import { Footer } from "./components/footer/Footer";
 import Header from "./components/Navbar/Header";
-// import { CallingProvider } from "./context/CallingContext";
+
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
@@ -10,7 +10,9 @@ const RootLayout = ({ children }) => {
       </head>
       <body>
         <Header />
+
         <main>{children}</main>
+
         <Footer />
       </body>
     </html>

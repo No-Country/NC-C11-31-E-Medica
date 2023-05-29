@@ -2,8 +2,90 @@
 
 .videocalling {
   width: 100%;
-  height: 35rem;
-  margin-top: 2rem;
+  height: 100%;
+  margin-top: 5rem;
   padding: 2rem;
   overflow: hidden;
+
+  .pictureSpecialist {
+    object-fit: cover;
+    border-radius: 10rem;
+    width: 15rem;
+    height: 15rem;
+  }
+}
+.jitsiCalling {
+  margin-top: 5rem;
+  height: 30rem;
+}
+.buttonsV {
+  width: 100%;
+  font-weight: 700;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  background-color: #117f7a !important;
+  transition: 0.3s ease;
+}
+.buttonsV:hover {
+  color: #117f7a;
+  background-color: #ffffff !important;
+}
+.buttonsV1 {
+  width: 100%;
+  font-weight: 700;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  color: black;
+  outline: solid #117f7a !important;
+  transition: 0.3s ease;
+}
+.buttonsV1:hover {
+  color: #117f7a;
+  background-color: #ffffff !important;
+}
+.appointmentInfo {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: #d9d9d9;
+}
+
+.divInfo {
+  width: 100%;
+  padding: 2rem;
+}
+.divInfo2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.specialistInfo {
+  display: flex;
+  margin-top: 2rem;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  line-height: 2rem;
+}
+
+.calling {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.calling h4 {
+  width: 80%;
+  text-align: center;
+}
+
+.contactInfo {
+  display: flex;
 }
