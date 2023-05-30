@@ -1,7 +1,6 @@
 "use client";
 import Carousel from "./Carousel";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 const Gallery = () => {
   const [windowSize, setWindowSize] = useState([]);
@@ -20,7 +19,8 @@ const Gallery = () => {
     };
   }, []);
 
-  if (windowSize[0] >= 768) { // Acceder al tamaño del navegador desde windowSize[0]
+  if (windowSize[0] >= 768) {
+    // Acceder al tamaño del navegador desde windowSize[0]
     return (
       <section>
         <div className="galleryText">
@@ -28,13 +28,13 @@ const Gallery = () => {
           <h4>Programas de prevención temprana entre otros estudios</h4>
         </div>
         <article className="gallery">
-          <Image className="galleryImg" src="/images/carousel1.jpg" alt="Lab" />
-          <Image
+          <img className="galleryImg" src="/images/carousel1.jpg" alt="Lab" />
+          <img
             className="galleryImg"
             src="/images/carousel2.jpg"
             alt="Medics"
           />
-          <Image
+          <img
             className="galleryImg"
             src="/images/carousel3.jpg"
             alt="Emergency"

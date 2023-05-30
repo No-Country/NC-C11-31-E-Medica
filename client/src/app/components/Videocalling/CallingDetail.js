@@ -8,12 +8,12 @@ async function CallingDetail() {
   const appointment = await fetch(`${baseURL}/appointment/`).then((res) =>
     res.json()
   );
-  const [{ patient, specialist, dateTime, status, _id, reason }] = appointment;
+  const [{ specialist, dateTime, status, _id, reason }] = appointment;
 
   const specialists = await fetch(
     `${baseURL}/specialist/${specialist}`
   ).then((res) => res.json());
-  const { firstName, lastName, picture, specialty } = specialists;
+  const { firstName, lastName, picture } = specialists;
 
   return (
     <main className="videocalling">
