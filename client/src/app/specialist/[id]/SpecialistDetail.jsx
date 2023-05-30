@@ -30,7 +30,7 @@ const SpecialistDetail = () => {
       /> 
       <div>
         <h2>Dr. {dataSpecialistDetail.firstName} {dataSpecialistDetail.lastName} </h2>
-        <p> {dataSpecialistDetail.specialty.name} </p>
+        <p> {dataSpecialistDetail.specialty?.name} </p>
       </div>
     </div>
     <div className='specialist-detail-description'>

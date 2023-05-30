@@ -1,5 +1,5 @@
 import { CardSpecialties } from '../CardSpecialties/CardSpecialties'
-import getSpecialties from '@/app/services/getSpecialties'
+import getSpecialty from '@/app/services/getSpecialty'
 import { useEffect, useState } from 'react'
 
 const WrapperGrid = () => {
@@ -8,7 +8,7 @@ const WrapperGrid = () => {
   console.log('state:', specialties)
 
   useEffect(() => {
-    getSpecialties().then(specialties => setSpecialties(specialties))
+    getSpecialty().then(specialties => setSpecialties(specialties))
   }, [])
 
   return (
@@ -18,7 +18,7 @@ const WrapperGrid = () => {
         <p>Contamos con +200 servicios para vos y tu familia</p>
       </div>
       {specialties.slice(0, 12).map((specielty, index) => (
-        <CardSpecialties specielty={specielty} key={index} />
+        <CardSpecialties specielty={specielty.name} key={index} id={specielty.id} />
       ))}
     </div>
   )
