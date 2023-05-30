@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormInputLogin = ({inputValue}) => {
+const FormInputLogin = ({inputValue, ...props}) => {
   return (
     <div className='login-form-cont'>
         <label className='login-form-label'>{inputValue.label}</label>
@@ -9,7 +9,7 @@ const FormInputLogin = ({inputValue}) => {
             type={inputValue.type} 
             placeholder={inputValue.placeholder}
             className={`${inputValue.className}`}
-            
+            {...inputValue.Form}
         />
     </div>
   )

@@ -1,0 +1,79 @@
+.specialist-detail{
+    margin: 2rem;
+    h2{
+        margin-bottom: 0.5rem;
+    }
+    &-description{
+        margin-top: 1rem;
+    h4{
+        margin-bottom: 0.5rem;
+    }
+    }
+}
+.specialist-detail-card{
+    display: flex;
+    justify-content: space-around;
+    background-color: #EEEEEE;
+    border-radius: 15px;
+    padding: 1rem;
+    &-image{
+        width: 5rem;
+        height: 5rem;
+        border-radius: 100%;
+        margin-right: 2rem;
+    }
+}
+.specialist-detail{
+    &-button1{
+        cursor: pointer;
+        font-size: clamp(0.6rem, 1.5vw, 2rem);
+        padding: clamp(0.5rem, 0.5vw, 1rem);
+        background-color: white;
+        transition: 0.5s ease-in-out;
+        border-radius: 15px;
+        width: 100%;
+        margin:0.5rem;
+    }&-button{
+        cursor: pointer;
+        font-size: clamp(0.6rem, 1.5vw, 2rem);
+        padding: clamp(0.5rem, 0.5vw, 1rem);
+        background-color: #117F7A;
+        color: #fff;
+        transition: 0.5s ease-in-out;
+        border-radius: 15px;
+        width: 100%;
+        margin:0.5rem;
+        border: none;
+    &-cont{
+        margin-top: 0.5rem;
+    }
+    }
+}
+
+@media (min-width: 768px) {
+    .specialist-detail{
+        margin: 4rem;
+        margin-left: 6rem;
+        margin-right: 6rem;
+        &-card-image{
+            width: 15rem;
+            height: 15rem;
+        }
+        &-button-cont{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 3rem;
+        }
+        &-button1 {
+            width: 30%;
+        }
+        &-button {
+            width: 30%;
+        }
+        &-button2{
+            display: none;
+        }
+    }
+    
+}

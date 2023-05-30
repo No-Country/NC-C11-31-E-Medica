@@ -1,5 +1,5 @@
 const Layout = ({ children }) => {
-  return <div className='register'>{children}</div>
+  return <>{children}</>
 }
 
 export default Layout

@@ -1,0 +1,15 @@
+.specialists-card{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #EEEEEE;
+    border-radius: 15px;
+    margin: 1rem;
+    width: 20rem;
+    padding: 1rem;
+    &-image{
+        width: 5rem;
+        height: 5rem;
+        border-radius: 100%;
+    }
+}

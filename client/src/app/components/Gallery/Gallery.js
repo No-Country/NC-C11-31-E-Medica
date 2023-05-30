@@ -28,17 +28,9 @@ const Gallery = () => {
           <h4>Programas de prevención temprana entre otros estudios</h4>
         </div>
         <article className="gallery">
-          <img className="galleryImg" src="/images/carousel1.jpg" alt="Lab" />
-          <img
-            className="galleryImg"
-            src="/images/carousel2.jpg"
-            alt="Medics"
-          />
-          <img
-            className="galleryImg"
-            src="/images/carousel3.jpg"
-            alt="Emergency"
-          />
+          <Image className="galleryImg" src="/images/carousel1.jpg" alt="Lab" width={500} height={500} />
+          <Image className="galleryImg" src="/images/carousel2.jpg" alt="Medics" width={500} height={500} />
+          <Image className="galleryImg" src="/images/carousel3.jpg" alt="Emergency" width={500} height={500} />
         </article>
       </section>
     );

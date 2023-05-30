@@ -3,7 +3,7 @@ import Patient from '../models/patient'
 import { IPatient } from '../declarations/interfaces'
 
 // Obtener todos los pacientes
-export async function getPatients(): Promise<IPatient[]> {
+export async function getPatients (): Promise<IPatient[]> {
   try {
     const patients: IPatient[] = await Patient.find()
     return patients
@@ -15,7 +15,7 @@ export async function getPatients(): Promise<IPatient[]> {
 }
 
 // Obtener un paciente por ID
-export async function getPatientById(id: string): Promise<IPatient | null> {
+export async function getPatientById (id: string): Promise<IPatient | null> {
   try {
     const patient: IPatient | null = await Patient.findById(id)
     return patient
@@ -25,7 +25,7 @@ export async function getPatientById(id: string): Promise<IPatient | null> {
 }
 
 // Obtener paciente por email
-export async function getPatientByEmail(email: string): Promise<IPatient | null> {
+export async function getPatientByEmail (email: string): Promise<IPatient | null> {
   try {
     const patient: IPatient | null = await Patient.findOne({ email })
     return patient
@@ -35,7 +35,7 @@ export async function getPatientByEmail(email: string): Promise<IPatient | null>
 }
 
 // Crear un nuevo paciente
-export async function createPatient(newPatient: IPatient): Promise<IPatient | null> {
+export async function createPatient (newPatient: IPatient): Promise<IPatient | null> {
   try {
     const patient = new Patient(newPatient)
     const savedPatient: IPatient = await patient.save()
@@ -48,7 +48,7 @@ export async function createPatient(newPatient: IPatient): Promise<IPatient | nu
 }
 
 // Actualizar un paciente
-export async function updatePatient(id: string, updatedPatient: IPatient): Promise<IPatient | null> {
+export async function updatePatient (id: string, updatedPatient: IPatient): Promise<IPatient | null> {
   try {
     const patient: IPatient | null = await Patient.findByIdAndUpdate(id, updatedPatient, { new: true })
     return patient
@@ -60,7 +60,7 @@ export async function updatePatient(id: string, updatedPatient: IPatient): Promi
 }
 
 // Eliminar un paciente
-export async function deletePatient(id: string): Promise<IPatient | null> {
+export async function deletePatient (id: string): Promise<IPatient | null> {
   try {
     const patient = await Patient.findByIdAndDelete(id)
     return patient

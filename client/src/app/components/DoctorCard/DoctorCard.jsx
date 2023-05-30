@@ -7,7 +7,7 @@ export default function DoctorCard({ image, texto }) {
     <div>
       {/* Here would go the logic of how many stars the doctor's profile will have */}
       <Star />
-      <Image src={image} alt={image} />
+      <Image src={image} alt={image} width={500} height={500} />
       <p>{texto}</p>
     </div>
   );
