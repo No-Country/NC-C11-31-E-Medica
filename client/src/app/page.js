@@ -6,8 +6,6 @@ import Gallery from "./components/Gallery/Gallery";
 
 
 import ChatBotComponent from "./components/Chatbot/Chatbot";
-
-import ChatBotComponent from "./components/Chatbot/Chatbot";
 import { useEffect } from "react";
 
 
