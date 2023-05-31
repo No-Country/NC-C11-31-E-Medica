@@ -4,7 +4,7 @@ import SpecialistCardList from './SpecialistCardList'
 const Page = () => {
 
   return (
-    <SpecialistCardList />    
+    <SpecialistCardList />
   )
 }
 

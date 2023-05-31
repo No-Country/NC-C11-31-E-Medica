@@ -1,5 +1,5 @@
 import { Router, Request, Response, RequestHandler } from 'express'
-import { getAppointments, getAppointmentById, createAppointment, updateAppointmentById } from '../controllers/appointmentController'
+import { getAppointments, getAppointmentById, createAppointment, updateAppointmentById, getCalendlyAppointment } from '../controllers/appointmentController'
 import { appointmentValidation, idValidation } from '../validations'
 import { validationResult } from 'express-validator'
 
@@ -27,8 +27,12 @@ appointmentRouter.get('/:id?', idValidation, (async (req: Request, res: Response
     const { id } = req.params
 
     const appointment = await getAppointmentById(id)
+    if (!appointment) throw new Error('Error al obtener el appointment')
+    const { specialist, calendlyUri } = appointment
+    const calendlyInfo = await getCalendlyAppointment(specialist, calendlyUri)
+
     if (appointment !== null) {
-      res.status(200).json(appointment)
+      res.status(200).json([appointment, calendlyInfo])
     } else {
       return res.status(404).json({ error: 'Appointment no encontrado.' })
     }
@@ -38,13 +42,11 @@ appointmentRouter.get('/:id?', idValidation, (async (req: Request, res: Response
 }) as RequestHandler)
 
 // Ruta para crear un nuevo appointment
-appointmentRouter.post('/', appointmentValidation, (async (req: Request, res: Response) => {
+appointmentRouter.post('/', (async (req: Request, res: Response) => {
   try {
-    const errors = validationResult(req)
 
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ error: 'Errores de validación', errors: errors.array() })
-    }
+    console.log(req.body);
+
     const newAppointment = req.body
     const appointment = await createAppointment(newAppointment)
     res.json(appointment)

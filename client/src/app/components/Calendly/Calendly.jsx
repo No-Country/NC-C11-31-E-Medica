@@ -1,39 +1,25 @@
 // "https://calendly.com/julianlopez43013/30min"
-// Solo tengo que mostrar el componente sin <Calendly /> con su prop sin ninguna complejidad
 "use client";
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
+import { postAppointment } from "@/app/services/appointmentInfo";
 import { useCalendlyEventListener, InlineWidget } from "react-calendly";
-const Calendly = () => {
+
+const Calendly = ({ calendlyLink, patientId, specialistId, specialtyId }) => {
   useCalendlyEventListener({
     onProfilePageViewed: () => console.log("onProfilePageViewed"),
     onDateAndTimeSelected: () => console.log("onDateAndTimeSelected"),
     onEventTypeViewed: () => console.log("onEventTypeViewed"),
-    onEventScheduled: (e) => console.log(e.data),
+    onEventScheduled: async (e) => {
+      const calendlyUri = e.data.payload.event.uri
+      const newAppointment = await postAppointment(calendlyUri, patientId, specialistId, specialtyId)
+      console.log(newAppointment);
+      window.location.href = "/";
+    }
   });
-
-  const options = {
-    method: "GET",
-    url:
-      "https://api.calendly.com/scheduled_events/4140532e-2bff-470f-9751-0a1",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "CIaBtUBIttbC-EV3hJ4985bq-P9R0bbiI8kc9u_CD5E",
-    },
-  };
-
-  axios
-    .request(options)
-    .then(function(response) {
-      console.log(response.data);
-    })
-    .catch(function(error) {
-      console.error(error);
-    });
 
   return (
     <div className="App">
-      <InlineWidget url={"https://calendly.com/julianlopez43013/30min"} />
+      <InlineWidget url={calendlyLink} />
     </div>
   );
 };
