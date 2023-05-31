@@ -18,7 +18,7 @@ const SpecialistCard = ({picture, name, specialty, id}) => {
       className='specialists-card-image'
       />
       <div>
-        <Link href={`/specialist/${id}`}> {name}</Link>
+        <Link href={`/specialist/${id}`} className="specialist-card-link"> {name}</Link>
         <p>{specialty}</p>
       </div>
     </div>

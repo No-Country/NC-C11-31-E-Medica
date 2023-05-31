@@ -1,5 +1,5 @@
 'use client'
-import SpecialistCardList from './SpecilistCardList'
+import SpecialistCardList from './SpecialistCardList'
 
 const Page = () => {
 

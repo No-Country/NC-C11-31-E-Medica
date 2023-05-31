@@ -18,23 +18,33 @@ const SpecialistCardList = () => {
     const params = useParams()
     console.log(params.id)
 
-    const specialistDataFilted = specialistData.filter(item => item.specialty?._id === params.id)
-    console.log('filtrado:', specialistDataFilted)
+    const specialistDataFiltered = specialistData.filter(item => item.specialty?._id === params.id)
+    console.log('filtrado:', specialistDataFiltered)
+
+    
 
   return (
-    specialistData.length ? 
-    specialistDataFilted.map((item, index) => {
+    <>
+    {/* <h2>{specialistDataFiltered.specialty?.name}</h2> */}
+    {specialistData.length ? 
+    <div className='specialist-card-cont'>
+      {specialistDataFiltered.map((item, index) => {
       return (
-      <SpecialistCard
-      key={index}
-      picture={item.picture}
-      name={item.firstName}
-      specialty={item.specialty?.name}
-      id={item._id}
-      />
+          <SpecialistCard
+          key={index}
+          picture={item.picture}
+          name={item.firstName}
+          specialty={item.specialty?.name}
+          id={item._id}
+          />
         )
-      })
-    : <Loading />
+      })}
+    </div>
+    : 
+    <Loading />
+    }
+    </>
+    
   )
 }
 
