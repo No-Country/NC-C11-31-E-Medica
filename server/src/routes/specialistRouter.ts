@@ -1,6 +1,10 @@
 import { Router, Request, Response, RequestHandler } from 'express'
 
-import { getSpecialists, getSpecialistById, createSpecialist, updateSpecialist, deleteSpecialist, getSpecialistsByName, getSpecialistsBySpecialty, getRefreshToken, getCalendlyCredendtials, getCalendlyData } from '../controllers/specialistController'
+import {
+  getSpecialists, getSpecialistById, createSpecialist, updateSpecialist,
+  deleteSpecialist, getSpecialistsByName, getSpecialistsBySpecialty, getRefreshToken,
+  getCalendlyCredendtials, getCalendlyData, getSpecialistByEmail, getCalendlyEvent
+} from '../controllers/specialistController'
 
 import { validationResult } from 'express-validator'
 import { specialistValidation, idValidation } from '../validations'
@@ -92,10 +96,15 @@ specialistRouter.post('/', (async (req: Request, res: Response) => {
     }
     //busca user en calendly
     const user = await getCalendlyData(credentials.accessToken, credentials.owner)
-    const specialist = await createSpecialist(user, refreshToken)
-
-    res.json(specialist)
-
+    if (!user) {
+      throw new Error('No se pudieron obtener el usuario de Calendly');
+    }
+    const specialist = await getSpecialistByEmail(user.email)
+    if (specialist) {
+      res.json(specialist)
+    }
+    const newSpecialist = await createSpecialist(user, refreshToken)
+    res.json(newSpecialist)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'No se pudo crear el especialista.' })
@@ -146,6 +155,25 @@ specialistRouter.delete('/:id', idValidation, (async (req: Request, res: Respons
       return res.status(404).json({ error: 'Especialista no encontrado.' })
     }
     res.json(specialist)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'No se pudo eliminar el especialista.' })
+  }
+}) as RequestHandler)
+
+specialistRouter.get('/event/:id', (async (req: Request, res: Response) => {
+  try {
+
+    const { id } = req.params
+    const specialist = await getSpecialistById(id)
+    if (specialist === null) {
+      return res.status(404).json({ error: 'Especialista no encontrado.' })
+    }
+    const credentials = await getCalendlyCredendtials(specialist.calendlyToken)
+    if (!credentials) return false
+    console.log(credentials);
+    const event = await getCalendlyEvent(credentials.accessToken, credentials.owner)
+    res.json(event)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'No se pudo eliminar el especialista.' })

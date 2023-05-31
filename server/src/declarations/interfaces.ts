@@ -37,6 +37,7 @@ export interface ISpecialist extends Document {
 
 export interface IAppointment extends Document {
   dateTime: Date
+  calendlyUri: string
   reason: string
   status: EnumStatus
   meetingLink: string

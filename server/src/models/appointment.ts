@@ -3,11 +3,12 @@ import { IAppointment } from '../declarations/interfaces'
 import { EnumStatus } from '../declarations/enums'
 
 const appointmentSchema = new Schema<IAppointment>({
-  dateTime: { type: Date, required: true },
+  dateTime: { type: Date },
+  calendlyUri: { type: String, required: true },
   reason: { type: String },
   status: { type: String, enum: Object.values(EnumStatus), default: EnumStatus.Schedule },
-  meetingLink: { type: String, required: true },
-  paymentId: { type: String, required: true },
+  meetingLink: { type: String },
+  paymentId: { type: String },
   paid: { type: Boolean },
   patient: { type: Schema.Types.ObjectId, ref: 'Patient', required: true },
   specialist: { type: Schema.Types.ObjectId, ref: 'Specialist', required: true },
