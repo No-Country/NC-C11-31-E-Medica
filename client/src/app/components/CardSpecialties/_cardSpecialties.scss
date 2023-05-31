@@ -12,22 +12,34 @@
   margin: 0.5rem;
   width: 5rem;
   height: 5rem;
+  box-shadow: $shadow-ease;
+  a{
+    text-decoration: none;
+    color:rgb(79, 79, 79);
+    text-align: center;
+    :hover{
+      color:#117F7A
+    }
+  }
+  h2{
+    font-size: clamp(0.5rem, 1.2vw, 2.4rem);
+    font-family: $font-family;
+    padding-bottom: 1rem;
+  }
+  svg{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 1rem;
+    color: #117F7A;
+    cursor: pointer;
+  }
 }
 
-.CardSpecialtiesContainer h2 {
-  font-size: clamp(0.5rem, 1.2vw, 2.4rem);
-  font-family: $font-family;
-  padding-bottom: 1rem;
+.CardSpecialtiesContainer a:hover{
+  color:#117F7A
 }
-
-.CardSpecialtiesContainer svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: 1rem;
-}
-
-button {
-  cursor: pointer;
+.CardSpecialtiesContainer svg:hover{
+  opacity: 0.5;
 }
 
 @media (min-width: 768px) {
