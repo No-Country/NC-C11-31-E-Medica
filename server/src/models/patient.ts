@@ -10,6 +10,7 @@ const patientSchema = new Schema({
   gender: { type: String, enum: Object.values(EnumGender), required: true },
   dni: { type: String, required: true },
   email: { type: String, required: true },
+  appointments: { type: [Schema.Types.ObjectId], ref: 'Appointment' },
   active: { type: Boolean, default: true }
 }, {
   timestamps: true
