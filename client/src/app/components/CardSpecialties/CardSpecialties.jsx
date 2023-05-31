@@ -23,9 +23,7 @@ export const CardSpecialties = ({ specielty, id }) => {
   return (
     <div className='CardSpecialtiesContainer'>
       <FontAwesomeIcon className='CardSpecialtiesContainer-icon' icon={icons[specielty]} />
-      <button>
-        <Link href={`/specialists/${id}`}>{specielty}</Link>
-      </button>
+      <Link href={`/specialists/${id}`}>{specielty}</Link>
     </div>
   )
 }

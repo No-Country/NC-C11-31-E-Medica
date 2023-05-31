@@ -19,24 +19,27 @@ const SpecialistDetail = () => {
   return ( 
     dataSpecialistDetail ? 
     (<div className='specialist-detail'>
-    <h2>Conoce más a</h2>
-    <div className='specialist-detail-card'>
-      <Image 
-      src={dataSpecialistDetail.picture}
-      width={500}
-      height={500}
-      alt="Foto de perfil del especialista"
-      className='specialist-detail-card-image'
-      /> 
-      <div>
-        <h2>Dr. {dataSpecialistDetail.firstName} {dataSpecialistDetail.lastName} </h2>
-        <p> {dataSpecialistDetail.specialty?.name} </p>
+    <h2 className='specialist-detail-title'>Conoce más a</h2>
+    <div className='specialist-detail-cont'>
+      <div className='specialist-detail-card'>
+        <Image 
+          src={dataSpecialistDetail.picture}
+          width={500}
+          height={500}
+          alt="Foto de perfil del especialista"
+          className='specialist-detail-card-image'
+         /> 
+        <div>
+          <h2 className='specialist-detail-name'>Dr. {dataSpecialistDetail.firstName} {dataSpecialistDetail.lastName} </h2>
+          <p> {dataSpecialistDetail.specialty?.name} </p>
+        </div>
       </div>
-    </div>
-    <div className='specialist-detail-description'>
+      <div className='specialist-detail-description'>
         <h4>Se destaca en</h4>
         <p> {dataSpecialistDetail.bio} </p>
+      </div>
     </div>
+    
     <div className='specialist-detail-button-cont'>
       <button className='specialist-detail-button1'>Ver reseñas de pacientes</button>
       <button className='specialist-detail-button specialist-detail-button2'>Volver</button>

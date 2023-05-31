@@ -14,6 +14,14 @@
   padding: 1rem;
   padding-bottom: 0;
   font-size: clamp(1rem, 1.2vw, 2.4rem);
+  align-items: center;
+  h2{
+    color: rgb(79, 79, 79);
+    font-weight: 700;
+  }
+  h4{
+    color: rgb(79, 79, 79);
+  }
 }
 
 @media (min-width: 48rem) {
@@ -24,9 +32,6 @@
   .wrapperTexts {
     flex-direction: row;
     justify-content: space-between;
-  }
-  .wrapperTexts h2 {
-    margin-bottom: 0;
   }
 }
 

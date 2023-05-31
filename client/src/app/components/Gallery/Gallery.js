@@ -24,8 +24,8 @@ const Gallery = () => {
     return (
       <section>
         <div className="galleryText">
-          <h4>Publicidades varias</h4>
-          <h4>Programas de prevención temprana entre otros estudios</h4>
+          <h2>Conoce los nuevos beneficios</h2>
+          <h4>Revisa aquí nuestras alianzas y accede a los descuentos que tenemos para ti</h4>
         </div>
         <article className="gallery">
           <Image className="galleryImg" src="/images/carousel1.jpg" alt="Lab" width={500} height={500} />
