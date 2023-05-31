@@ -3,9 +3,9 @@ import SpecialistDetail from './SpecialistDetail'
 
 function page() {
   return (
-    <div>
-        <SpecialistDetail />
-    </div>
+    <>
+      <SpecialistDetail />
+    </>
   )
 }
 

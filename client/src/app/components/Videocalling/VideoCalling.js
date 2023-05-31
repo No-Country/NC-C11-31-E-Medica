@@ -82,54 +82,5 @@ async function VideoCalling({ appointmentId = null }) {
   );
 }
 
-  return (
-    <div className="jitsiCalling">
-      <JaaSMeeting
-        userInfo={{
-          displayName: patients.firstName + patients.lastName,
-        }} // info del usuario que tiene que ser suministrada de la API de authentication
-        appId="vpaas-magic-cookie-cbde2f015c1541469a2074684145eddd" //NECESARIO
-        roomName="Hola12341234__" // NECESARIO Nombre de la sala seria "Nombre patient + Nombre Specialist + Appoiment ID"
-        configOverwrite={{
-          toolbarButtons: ["camera", "hangup", "microphone", "chat"], // Iconos que se desplegaran en la interfaz
-          disableThirdPartyRequests: true,
-          disableLocalVideoFlip: true,
-          backgroundAlpha: 0.5,
-          welcomePage: {
-            disabled: true, // desactivar la paagina de inicio que solicita datos
-          },
-          prejoinConfig: {
-            // lo mismo de la linea 49
-            enabled: false,
-          },
-        }}
-        interfaceConfigOverwrite={{
-          VIDEO_LAYOUT_FIT: "nocrop",
-          MOBILE_APP_PROMO: false,
-          TILE_VIEW_MAX_COLUMNS: 4,
-          SHOW_JITSI_WATERMARK: false, //desactivar marca de agua
-          SHOW_POWERED_BY: false, // lo mismo linea 59
-          SHOW_PROMOTIONAL_CLOSE_PAGE: false, // desactivar pagina final de promocion
-        }}
-        getIFrameRef={(iframeRef) => {
-          iframeRef.style.height = "100%"; //ampliar el componente segun lo que mida la division donde este se encuentra
-        }}
-        onReadyToClose={async () => {
-          newStatus = "attended";
-          await handlePost();
-          router.push("/");
-          Report.success(
-            "Notiflix Success",
-            '"Do not try to become a person of success but try to become a person of value." <br/><br/>- Albert Einstein',
-            "Okay"
-          ); // cuando se seleccione el boton de cerrar deberia mostrar un review
-        }}
-        onApiReady={(api) => {
-          jitsiAPI = api; // llamada a la API de Jitsi la cual se guarda en la variable JitsiAPI
-        }}
-      />
-    </div>
-  );
-} */
 
 export default VideoCalling;
