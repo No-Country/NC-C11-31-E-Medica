@@ -16,7 +16,7 @@ const WrapperGrid = () => {
         <h2>Nuestros servicios</h2>
         <p>Contamos con +200 servicios para vos y tu familia</p>
       </div>
-      {specialties.length > 7 &&
+      {specialties.length &&
         specialties.slice(0, 12).map((specielty, index) => (
           <CardSpecialties specielty={specielty.name} key={index} id={specielty.id} />
         ))}
