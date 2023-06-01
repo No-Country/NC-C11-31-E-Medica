@@ -21,3 +21,11 @@ export const getAppointmentInfo = async (appointmentId) => {
   const appointmentInfo = { patients, status, dateTime, _id };
   return appointmentInfo;
 };
+
+export const postAppointment = async (calendlyUri, patient, specialist, specialty) => {
+  const appointment = { calendlyUri, patient: "646fc7700fce23dd174bf232", specialist, specialty }
+  console.log(appointment);
+  const newAppointment = await axios.post(`${baseURL}/appointment`, appointment)
+
+  return newAppointment
+}

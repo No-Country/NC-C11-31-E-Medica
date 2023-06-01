@@ -4,7 +4,7 @@ import { ISpecialist } from '../declarations/interfaces'
 import { ObjectId } from 'mongoose'
 
 // Obtener todos los especialistas
-export async function getSpecialists (): Promise<ISpecialist[] | null> {
+export async function getSpecialists(): Promise<ISpecialist[] | null> {
   try {
     const specialists: ISpecialist[] = await Specialist.find({})
       .populate('specialty')
@@ -18,7 +18,7 @@ export async function getSpecialists (): Promise<ISpecialist[] | null> {
 }
 
 // Obtener especialistas por nombre/apellido
-export async function getSpecialistsByName (terms: string): Promise<ISpecialist[]> {
+export async function getSpecialistsByName(terms: string): Promise<ISpecialist[]> {
   try {
     const names = terms.toLowerCase()
       .split(' ')
@@ -40,7 +40,7 @@ export async function getSpecialistsByName (terms: string): Promise<ISpecialist[
 }
 
 // Obtener especialistas por especialidad
-export async function getSpecialistsBySpecialty (specialty: string): Promise<ISpecialist[]> {
+export async function getSpecialistsBySpecialty(specialty: string): Promise<ISpecialist[]> {
   try {
     const specialists: ISpecialist[] | null = await Specialist.find({ specialty })
       .populate('specialty')
@@ -55,7 +55,7 @@ export async function getSpecialistsBySpecialty (specialty: string): Promise<ISp
 }
 
 // Obtener un especialista por ID
-export async function getSpecialistById (id: string): Promise<ISpecialist | null> {
+export async function getSpecialistById(id: string): Promise<ISpecialist | null> {
   try {
     const specialist: ISpecialist | null = await Specialist.findById(id)
       .populate('specialty')
@@ -68,7 +68,7 @@ export async function getSpecialistById (id: string): Promise<ISpecialist | null
 }
 
 // Obtener un especialista por email
-export async function getSpecialistByEmail (email: string): Promise<ISpecialist | null> {
+export async function getSpecialistByEmail(email: string): Promise<ISpecialist | null> {
   try {
     const specialist: ISpecialist | null = await Specialist.findOne({ email })
     return specialist
@@ -78,13 +78,13 @@ export async function getSpecialistByEmail (email: string): Promise<ISpecialist 
 }
 
 // Crear un nuevo especialista
-export async function createSpecialist(newSpecialist: any, refreshToken: string): Promise<ISpecialist | null> {
+export async function createSpecialist(newSpecialist: any, refreshToken: string) {
 
   try {
     // Verificar si el usuario ya existe en la base de datos
     const existingSpecialist = await Specialist.findOne({ email: newSpecialist.email }).exec();
     if (existingSpecialist) {
-      throw new Error('El especialista ya existe en la base de datos');
+      return false
     }
     const specialist = new Specialist({ ...newSpecialist, calendlyToken: refreshToken })
     const savedSpecialist: ISpecialist = await specialist.save()
@@ -97,7 +97,7 @@ export async function createSpecialist(newSpecialist: any, refreshToken: string)
 }
 
 // Actualizar un especialista
-export async function updateSpecialist (
+export async function updateSpecialist(
   id: string,
   firstName: string,
   lastName: string,
@@ -108,7 +108,7 @@ export async function updateSpecialist (
   calendarLink: string,
   mercadoPago: string,
   specialty: ObjectId,
-  reviews: ObjectId[]
+  reviews: ObjectId[],
 ): Promise<ISpecialist | null> {
   try {
     const updatedSpecialist = { firstName, lastName, dni, rup, email, signatureLink, calendarLink, mercadoPago, specialty, reviews }
@@ -123,7 +123,7 @@ export async function updateSpecialist (
 }
 
 // Eliminar un especialista
-export async function deleteSpecialist (id: string): Promise<ISpecialist | null> {
+export async function deleteSpecialist(id: string): Promise<ISpecialist | null> {
   try {
     const specialist = await Specialist.findByIdAndDelete(id)
       .populate('specialty')
@@ -180,8 +180,21 @@ export async function getCalendlyCredendtials(refreshToken: string) {
 
     const response = await fetch('https://auth.calendly.com/oauth/token', options)
     const responseJson = await response.json()
-    const { access_token, owner } = responseJson
+    console.log(responseJson);
+
+    const { access_token, owner, refresh_token } = await responseJson
+    const user = await getCalendlyData(access_token, owner)
+    console.log(user);
+
+    if (!user) return false
+    const specialist = await getSpecialistByEmail(user.email)
     //actualizar refresh_token
+    if (specialist) {
+      const updatedSpecialist = await updateCalendlyToken(specialist._id, refresh_token)
+      console.log(updatedSpecialist);
+
+    }
+
     const credentials = {
       accessToken: String(access_token),
       owner: String(owner)
@@ -221,6 +234,37 @@ export async function getCalendlyData(accessToken: string, owner: string) {
   }
 }
 
+export async function getCalendlyEvent(accessToken: string, owner: string) {
+  try {
+
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`
+      }
+    };
+
+    const specialistEvents = await fetch(`https://api.calendly.com/scheduled_events?user=${owner}`, options)
+      .then(response => response.json())
+    const eventWithName = await specialistEvents.collection.filter((event: { name: string }) => event.name === "E-Medica");
+    return eventWithName
+  } catch (error) {
+
+  }
+
+}
+
+export async function updateCalendlyToken(id: string, calendlyToken: string) {
+  try {
+
+    const specialist: ISpecialist | null = await Specialist.findByIdAndUpdate(id, { calendlyToken }, { new: true })
+    return specialist
+  } catch (error) {
+    console.log(error);
+
+  }
+}
 /*
 export async function crearUsuariosDesdeJSON() {
   try {
