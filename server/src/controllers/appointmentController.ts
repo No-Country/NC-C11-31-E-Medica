@@ -2,6 +2,9 @@ import Appointment from '../models/appointment'
 import { IAppointment } from '../declarations/interfaces'
 import { getCalendlyCredendtials } from './specialistController'
 import { getSpecialistById } from './specialistController'
+import axios from 'axios';
+
+
 // Obtener todos los appointments
 export const getAppointments = async (): Promise<IAppointment[]> => {
   try {
@@ -50,16 +53,14 @@ export const getCalendlyAppointment = async (specialistId: any, calendlyUri: str
     };
     console.log("aaaaaa");
 
-    const eventInfo = await fetch(calendlyUri, options)
-    const eventInfoRes = await eventInfo.json()
+    const eventInfo = await axios.get(calendlyUri, options)
     console.log("bbbb");
 
-    console.log(eventInfoRes);
+    console.log(eventInfo.data);
 
-    return eventInfo
+    return eventInfo.data
   } catch (error) {
     console.log(error);
-
   }
 }
 // Actualizar un appointment por su ID
