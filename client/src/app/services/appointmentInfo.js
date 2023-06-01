@@ -1,5 +1,7 @@
-const baseURL = "https://nc-c11-31-e-medica-production.up.railway.app/";
-
+const baseURL = "https://nc-c11-31-e-medica-production.up.railway.app";
+//https://nc-c11-31-e-medica-production.up.railway.app
+//http://localhost:5000
+import axios from "axios";
 export const getAppointmentInfo = async (appointmentId) => {
   const appointment = await fetch(
     `${baseURL}/appointment/${appointmentId}`
