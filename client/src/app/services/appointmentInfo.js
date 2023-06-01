@@ -1,4 +1,4 @@
-const baseURL = "http://ec2-18-228-59-5.sa-east-1.compute.amazonaws.com";
+const baseURL = "https://nc-c11-31-e-medica-production.up.railway.app/";
 
 export const getAppointmentInfo = async (appointmentId) => {
   const appointment = await fetch(
