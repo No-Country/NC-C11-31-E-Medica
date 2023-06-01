@@ -38,7 +38,6 @@ export const getCalendlyAppointment = async (specialistId: any, calendlyUri: str
   try {
     const specialist = await getSpecialistById("6470a37364cbdae90154967d") //deberia ir specialistId
     if (!specialist) throw new Error('Error al obtener el especialista')
-    console.log(specialist);
 
     const credentials = await getCalendlyCredendtials(specialist.calendlyToken)
     if (!credentials) throw new Error('Error al obtener las credenciales')
@@ -49,10 +48,13 @@ export const getCalendlyAppointment = async (specialistId: any, calendlyUri: str
         Authorization: `Bearer ${credentials.accessToken} `
       }
     };
+    console.log("aaaaaa");
 
     const eventInfo = await fetch(calendlyUri, options)
-      .then(response => response.json())
-    console.log(eventInfo);
+    const eventInfoRes = await eventInfo.json()
+    console.log("bbbb");
+
+    console.log(eventInfoRes);
 
     return eventInfo
   } catch (error) {
