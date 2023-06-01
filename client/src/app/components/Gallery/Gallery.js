@@ -1,6 +1,7 @@
 "use client";
 import Carousel from "./Carousel";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const Gallery = () => {
   const [windowSize, setWindowSize] = useState([]);
@@ -28,9 +29,9 @@ const Gallery = () => {
           <h4>Revisa aquí nuestras alianzas y accede a los descuentos que tenemos para ti</h4>
         </div>
         <article className="gallery">
-          <image className="galleryImg" src="/images/carousel1.jpg" alt="Lab" width={500} height={500} />
-          <image className="galleryImg" src="/images/carousel2.jpg" alt="Medics" width={500} height={500} />
-          <image className="galleryImg" src="/images/carousel3.jpg" alt="Emergency" width={500} height={500} />
+          <Image className="galleryImg" src="/images/carousel1.jpg" alt="Lab" width={500} height={500} />
+          <Image className="galleryImg" src="/images/carousel2.jpg" alt="Medics" width={500} height={500} />
+          <Image className="galleryImg" src="/images/carousel3.jpg" alt="Emergency" width={500} height={500} />
         </article>
       </section>
     );
