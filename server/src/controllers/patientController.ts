@@ -18,6 +18,7 @@ export async function getPatients (): Promise<IPatient[]> {
 export async function getPatientById (id: string): Promise<IPatient | null> {
   try {
     const patient: IPatient | null = await Patient.findById(id)
+      .populate('appointments')
     return patient
   } catch (error) {
     throw new Error('No se pudo obtener el paciente.')

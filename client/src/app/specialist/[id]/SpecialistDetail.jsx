@@ -53,6 +53,7 @@ const SpecialistDetail = () => {
             specialtyId={dataSpecialistDetail.specialty._id} /> : false}
         </div>
       </div>) : <Loading />
+
   )
 }
 

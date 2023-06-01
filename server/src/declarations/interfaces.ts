@@ -14,6 +14,7 @@ export interface IPatient extends Document {
   gender: EnumGender
   dni: string
   email: string
+  appointments: [ObjectId]
   active: boolean
 }
 
@@ -30,9 +31,9 @@ export interface ISpecialist extends Document {
   rup?: string
   signatureLink?: string
   mercadoPago?: string
-  specialty?: ObjectId
-  reviews?: ObjectId
-  active?: boolean
+  specialty: ObjectId
+  reviews?: [ObjectId]
+  active: boolean
 }
 
 export interface IAppointment extends Document {

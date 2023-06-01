@@ -6,11 +6,6 @@ const Navbar = ({ valueNavbar }) => {
     <nav className={`nav ${valueNavbar ? 'openNavbar' : 'closeNavbar'}`}>
       <ul className='nav-list'>
         <li>
-          <Link href='/medic' className='nav-link'>
-            Médico
-          </Link>
-        </li>
-        <li>
           <Link href='/register' className='nav-link'>
             Registro
           </Link>
