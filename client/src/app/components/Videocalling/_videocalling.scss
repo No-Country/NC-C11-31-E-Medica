@@ -24,7 +24,7 @@
   padding: 0.8rem;
   border-radius: 0.5rem;
   color: #ffffff;
-  background-color: #117f7a !important;
+  background-color: #117f7a;
   transition: 0.3s ease;
 }
 .buttonsV:hover {
@@ -36,8 +36,7 @@
   font-weight: 700;
   padding: 0.8rem;
   border-radius: 0.5rem;
-  color: black;
-  outline: solid #117f7a !important;
+  color: #117f7a;
   transition: 0.3s ease;
 }
 .buttonsV1:hover {
@@ -62,6 +61,11 @@
   align-items: center;
   padding: 1rem;
   gap: 1rem;
+
+  & a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+  }
 }
 
 .specialistInfo {
