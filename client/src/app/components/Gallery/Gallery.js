@@ -2,6 +2,7 @@
 import Image from "next/image";
 
 const Gallery = () => {
+
   return (
     <section>
       <div className="galleryText">
@@ -15,6 +16,7 @@ const Gallery = () => {
       </article>
     </section>
   );
+
 };
 
 export default Gallery;

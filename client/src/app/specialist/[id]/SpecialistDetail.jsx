@@ -42,6 +42,7 @@ const SpecialistDetail = () => {
         <div className='specialist-detail-description'>
           <h4>Se destaca en</h4>
           <p> {dataSpecialistDetail.bio} </p>
+
         </div>
         <div className='specialist-detail-button-cont'>
           <button className='specialist-detail-button1'>Ver reseñas de pacientes</button>

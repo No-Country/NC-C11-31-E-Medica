@@ -51,6 +51,7 @@ export const getCalendlyAppointment = async (specialistId: any, calendlyUri: str
         Authorization: `Bearer ${credentials.accessToken} `
       }
     };
+
     console.log("aaaaaa");
 
     const eventInfo = await axios.get(calendlyUri, options)
@@ -61,6 +62,7 @@ export const getCalendlyAppointment = async (specialistId: any, calendlyUri: str
     return eventInfo.data
   } catch (error) {
     console.log(error);
+
   }
 }
 // Actualizar un appointment por su ID

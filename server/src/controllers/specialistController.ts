@@ -244,8 +244,10 @@ export async function getCalendlyEvent(accessToken: string, owner: string) {
       }
     };
 
+
     const specialistEvents = await axios.get(`https://api.calendly.com/scheduled_events?user=${owner}`, options)
     const eventWithName = await specialistEvents.data.collection.filter((event: { name: string }) => event.name === "E-Medica");
+
     return eventWithName
   } catch (error) {
 

@@ -101,11 +101,13 @@ specialistRouter.post('/', (async (req: Request, res: Response) => {
     }
     const specialist = await getSpecialistByEmail(user.email)
     if (specialist) {
+
       res.send(specialist);
     } else {
       const newSpecialist = await createSpecialist(user, refreshToken);
       res.send(newSpecialist);
     }
+
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: 'No se pudo crear el especialista.' })
@@ -170,6 +172,7 @@ specialistRouter.get('/event/:id', (async (req: Request, res: Response) => {
     if (specialist === null) {
       return res.status(404).json({ error: 'Especialista no encontrado.' })
     }
+
     console.log("paso1");
 
     const credentials = await getCalendlyCredendtials(specialist.calendlyToken)
@@ -180,6 +183,7 @@ specialistRouter.get('/event/:id', (async (req: Request, res: Response) => {
     console.log("paso3");
 
     res.send(event)
+
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'No se pudo eliminar el especialista.' })
