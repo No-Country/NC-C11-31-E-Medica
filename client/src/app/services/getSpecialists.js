@@ -1,11 +1,13 @@
-export default function getSpecialists () {
-    const apiURL = 'http://ec2-18-228-59-5.sa-east-1.compute.amazonaws.com/specialist'
-    
+//https://nc-c11-31-e-medica-production.up.railway.app
+//http://localhost:5000
+const apiURL = 'https://nc-c11-31-e-medica-production.up.railway.app/specialist'
+export default function getSpecialists() {
+
     return fetch(apiURL)
-    .then((res) => res.json())
-    .then((response) =>{
-        const specialistsData = response
-        console.log('specialistsData', specialistsData)
-        return specialistsData
-    })
+        .then((res) => res.json())
+        .then((response) => {
+            const specialistsData = response
+            console.log('specialistsData', specialistsData)
+            return specialistsData
+        })
 }

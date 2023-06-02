@@ -2,6 +2,7 @@ import '../db-connection'
 import Specialist from '../models/specialist'
 import { ISpecialist } from '../declarations/interfaces'
 import { ObjectId } from 'mongoose'
+import axios from 'axios';
 
 // Obtener todos los especialistas
 export async function getSpecialists(): Promise<ISpecialist[] | null> {
@@ -135,31 +136,30 @@ export async function deleteSpecialist(id: string): Promise<ISpecialist | null> 
   }
 }
 
-export async function getRefreshToken(code: string): Promise<string> {
+export async function getRefreshToken(code: string) {
 
   try {
     const options = {
       method: 'POST',
+      url: 'https://auth.calendly.com/oauth/token',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: 'Basic ' + btoa('uoB6oI_BXqLz8yWmKInA9YZ4VLEAsbjuSU_BCl4pzhI:yv8XODn_azGYc8zFtTQogE3FwXsBLqtYv4kKwOtBDes')
+        Authorization: 'Basic dW9CNm9JX0JYcUx6OHlXbUtJbkE5WVo0VkxFQXNianVTVV9CQ2w0cHpoSTp5djhYT0RuX2F6R1ljOHpGdFRRb2dFM0Z3WHNCTHF0WXY0a0t3T3RCRGVz'
       },
-      body: new URLSearchParams({
+      data: {
         grant_type: 'authorization_code',
         code,
         redirect_uri: 'https://dev.d2mgpjd3ipukhz.amplifyapp.com/'
-      })
-    }
+      }
+    };
+    const res = await axios.request(options)
+    console.log(res);
 
-    const refreshToken = fetch('https://auth.calendly.com/oauth/token', options)
-      .then(async response => await response.json())
-      .then(response => response.refresh_token)
-      .catch(err => {
-        console.error(err)
-        throw new Error('No se pudo obtener el refreshToken.')
-      })
+    const refreshToken = await res.data.refresh_token
     return await refreshToken
   } catch (error) {
+    console.log(error);
+
     throw new Error('No se pudo obtener el refreshToken.')
   }
 }
@@ -168,21 +168,20 @@ export async function getCalendlyCredendtials(refreshToken: string) {
   try {
     const options = {
       method: 'POST',
+      url: 'https://auth.calendly.com/oauth/token',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: 'Basic ' + btoa('uoB6oI_BXqLz8yWmKInA9YZ4VLEAsbjuSU_BCl4pzhI:yv8XODn_azGYc8zFtTQogE3FwXsBLqtYv4kKwOtBDes')
+        Authorization: 'Basic dW9CNm9JX0JYcUx6OHlXbUtJbkE5WVo0VkxFQXNianVTVV9CQ2w0cHpoSTp5djhYT0RuX2F6R1ljOHpGdFRRb2dFM0Z3WHNCTHF0WXY0a0t3T3RCRGVz'
       },
-      body: new URLSearchParams({
+      data: {
         grant_type: 'refresh_token',
         refresh_token: refreshToken,
-      })
+      }
     };
+    const response = await axios.request(options)
+    console.log(response.data);
 
-    const response = await fetch('https://auth.calendly.com/oauth/token', options)
-    const responseJson = await response.json()
-    console.log(responseJson);
-
-    const { access_token, owner, refresh_token } = await responseJson
+    const { access_token, owner, refresh_token } = await response.data
     const user = await getCalendlyData(access_token, owner)
     console.log(user);
 
@@ -216,15 +215,15 @@ export async function getCalendlyData(accessToken: string, owner: string) {
       }
     };
 
-    const response = await fetch(`${owner}`, options)
-    const responseJson = await response.json()
+    const response = await axios.get(`${owner}`, options)
+    console.log("aaaaaaaaaaa", response);
 
-    const names = responseJson.resource.name.split(" ")
+    const names = await response.data.resource.name.split(" ")
     const userFormat = {
-      email: String(responseJson.resource.email),
+      email: String(response.data.resource.email),
       firstName: String(names[0]),
       lastName: String(names[1]),
-      calendlyLink: String(responseJson.resource.scheduling_url),
+      calendlyLink: String(response.data.resource.scheduling_url),
     }
 
     return userFormat
@@ -245,9 +244,10 @@ export async function getCalendlyEvent(accessToken: string, owner: string) {
       }
     };
 
-    const specialistEvents = await fetch(`https://api.calendly.com/scheduled_events?user=${owner}`, options)
-      .then(response => response.json())
-    const eventWithName = await specialistEvents.collection.filter((event: { name: string }) => event.name === "E-Medica");
+
+    const specialistEvents = await axios.get(`https://api.calendly.com/scheduled_events?user=${owner}`, options)
+    const eventWithName = await specialistEvents.data.collection.filter((event: { name: string }) => event.name === "E-Medica");
+
     return eventWithName
   } catch (error) {
 
