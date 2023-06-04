@@ -16,7 +16,7 @@ const SpecialistCardList = () => {
       const specialistDataFiltered = data.filter(item => item.specialty?._id === params.id)
       setSpecialistData(specialistDataFiltered)
     })
-  }, [])
+  }, [params.id])
 
   return (
     <>

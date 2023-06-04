@@ -14,7 +14,7 @@ const SpecialistDetail = () => {
   useEffect(() => {
     console.log('useffect ejecutado')
     getSpecialistDetail(params.id).then(data => setDataSpecialistDetail(data))
-  }, [])
+  }, [params.id])
 
   const handleClick = () => {
     setIsCalendly(true)
