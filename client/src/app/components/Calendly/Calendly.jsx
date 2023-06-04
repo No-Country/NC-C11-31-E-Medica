@@ -1,4 +1,3 @@
-// "https://calendly.com/julianlopez43013/30min"
 import React from "react";
 import { postAppointment } from "@/app/services/appointmentInfo";
 import { useCalendlyEventListener, InlineWidget } from "react-calendly";
