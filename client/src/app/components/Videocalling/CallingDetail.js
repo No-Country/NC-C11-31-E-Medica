@@ -1,5 +1,6 @@
 import { getAppointmentInfo } from "@/app/services/appointmentInfo";
 import Link from "next/link";
+import Image from "next/image";
 
 async function CallingDetail() {
   const patientId = "646fc7980fce23dd174c16d8";
@@ -29,7 +30,7 @@ async function CallingDetail() {
             exercitationem asperiores sit sapiente. Quo, nobis!
           </p>
           <div className="specialistInfo">
-            <img className="pictureSpecialist" src={picture} alt="Perfil" />
+            <Image className="pictureSpecialist" src={picture} alt="Perfil" />
             Especialidad: Medicina General Especialista:
             {firstName + " " + lastName} <br />
             Estado: {status === "scheduled" ? "agendado" : status}

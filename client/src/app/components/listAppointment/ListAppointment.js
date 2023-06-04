@@ -3,12 +3,11 @@ function ListAppointment({ appointmentsAdd }) {
   const { appointments } = patients;
   const { start_time } = resource.resource;
   const date = `${new Date(start_time)}`;
-
   return (
     <div className="cardAppointment">
       {appointments.map(() => {
         return (
-          <div>
+          <div key={specialists._id}>
             <h3>
               Especialista: {specialists.firstName + "" + specialists.lastName}
             </h3>
