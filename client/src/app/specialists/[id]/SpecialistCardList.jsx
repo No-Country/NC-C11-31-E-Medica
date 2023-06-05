@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import getSpecialists from '@/app/services/getSpecialists';
 import SpecialistCard from './SpecialistCard';
 import Loading from '@/app/components/Loading/Loading';
@@ -7,7 +7,6 @@ import { useParams } from 'next/navigation';
 
 
 const SpecialistCardList = () => {
-
   const params = useParams()
   const [specialistData, setSpecialistData] = useState([])
 
@@ -20,7 +19,6 @@ const SpecialistCardList = () => {
 
   return (
     <>
-      {/* <h2>{specialistDataFiltered.specialty?.name}</h2> */}
       {specialistData.length ?
         <div className='specialist-card-cont'>
           {specialistData.map((item, index) => {
