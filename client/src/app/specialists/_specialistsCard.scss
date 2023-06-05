@@ -1,10 +1,12 @@
-@use '../../app/styles/globals/variables' as *;
-.specialist-card-cont{
+@use '../styles/globals/variables' as *;
+
+.specialist-card-cont {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     justify-items: center;
 }
-.specialists-card{
+
+.specialists-card {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -13,26 +15,28 @@
     margin: 1rem;
     padding: 1rem;
     width: 20rem;
-    &-image{
+
+    &-image {
         width: 5rem;
         height: 5rem;
         border-radius: 100%;
     }
-    a{
+
+    a {
         text-decoration: none;
         color: black;
         font-weight: 700;
     }
-    a:hover{
-        color:  #117F7A;
+
+    a:hover {
+        color: #117F7A;
     }
 }
 
-@media (min-width: 768px){
-    .specialist-card-cont{
+@media (min-width: 768px) {
+    .specialist-card-cont {
         margin-top: 5rem;
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr);
     }
-    
-}
 
+}
