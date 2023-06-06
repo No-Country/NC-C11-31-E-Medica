@@ -55,7 +55,7 @@ const FormSubmitLogin = () => {
             </span>
           )}
           <div className='login-form-button-cont'>
-            <button className='login-form-button-next' disabled={errors.email?.type} onClick={handlerChangeFistStep}>Siguiente</button>
+            <button className='login-form-button-next button' disabled={errors.email?.type} onClick={handlerChangeFistStep}>Continuar</button>
           </div>
           </div> 
           : 
@@ -81,8 +81,8 @@ const FormSubmitLogin = () => {
             </span>
           )}
           <div className='login-form-button-cont'>
-            <button className='login-form-button-back' onClick={handlerChangeFistStep}>Volver</button>
-            <button type='submit' className='login-form-button-submit'>Ingresar</button>
+            <button className='login-form-button-back button' onClick={handlerChangeFistStep}>Volver</button>
+            <button type='submit' className='login-form-button-submit button'>Ingresar</button>
             <a className='login-form-forget-password'>¿Olvidaste tu contraseña?</a>  
           </div>
           </div>
