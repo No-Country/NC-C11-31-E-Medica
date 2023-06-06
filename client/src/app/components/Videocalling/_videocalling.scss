@@ -16,6 +16,9 @@
     height: 10rem;
   }
 }
+.tittleCalling {
+  text-align: center;
+}
 .jitsiCalling {
   margin-top: 5rem;
   height: 30rem;
@@ -24,12 +27,14 @@
   width: 15rem;
   font-weight: 700;
   font-size: 1rem;
+  box-shadow: $shadow-ease;
   padding: 0.8rem;
   border: solid #117f7a;
   border-radius: 0.5rem;
   color: #ffffff;
   background-color: #117f7a;
   transition: 0.3s ease;
+  cursor: pointer;
 }
 .buttonsV:hover {
   color: #117f7a;
@@ -41,21 +46,38 @@
   font-size: 1rem;
   padding: 0.8rem;
   border: solid #117f7a;
+  box-shadow: $shadow-ease;
   border-radius: 0.5rem;
   color: #000000;
   transition: 0.3s ease;
+  cursor: pointer;
 }
 .buttonsV1:hover {
   color: #117f7a;
   background-color: #ffffff !important;
 }
+
+.problemButton {
+  width: 100%;
+  padding: 0.5rem;
+  border: unset;
+  border-radius: 0.5rem;
+  box-shadow: $shadow-ease;
+  color: #000000;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.problemButton:hover {
+  border: solid 1px#117f7a;
+}
 .appointmentInfo {
   display: flex;
   height: 100%;
   width: 100%;
-  background-color: #f5f5f5;
   margin: 2rem;
   padding: 1rem;
+  box-shadow: $shadow-ease;
 }
 
 .divInfo {
@@ -100,4 +122,27 @@
 
 .contactInfo {
   display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .appointmentInfo {
+    flex-direction: column;
+    font-size: 1rem !important;
+    margin: unset;
+  }
+
+  .buttonsV {
+    width: 35rem;
+    padding: 0.5rem;
+  }
+
+  .buttonsV1 {
+    width: 20rem;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  .divInfo2 {
+    flex-direction: column;
+  }
 }
