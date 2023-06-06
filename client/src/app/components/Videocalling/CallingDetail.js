@@ -1,3 +1,4 @@
+"use client";
 import { getAppointmentInfo } from "@/app/services/appointmentInfo";
 import Link from "next/link";
 
@@ -12,38 +13,59 @@ async function CallingDetail() {
   const { _id: id, status } = appointment;
   const appointmentInfo = await getAppointmentInfo(id);
   const { specialists, resource } = appointmentInfo;
-  const { picture, firstName, lastName } = specialists;
-  const { start_time } = resource.resource;
-  const date = `${new Date(start_time)}`;
+  const { picture, firstName, lastName, specialty } = specialists;
+  const { created_at } = resource.resource;
+  const date = new Date(created_at);
+  const monthNames = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+
+  const [month, day, hours] = [
+    date.getMonth(),
+    date.getDate(),
+    date.getHours(),
+  ];
 
   return (
     <main className="videocalling">
+      <h2>Te estamos prepando la reunión . . .</h2>
       <section className="appointmentInfo">
         <article className="divInfo">
           <h2>La reunion esta lista...</h2>
-          <p>Fecha: {date}</p>
           <p>
-            Motivo: Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Vero exercitationem mollitia, dolor nostrum ea quam vel deserunt
-            eaque voluptatibus labore, dolores incidunt! Illo dolorum
-            exercitationem asperiores sit sapiente. Quo, nobis!
+            El día de la fecha martes {day} de {monthNames[month]} a las{" "}
+            {hours + ":00"} agendaste un turno con el especialista:
           </p>
-          <div className="specialistInfo">
+          <ul className="specialistInfo">
             <img className="pictureSpecialist" src={picture} alt="Perfil" />
-            Especialidad: Medicina General Especialista:
-            {firstName + " " + lastName} <br />
-            Estado: {status === "scheduled" ? "agendado" : status}
-          </div>
+            <div>
+              <li>Especialidad: {specialty.name} </li>
+              <li>Especialista: {firstName + " " + lastName}</li>
+              <li>Estado: {status === "scheduled" ? "agendado" : status}</li>
+            </div>
+          </ul>
         </article>
         <article className="calling">
           <h2>Estas listo? ingresa ahora...</h2>
           <div className="divInfo2">
-            <button className="buttonsV">
-              <Link href={`/videocalling/${id}`}>Entrar Videollamada</Link>
-            </button>
-            <button className="buttonsV1">
-              <Link href="/">Cancelar Citas</Link>
-            </button>
+            {" "}
+            <Link href={`/videocalling/${id}`}>
+              <button className="buttonsV">Entrar Videollamada</button>
+            </Link>
+            <Link href="/">
+              <button className="buttonsV1">Cancelar Citas</button>
+            </Link>
           </div>
           <div className="contactInfo">
             <h4>Tienes problemas con ingresar? envianos al whatsapp ➤</h4>

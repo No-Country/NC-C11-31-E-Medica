@@ -8,11 +8,10 @@ const page = async () => {
     res.json()
   );
   const { appointments } = patients;
-  console.log(appointments);
   const [appointment] = appointments;
 
-  const appointmentId = [appointment._id];
-  const appointmentInfo = await getAppointmentInfo([appointmentId]);
+  const appointmentIds = [appointment._id];
+  const appointmentInfo = await getAppointmentInfo([appointmentIds]);
 
   return (
     <>
