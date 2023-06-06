@@ -2,6 +2,9 @@ import Appointment from '../models/appointment'
 import { IAppointment } from '../declarations/interfaces'
 import { getCalendlyCredendtials } from './specialistController'
 import { getSpecialistById } from './specialistController'
+import axios from 'axios';
+
+
 // Obtener todos los appointments
 export const getAppointments = async (): Promise<IAppointment[]> => {
   try {
@@ -38,7 +41,6 @@ export const getCalendlyAppointment = async (specialistId: any, calendlyUri: str
   try {
     const specialist = await getSpecialistById("6470a37364cbdae90154967d") //deberia ir specialistId
     if (!specialist) throw new Error('Error al obtener el especialista')
-    console.log(specialist);
 
     const credentials = await getCalendlyCredendtials(specialist.calendlyToken)
     if (!credentials) throw new Error('Error al obtener las credenciales')
@@ -50,11 +52,14 @@ export const getCalendlyAppointment = async (specialistId: any, calendlyUri: str
       }
     };
 
-    const eventInfo = await fetch(calendlyUri, options)
-      .then(response => response.json())
-    console.log(eventInfo);
+    console.log("aaaaaa");
 
-    return eventInfo
+    const eventInfo = await axios.get(calendlyUri, options)
+    console.log("bbbb");
+
+    console.log(eventInfo.data);
+
+    return eventInfo.data
   } catch (error) {
     console.log(error);
 

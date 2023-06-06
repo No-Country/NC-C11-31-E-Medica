@@ -1,39 +1,46 @@
-"use client";
-
+import { getAppointmentInfo } from "@/app/services/appointmentInfo";
 import Link from "next/link";
+import Image from "next/image";
 
 async function CallingDetail() {
-  const baseURL = "http://ec2-18-228-59-5.sa-east-1.compute.amazonaws.com";
-
-  const appointment = await fetch(`${baseURL}/appointment/`).then((res) =>
+  const patientId = "646fc7980fce23dd174c16d8";
+  const baseURL = "https://nc-c11-31-e-medica-production.up.railway.app";
+  const patients = await fetch(`${baseURL}/patient/${patientId}`).then((res) =>
     res.json()
   );
-  const [{ specialist, dateTime, status, _id, reason }] = appointment;
-
-  const specialists = await fetch(
-    `${baseURL}/specialist/${specialist}`
-  ).then((res) => res.json());
-  const { firstName, lastName, picture } = specialists;
+  const { appointments } = patients;
+  const [appointment] = appointments;
+  const { _id: id, status } = appointment;
+  const appointmentInfo = await getAppointmentInfo(id);
+  const { specialists, resource } = appointmentInfo;
+  const { picture, firstName, lastName } = specialists;
+  const { start_time } = resource.resource;
+  const date = `${new Date(start_time)}`;
 
   return (
     <main className="videocalling">
       <section className="appointmentInfo">
         <article className="divInfo">
           <h2>La reunion esta lista...</h2>
-          <p>Fecha: {dateTime}</p>
-          <p>Motivo: {reason}</p>
+          <p>Fecha: {date}</p>
+          <p>
+            Motivo: Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Vero exercitationem mollitia, dolor nostrum ea quam vel deserunt
+            eaque voluptatibus labore, dolores incidunt! Illo dolorum
+            exercitationem asperiores sit sapiente. Quo, nobis!
+          </p>
           <div className="specialistInfo">
-            <img className="pictureSpecialist" src={picture} alt="Perfil" />
+            <Image className="pictureSpecialist" src={picture} alt="Perfil" />
             Especialidad: Medicina General Especialista:
             {firstName + " " + lastName} <br />
-            Estado: {status}
+            Estado: {status === "scheduled" ? "agendado" : status}
           </div>
         </article>
         <article className="calling">
           <h2>Estas listo? ingresa ahora...</h2>
           <div className="divInfo2">
             <button className="buttonsV">
-              <Link href={`/videocalling/${_id}`}>Entrar Videollamada</Link>
+              <Link href={`/videocalling/${id}`}>Entrar Videollamada</Link>
             </button>
             <button className="buttonsV1">
               <Link href="/">Cancelar Citas</Link>

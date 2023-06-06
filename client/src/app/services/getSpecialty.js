@@ -1,15 +1,13 @@
-
-const apiURL = 'http://ec2-18-228-59-5.sa-east-1.compute.amazonaws.com/specialty';
-
-export default async function getSpecialty() {
-    console.log("getSpecialtyyyy");
-    const res = await fetch(apiURL);
-    console.log("aaaaa", res);
-    const response = await res.json();
-    console.log("bbbbb", response);
-    const data = response;
-    const specialties = data.map(specialty => ({ name: specialty.name, id: specialty._id }));
-
-    console.log('specialties:', specialties);
-    return specialties;
+//https://nc-c11-31-e-medica-production.up.railway.app
+//http://localhost:5000
+const apiURL = 'https://nc-c11-31-e-medica-production.up.railway.app/specialty';
+export default function getSpecialty() {
+    return fetch(apiURL)
+        .then(res => res.json())
+        .then(response => {
+            const data = response
+            const specialties = data.map(specialty => ({ name: specialty.name, id: specialty._id }))
+            console.log('specialties:', specialties)
+            return specialties
+        })
 }

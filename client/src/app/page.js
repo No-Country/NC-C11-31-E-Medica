@@ -6,7 +6,6 @@ import Gallery from "./components/Gallery/Gallery";
 import ChatBotComponent from "./components/Chatbot/Chatbot";
 import { useEffect } from "react";
 
-
 const Page = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search); //window is not defined deploy fallido
