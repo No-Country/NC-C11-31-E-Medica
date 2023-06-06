@@ -1,4 +1,3 @@
-'use client'
 import SpecialistCardList from './SpecialistCardList'
 
 const Page = () => {

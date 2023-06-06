@@ -10,7 +10,6 @@ const Page = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search); //window is not defined deploy fallido
     const codeValue = queryParams.get("code");
-    console.log(codeValue ? codeValue : "");
   }, []);
   return (
     <>

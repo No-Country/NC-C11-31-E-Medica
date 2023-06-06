@@ -12,6 +12,7 @@ function ListAppointment({ appointmentsAdd }) {
     setAppointmentDate(setDate);
   }, []);
   const router = useRouter();
+
   return (
     <div className="listAppointment">
       <div className="cardIcons">
@@ -21,7 +22,9 @@ function ListAppointment({ appointmentsAdd }) {
       </div>
       {appointments.map(() => {
         return (
+
           <div
+            key={specialists._id}
             className="cardAppointment"
             onClick={() => {
               router.push("/videocalling");
@@ -52,6 +55,7 @@ function ListAppointment({ appointmentsAdd }) {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </li>
             </ul>
+
           </div>
         );
       })}

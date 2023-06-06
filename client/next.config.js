@@ -3,15 +3,15 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-
+  productionBrowserSourceMaps: true,
   reactStrictMode: false,
-    images: {
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: '**/e-medica.s3.sa-east-1.amazonaws.com',
-        },
-      ],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**/e-medica.s3.sa-east-1.amazonaws.com',
+      },
+    ],
   }
 }
 

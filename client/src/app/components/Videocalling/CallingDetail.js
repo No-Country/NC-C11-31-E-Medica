@@ -1,6 +1,7 @@
 "use client";
 import { getAppointmentInfo } from "@/app/services/appointmentInfo";
 import Link from "next/link";
+import Image from "next/image";
 
 async function CallingDetail() {
   const patientId = "646fc7980fce23dd174c16d8";
@@ -47,6 +48,7 @@ async function CallingDetail() {
             El día de la fecha martes {day} de {monthNames[month]} a las{" "}
             {hours + ":00"} agendaste un turno con el especialista:
           </p>
+
           <ul className="specialistInfo">
             <img className="pictureSpecialist" src={picture} alt="Perfil" />
             <div>
@@ -55,6 +57,7 @@ async function CallingDetail() {
               <li>Estado: {status === "scheduled" ? "agendado" : status}</li>
             </div>
           </ul>
+
         </article>
         <article className="calling">
           <h2>Estas listo? ingresa ahora...</h2>

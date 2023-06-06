@@ -19,7 +19,7 @@ info:
 
     *Para probar las rutas en la documentacion, usar el servidor de produccion
 servers:
-  - url: http://ec2-18-228-59-5.sa-east-1.compute.amazonaws.com
+  - url: https://nc-c11-31-e-medica-production.up.railway.app
     description: Production server
   - url: http://localhost:5000
     description: Development server

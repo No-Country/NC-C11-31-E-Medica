@@ -5,19 +5,16 @@ import { useParams } from 'next/navigation'
 import getSpecialistDetail from '@/app/services/getSpecialistDetail';
 import Loading from '@/app/components/Loading/Loading';
 import Calendly from '@/app/components/Calendly/Calendly';
-import { useRouter } from 'next/router';
 
 const SpecialistDetail = () => {
   const params = useParams()
-  console.log(params.id)
   const [dataSpecialistDetail, setDataSpecialistDetail] = useState()
   const [isCalendly, setIsCalendly] = useState()
-  console.log('estado', dataSpecialistDetail)
 
   useEffect(() => {
     console.log('useffect ejecutado')
     getSpecialistDetail(params.id).then(data => setDataSpecialistDetail(data))
-  }, [])
+  }, [params.id])
 
   const handleClick = () => {
     setIsCalendly(true)

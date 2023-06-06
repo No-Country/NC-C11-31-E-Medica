@@ -1,5 +1,3 @@
-// "https://calendly.com/julianlopez43013/30min"
-"use client";
 import React from "react";
 import { postAppointment } from "@/app/services/appointmentInfo";
 import { useCalendlyEventListener, InlineWidget } from "react-calendly";
@@ -13,7 +11,9 @@ const Calendly = ({ calendlyLink, patientId, specialistId, specialtyId }) => {
       const calendlyUri = e.data.payload.event.uri
       const newAppointment = await postAppointment(calendlyUri, patientId, specialistId, specialtyId)
       console.log(newAppointment);
-      window.location.href = "/";
+      if (typeof window !== 'undefined') {
+        window.location.href = "/";
+      }
     }
   });
 
