@@ -10,6 +10,7 @@ const specialistSchema = new Schema({
   dni: { type: String, required: false },
   rup: { type: String, required: false },
   email: { type: String, required: true },
+  password: { type: String, required: true },
   signatureLink: { type: String, required: false },
   calendlyLink: { type: String, required: true },
   calendlyToken: { type: String, required: true },
