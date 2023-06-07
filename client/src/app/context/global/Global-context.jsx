@@ -2,4 +2,4 @@ import { createContext } from 'react'
 
 const GlobalContext = createContext({})
 
-export { GlobalContext }
+export default GlobalContext

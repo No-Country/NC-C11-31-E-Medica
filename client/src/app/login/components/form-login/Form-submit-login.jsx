@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form'
 import FormInputLogin from './Form-input-login';
-import getPatientsData from '@/app/services/getPatientsData';
+import checkPatientCredentials from '@/app/services/checkPatientCredentials';
+import GlobalContext from '@/app/context/global/Global-context';
+import { Report } from 'notiflix';
 
 const FormSubmitLogin = () => {
-  
-  const[firstStep, setFirstStep] = useState(true)
-  const[data, setData] = useState('')
-  console.log('estado', data)
+  const { userData, setUserData } = useContext(GlobalContext)
+  const [firstStep, setFirstStep] = useState(true)
+  const [data, setData] = useState('')
   
   const{
     register,  
@@ -17,14 +18,40 @@ const FormSubmitLogin = () => {
   console.log('errors:', errors)
 
   const onSubmit = (data) =>{
-    getPatientsData(data.email)
     setData(data)
-    console.log('data',data)
   }
 
-  const handlerChangeFistStep = ()=> {
+  const handleChangeFirstStep = () => {
     data.email &&
     setFirstStep(!firstStep)
+  }
+
+  const handleChangeSecondStep = () => {
+    
+    setFirstStep(!firstStep)
+  }
+
+  const handleLogin = async () => {
+    data.password &&
+    setSecondStep(!secondStep)
+    const userCredentials = await checkPatientCredentials(data.email, data.password)
+    console.log('Before login: ', userData)
+    console.log('User credentials: ', userCredentials)
+    if(userCredentials === null) {
+      Report.failure(
+        'Email o contraseña incorrectos.',
+        'Verificá e intentá nuevamente.',
+        'Entendido'
+      )
+    } else {
+      setUserData(userCredentials)
+      console.log('After login:', userData)
+      Report.success(
+        `Bienvenido, ${userData.firstName}`,
+        'Haz click en tu ávatar para acceder a tus citas.',
+        '¡Vamos!'
+      )
+    }
   }
 
   return (
@@ -38,12 +65,12 @@ const FormSubmitLogin = () => {
               label: 'Correo electrónico',
               name: 'email',
               type: 'email',
-              placeholder: 'juanperez@gmail.com',
+              placeholder: 'example@example.com',
               Form:{
                 ...register('email',{
                   required:{
                     value: true,
-                    message: 'Ingrese un email para continuar'
+                    message: 'Ingrese un email para continuar.'
                   }
                 })
               }
@@ -55,7 +82,7 @@ const FormSubmitLogin = () => {
             </span>
           )}
           <div className='login-form-button-cont'>
-            <button className='login-form-button-next' disabled={errors.email?.type} onClick={handlerChangeFistStep}>Siguiente</button>
+            <button className='login-form-button-next' disabled={errors.email?.type} onClick={handleChangeFirstStep}>Siguiente</button>
           </div>
           </div> 
           : 
@@ -69,7 +96,7 @@ const FormSubmitLogin = () => {
                 ...register('password',{
                   required:{
                     value: true,
-                    message: 'Ingrese su clave para ingresar'
+                    message: 'Ingrese su clave para ingresar.'
                   }
                 })
               }
@@ -81,8 +108,8 @@ const FormSubmitLogin = () => {
             </span>
           )}
           <div className='login-form-button-cont'>
-            <button className='login-form-button-back' onClick={handlerChangeFistStep}>Volver</button>
-            <button type='submit' className='login-form-button-submit'>Ingresar</button>
+            <button className='login-form-button-back' onClick={handleChangeFirstStep}>Volver</button>
+            <button type='submit' className='login-form-button-submit' onClick={handleLogin}>Ingresar</button>
             <a className='login-form-forget-password'>¿Olvidaste tu contraseña?</a>  
           </div>
           </div>

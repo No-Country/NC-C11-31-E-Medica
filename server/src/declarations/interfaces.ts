@@ -14,6 +14,7 @@ export interface IPatient extends Document {
   gender: EnumGender
   dni: string
   email: string
+  password: string
   appointments: [ObjectId]
   active: boolean
 }
@@ -22,6 +23,7 @@ export interface ISpecialist extends Document {
   firstName: string
   lastName: string
   email: string
+  password: string
   calendlyToken: string
   calendlyLink: string
   picture?: string
