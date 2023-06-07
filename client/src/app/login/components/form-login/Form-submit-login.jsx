@@ -5,7 +5,7 @@ import checkPatientCredentials from '@/app/services/checkPatientCredentials';
 import GlobalContext from '@/app/context/global/Global-context';
 import { Report } from 'notiflix';
 
-const FormSubmitLogin = async () => {
+const FormSubmitLogin = () => {
   const { userData, setUserData } = useContext(GlobalContext)
   const [firstStep, setFirstStep] = useState(true)
   const [data, setData] = useState('')
