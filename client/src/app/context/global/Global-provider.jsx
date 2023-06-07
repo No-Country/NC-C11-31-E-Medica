@@ -1,10 +1,14 @@
-import { GlobalContext } from './GlobalContext'
-import { useState } from 'react'
+import GlobalContext from './Global-context'
+import React, { useState } from 'react'
 
 const GlobalProvider = ({ children }) => {
-  const [stateFilter, setStateFilter] = useState('')
+  const [userData, setUserData] = useState({})
 
-  return <GlobalContext.Provider>{children}</GlobalContext.Provider>
+  return (<>
+            <GlobalContext.Provider value={ { userData, setUserData } }>
+              {children}
+            </GlobalContext.Provider>
+          </>)
 }
 
-export { GlobalProvider }
+export default GlobalProvider

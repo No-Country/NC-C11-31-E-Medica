@@ -1,6 +1,9 @@
+'use client';
+
 import "./styles/main.scss";
 import { Footer } from "./components/footer/Footer";
 import Header from "./components/Navbar/Header";
+import GlobalProvider from "./context/global/Global-provider";
 
 const RootLayout = ({ children }) => {
   return (
@@ -9,11 +12,13 @@ const RootLayout = ({ children }) => {
         <title>E-Medica</title>
       </head>
       <body>
-        <Header />
+        <GlobalProvider>
+          <Header />
 
-        <main>{children}</main>
+          <main>{children}</main>
 
-        <Footer />
+          <Footer />
+        </GlobalProvider>
       </body>
     </html>
   );

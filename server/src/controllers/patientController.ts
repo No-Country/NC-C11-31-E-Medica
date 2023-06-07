@@ -35,6 +35,21 @@ export async function getPatientByEmail (email: string): Promise<IPatient | null
   }
 }
 
+// Obtener pacient con credenciales
+export async function getPatientByCredentials (email: string, password: string): Promise<IPatient | null> {
+  try {
+    const patient: IPatient | null = await Patient.findOne({ email })
+    // Desencriptar contraseña
+    if (password !== patient?.password) {
+      return null
+    }
+    patient.password = '**********'
+    return patient
+  } catch (error) {
+    throw new Error('No se pudo obtener el paciente.')
+  }
+}
+
 // Crear un nuevo paciente
 export async function createPatient (newPatient: IPatient): Promise<IPatient | null> {
   try {
