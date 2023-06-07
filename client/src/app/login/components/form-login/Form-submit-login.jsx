@@ -32,8 +32,6 @@ const FormSubmitLogin = () => {
   }
 
   const handleLogin = async () => {
-    data.password &&
-    setSecondStep(!secondStep)
     const userCredentials = await checkPatientCredentials(data.email, data.password)
     console.log('Before login: ', userData)
     console.log('User credentials: ', userCredentials)
