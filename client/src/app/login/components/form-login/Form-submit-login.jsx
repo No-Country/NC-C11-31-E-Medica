@@ -35,7 +35,7 @@ const FormSubmitLogin = () => {
     const userCredentials = await checkPatientCredentials(data.email, data.password)
     console.log('Before login: ', userData)
     console.log('User credentials: ', userCredentials)
-    if(userCredentials === null) {
+    if(!userCredentials) {
       Report.failure(
         'Email o contraseña incorrectos.',
         'Verificá e intentá nuevamente.',
