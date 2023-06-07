@@ -5,7 +5,6 @@ import { useParams } from 'next/navigation'
 import getSpecialistDetail from '@/app/services/getSpecialistDetail';
 import Loading from '@/app/components/Loading/Loading';
 import Calendly from '@/app/components/Calendly/Calendly';
-
 const SpecialistDetail = () => {
   const params = useParams()
   const [dataSpecialistDetail, setDataSpecialistDetail] = useState()
@@ -16,13 +15,10 @@ const SpecialistDetail = () => {
     getSpecialistDetail(params.id).then(data => setDataSpecialistDetail(data))
   }, [params.id])
 
-  const handleClick = () => {
-    setIsCalendly(true)
-  }
   return (
     dataSpecialistDetail ?
       (<div className='specialist-detail'>
-        <h2>Conoce más a</h2>
+        <h6>Conoce un poco más a</h6>
         <div className='specialist-detail-card'>
           <Image
             src={dataSpecialistDetail.picture}
@@ -32,8 +28,8 @@ const SpecialistDetail = () => {
             className='specialist-detail-card-image'
           />
           <div>
-            <h2>Dr. {dataSpecialistDetail.firstName} {dataSpecialistDetail.lastName} </h2>
-            <p> {dataSpecialistDetail.specialty?.name} </p>
+            <p className='doctor-name'>Dr. {dataSpecialistDetail.firstName} {dataSpecialistDetail.lastName} </p>
+            <p className='doctor-specialty'> Especialista en {dataSpecialistDetail.specialty?.name} </p>
           </div>
         </div>
         <div className='specialist-detail-description'>
@@ -44,11 +40,10 @@ const SpecialistDetail = () => {
         <div className='specialist-detail-button-cont'>
           <button className='specialist-detail-button1'>Ver reseñas de pacientes</button>
           <button className='specialist-detail-button specialist-detail-button2'>Volver</button>
-          <button className='specialist-detail-button' onClick={handleClick}>Ver agenda</button>
-          {isCalendly ? <Calendly calendlyLink="https://calendly.com/roblesfontc/e-medica"
+          <Calendly calendlyLink="https://calendly.com/roblesfontc/e-medica"
             patientId=""
             specialistId={params.id}
-            specialtyId={dataSpecialistDetail.specialty._id} /> : false}
+            specialtyId={dataSpecialistDetail.specialty._id} />
         </div>
       </div>) : <Loading />
 
