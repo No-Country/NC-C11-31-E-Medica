@@ -5,13 +5,14 @@ import checkPatientCredentials from '@/app/services/checkPatientCredentials';
 import GlobalContext from '@/app/context/global/Global-context';
 import { Report } from 'notiflix';
 
-const FormSubmitLogin = () => {
+const FormSubmitLogin = async () => {
   const { userData, setUserData } = useContext(GlobalContext)
   const [firstStep, setFirstStep] = useState(true)
   const [data, setData] = useState('')
   
   const{
-    register,  
+    register,
+    reset,
     formState: { errors },
     handleSubmit
   } = useForm();
@@ -27,7 +28,7 @@ const FormSubmitLogin = () => {
   }
 
   const handleChangeSecondStep = () => {
-    
+    reset()
     setFirstStep(!firstStep)
   }
 
@@ -35,14 +36,14 @@ const FormSubmitLogin = () => {
     const userCredentials = await checkPatientCredentials(data.email, data.password)
     console.log('Before login: ', userData)
     console.log('User credentials: ', userCredentials)
-    if(userCredentials === null) {
+    if(!userCredentials) {
       Report.failure(
         'Email o contraseña incorrectos.',
         'Verificá e intentá nuevamente.',
         'Entendido'
       )
     } else {
-      setUserData(userCredentials)
+      await setUserData(userCredentials)
       console.log('After login:', userData)
       Report.success(
         `Bienvenido, ${userData.firstName}`,
@@ -106,7 +107,7 @@ const FormSubmitLogin = () => {
             </span>
           )}
           <div className='login-form-button-cont'>
-            <button className='login-form-button-back' onClick={handleChangeFirstStep}>Volver</button>
+            <button className='login-form-button-back' onClick={handleChangeSecondStep}>Volver</button>
             <button type='submit' className='login-form-button-submit' onClick={handleLogin}>Ingresar</button>
             <a className='login-form-forget-password'>¿Olvidaste tu contraseña?</a>  
           </div>
