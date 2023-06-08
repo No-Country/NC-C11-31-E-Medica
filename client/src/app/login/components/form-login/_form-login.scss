@@ -10,7 +10,7 @@
         margin-top: 1rem;
         input{
             width: 100%;
-            border-radius: 1.875rem;
+            border-radius: 15px;
             border: 0.0625rem solid #246AA7;
             padding-left: 0.5rem;
             padding: clamp(0.5rem, 0.5vw, 1rem);;
@@ -18,13 +18,17 @@
     }
     h2{
         font-size: clamp(0.8rem, 1.5vw, 3rem);
+        color: rgb(79, 79, 79);
+        font-weight: 700;
     }
     p{
         font-size: clamp(0.6rem, 1vw, 3rem);
+        color: rgb(79, 79, 79);
     }
     &-label{
         font-size: clamp(0.7rem, 1vw, 3rem);
         padding-bottom: 0.3rem;
+        color:rgb(79, 79, 79);
     }
     &-email-cont{
         &-false{
@@ -63,12 +67,23 @@
         width: 100%;
         margin-bottom: 1.5rem;
         border: none;
+        box-shadow: 0 4px 16px 0 rgba(69,125,241,.6);
+    }
+    &-button-back{
+        background-color: #fff;
+        color:#246AA7;
+        border: 1px, solid, #246AA7;
+    }
+    &-button-back:hover{
+        background-color: rgb(232, 240, 254);        
     }
     &-button-cont{
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 1rem;
+        margin-top: 3rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
         a{
             font-size: clamp(0.6rem, 1vw, 3rem);
             color:#246AA7;
@@ -80,6 +95,10 @@
         margin-top: 0;
     }
 }
+.button:hover{
+    opacity: 0.8;
+}
+
 
 .register-option{
     display: flex;
