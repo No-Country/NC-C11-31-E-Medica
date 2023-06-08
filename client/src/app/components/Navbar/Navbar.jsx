@@ -6,14 +6,16 @@ import DropdownMenu from './DropdownMenu'
 
 const Navbar = ({ valueNavbar }) => {
   const {userData, setUserData} = useContext(GlobalContext);
-
+  console.log(userData)
+  //const userData = localStorage.getItem("user")
   const logOut = () =>{
-    setUserData({});
+    localStorage.removeItem("user");
+    setUserData({})
   }
 
   return (
     <nav className={`nav ${valueNavbar ? 'openNavbar' : 'closeNavbar'}`}>
-      {!userData.firstName ? (
+      {!userData?.firstName ? (
       <ul className='nav-list'>
       <li>
         <Link href='/register' className='nav-link'>

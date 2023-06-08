@@ -41,7 +41,7 @@ const FormSubmitLogin = () => {
       } else {
         localStorage.setItem("user", JSON.stringify(userCredentials))
          Report.success(
-        `¡Bienvenido!, ${userData.firstName}`,
+        `¡Bienvenido!, ${userCredentials.firstName}`,
         'Haz click en tu ávatar para acceder a tus citas.',
         '¡Vamos!',
         () => {
