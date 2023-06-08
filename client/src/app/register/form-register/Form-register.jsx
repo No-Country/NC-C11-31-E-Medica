@@ -7,7 +7,7 @@ import postDataRegister from '../hook/post-data-register'
 import { Report } from 'notiflix'
 import { useRouter } from 'next/navigation'
 
-export const FormRegister = () => {
+export const FormRegister = async () => {
   const [stateForm, setStateForm] = useState(false)
 
   const router = useRouter()
@@ -26,6 +26,7 @@ export const FormRegister = () => {
   const onSubmit = async (data) => {
     console.log(data)
     const newUserData = await postDataRegister(data)
+    console.log('newUserData', newUserData)
     if(!newUserData) {
       Report.failure(
         'El registro no fue exitoso.',
