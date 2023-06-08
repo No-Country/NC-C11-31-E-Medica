@@ -1,14 +1,22 @@
 import GlobalContext from './Global-context'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const GlobalProvider = ({ children }) => {
-  const [userData, setUserData] = useState({})
+  const [userData, setUserData] = useState({});
 
-  return (<>
-            <GlobalContext.Provider value={ { userData, setUserData } }>
-              {children}
-            </GlobalContext.Provider>
-          </>)
+  useEffect(() => {
+    try {
+      const rawUserData = JSON.parse(localStorage.getItem("user"))
+      console.log(rawUserData)
+      setUserData(rawUserData)
+    } catch(err) {}
+  }, [])
+
+  return (
+    <GlobalContext.Provider value={ { userData, setUserData } }>
+      {children}
+    </GlobalContext.Provider>
+  )
 }
 
 export default GlobalProvider
