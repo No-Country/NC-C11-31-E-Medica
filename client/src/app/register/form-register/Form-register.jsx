@@ -4,9 +4,13 @@ import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import FormInput from './Form-input'
 import postDataRegister from '../hook/post-data-register'
+import { Report } from 'notiflix'
+import { useRouter } from 'next/navigation'
 
 export const FormRegister = () => {
   const [stateForm, setStateForm] = useState(false)
+
+  const router = useRouter()
 
   function changeStateForm() {
     setStateForm(!stateForm)
@@ -14,12 +18,30 @@ export const FormRegister = () => {
 
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors }
   } = useForm()
 
-  const onSubmit = (data) => {
-    console.log(data), postDataRegister(data)
+  const onSubmit = async (data) => {
+    console.log(data)
+    const newUserData = await postDataRegister(data)
+    if(!newUserData) {
+      Report.failure(
+        'El registro no fue exitoso.',
+        'Si el problema persiste, intentá más tarde.',
+        'Entendido'
+      )
+    } else {
+      Report.success(
+        '¡Bienvenido!',
+        'Haz Click en "Ingresar" para acceder a E-Médica.',
+        '¡Vamos!',
+        () => {
+          router.push('/')
+        }
+      )
+    }
   }
   return (
     <form className='form-register' onSubmit={handleSubmit(onSubmit)}>
@@ -146,6 +168,53 @@ export const FormRegister = () => {
             {errors.email?.message}
           </p>
         )}
+        <FormInput
+          valueInput={{
+            label: 'Contraseña',
+            type: 'password',
+            Form: {
+              ...register('password', {
+                required: 'Campo requerido',
+                minLength: {
+                  value: 10,
+                  message: 'La contraseña debe tener al menos 10 caracteres.'
+                }
+              })
+            }
+          }}
+        />
+        {errors.password?.type === 'required' && (
+          <p role='alert' className='form-register-alert'>
+            Campo requerido
+          </p>
+        )}
+        {errors.password?.type === 'minLength' && (
+          <p role='alert' className='form-register-alert'>
+            {errors.password?.message}
+          </p>
+        )}
+        <FormInput
+        valueInput={{
+          label: 'Confirmar contraseña',
+          type: 'password',
+          Form: {
+            ...register('confirmPassword', {
+              required: 'Campor requerido',
+              validate: value => watch('password') === value
+            })
+          }
+        }}
+      />
+      {errors.confirmPassword?.type === 'required' && (
+        <p role='alert' className='form-register-alert'>
+          Campo requerido
+        </p>
+      )}
+      {errors.confirmPassword?.type === 'validate' && (
+        <p role='alert' className='form-register-alert'>
+          Las contraseñas deben coincidir.
+        </p>
+      )}
         <button className='form-register-back' onClick={changeStateForm}>
           Volver
         </button>
