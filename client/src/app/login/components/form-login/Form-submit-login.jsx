@@ -4,11 +4,12 @@ import FormInputLogin from './Form-input-login';
 import checkPatientCredentials from '@/app/services/checkPatientCredentials';
 import GlobalContext from '@/app/context/global/Global-context';
 import { Report } from 'notiflix';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 const FormSubmitLogin = () => {
   const [firstStep, setFirstStep] = useState(true)
   const [data, setData] = useState('')
+  const {userData, setUserData} = useContext(GlobalContext);
   const router = useRouter()
   
   const{
@@ -40,6 +41,8 @@ const FormSubmitLogin = () => {
         )
       } else {
         localStorage.setItem("user", JSON.stringify(userCredentials))
+        const userDataStorage = JSON.parse(localStorage.getItem("user"))
+        setUserData(userDataStorage)
          Report.success(
         `¡Bienvenido!, ${userCredentials.firstName}`,
         'Haz click en tu ávatar para acceder a tus citas.',

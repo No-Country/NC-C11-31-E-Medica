@@ -6,8 +6,9 @@ import DropdownMenu from './DropdownMenu'
 
 const Navbar = ({ valueNavbar }) => {
   const {userData, setUserData} = useContext(GlobalContext);
+
+ //const userData = localStorage.getItem("user")
   console.log(userData)
-  //const userData = localStorage.getItem("user")
   const logOut = () =>{
     localStorage.removeItem("user");
     setUserData({})
@@ -15,26 +16,26 @@ const Navbar = ({ valueNavbar }) => {
 
   return (
     <nav className={`nav ${valueNavbar ? 'openNavbar' : 'closeNavbar'}`}>
-      {!userData?.firstName ? (
-      <ul className='nav-list'>
-      <li>
-        <Link href='/register' className='nav-link'>
-          Registro
-        </Link>
-      </li>
-      <li>
-        <Link href='/login' className='nav-link'>
-          Ingresar
-        </Link>
-      </li>
-    </ul>
+      {userData?.firstName ? (
+        <ul className='nav-list'>
+          <li>
+            <DropdownMenu logOut={logOut}/>
+          </li>
+        </ul>
     ) : (
-    <ul className='nav-list'>
-      <li>
-        <DropdownMenu logOut={logOut}/>
-      </li>
-    </ul>
-      )}
+        <ul className='nav-list'>
+        <li>
+          <Link href='/register' className='nav-link'>
+            Registro
+          </Link>
+        </li>
+        <li>
+          <Link href='/login' className='nav-link'>
+            Ingresar
+          </Link>
+        </li>
+      </ul>
+        )}
     </nav>
   )
 }

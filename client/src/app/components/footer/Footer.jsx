@@ -13,20 +13,20 @@ export const Footer = () => {
           </div>
           <div>
             <h4>Empresas</h4>
-            <ul className='footer-list'>
-              <li className='footer-li'>Soy empresa</li>
-              <li className='footer-li'>Soy profesional</li>
-            <li className='footer-li'>Institucional</li>
-            </ul>
+            <div className='footer-list'>
+              <p className='footer-li'>Soy empresa</p>
+              <p className='footer-li'>Soy profesional</p>
+              <p className='footer-li'>Institucional</p>
+            </div>
           </div>
           <div>
             <h4>Acerca de</h4>
-            <ul className='footer-list'>
-              <li className='footer-li'>Planes</li>
-              <li className='footer-li'>Ayuda</li>
-              <li className='footer-li'>Contacto</li>
-              <li className='footer-li'>Preguntas frecuentes</li>
-            </ul>
+            <div className='footer-list'>
+              <p className='footer-li'>Planes</p>
+              <p className='footer-li'>Ayuda</p>
+              <p className='footer-li'>Contacto</p>
+              <p className='footer-li'>Preguntas frecuentes</p>
+            </div>
           </div>
         </div>
         <hr />
