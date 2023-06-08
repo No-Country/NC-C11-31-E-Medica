@@ -10,6 +10,7 @@
   border-bottom-left-radius: 0.9375rem;
   border-top-left-radius: 0.9375rem;
   z-index: 1;
+  //width: 60%;
   @media (min-width: 48rem) {
     top: 100%;
   }
@@ -58,4 +59,5 @@
 }
 .openNavbar {
   transform: translateX(0%);
+  background-color: #fff;
 }

@@ -3,17 +3,22 @@ import React, { useEffect, useState } from 'react'
 
 const GlobalProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
-
+  console.log("userDataContext:", userData)
   useEffect(() => {
-    try {
-      const rawUserData = JSON.parse(localStorage.getItem("user"))
-      console.log(rawUserData)
+    const rawUserData = JSON.parse(localStorage.getItem("user"))
+    if(rawUserData) {
+      console.log("efecto contexto ejecutado")
       setUserData(rawUserData)
-    } catch(err) {}
+    }   
   }, [])
 
+
+
   return (
-    <GlobalContext.Provider value={ { userData, setUserData } }>
+    <GlobalContext.Provider value={{ 
+      userData, 
+      setUserData 
+    }}>
       {children}
     </GlobalContext.Provider>
   )

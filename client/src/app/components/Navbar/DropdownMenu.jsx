@@ -10,7 +10,7 @@ const DropdownMenu = (props) => {
 
   return (
   <div className="App">  
-    <Container className='p-4'>  
+    <Container className='p-4 dropdownMenu'>  
       <Dropdown>  
         <Dropdown.Toggle variant=" primary" id="dropdown-basic">  
           <FontAwesomeIcon icon={faUser} />  
