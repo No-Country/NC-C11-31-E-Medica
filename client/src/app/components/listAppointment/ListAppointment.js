@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Report } from "notiflix/build/notiflix-report-aio";
+import Image from "next/image";
 function ListAppointment({ appointmentsAdd }) {
   const { specialists, resource, patients } = appointmentsAdd;
   const { appointments } = patients;
@@ -18,7 +19,12 @@ function ListAppointment({ appointmentsAdd }) {
     return (
       <div className="listAppointment">
         <div className="cardIcons">
-          <img src="/images/calendarIcon.png" className="cardIcons" />
+          <Image
+            src="/images/calendarIcon.png"
+            className="cardIcons"
+            width={50}
+            height={80}
+          />
 
           <h2>Próximas citas pendientes</h2>
         </div>
@@ -32,10 +38,12 @@ function ListAppointment({ appointmentsAdd }) {
               }}
             >
               <div className="cardName">
-                <img
+                <Image
                   src={specialists.picture}
                   alt="Specialist"
                   className="cardImg"
+                  width={80}
+                  height={90}
                 />
                 <div className="specialistName">
                   <h3>{specialists.firstName + " " + specialists.lastName}</h3>
@@ -58,9 +66,11 @@ function ListAppointment({ appointmentsAdd }) {
         })}
 
         <div className="cardIcons">
-          <img
+          <Image
             src="/images/advisorIcon.png"
             className="advisorIcon cardIcons "
+            width={92}
+            height={88}
           />
 
           <h5>
