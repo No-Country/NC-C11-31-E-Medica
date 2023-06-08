@@ -1,6 +1,7 @@
 "use client";
 import { getAppointmentInfo } from "@/app/services/appointmentInfo";
 import Link from "next/link";
+import Image from "next/image";
 
 async function CallingDetail() {
   const patientId = "646fc7980fce23dd174c16d8";
@@ -48,7 +49,13 @@ async function CallingDetail() {
           </p>
 
           <ul className="specialistInfo">
-            <img className="pictureSpecialist" src={picture} alt="Perfil" />
+            <Image
+              className="pictureSpecialist"
+              src={picture}
+              alt="Perfil"
+              width={500}
+              height={500}
+            />
             <div>
               <li>
                 <strong> {firstName + " " + lastName}</strong>
