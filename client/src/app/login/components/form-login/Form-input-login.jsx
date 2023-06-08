@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormInputLogin = ({inputValue, ...props}) => {
+const FormInputLogin = ({inputValue}) => {
   return (
     <div className='login-form-cont'>
         <label className='login-form-label'>{inputValue.label}</label>
