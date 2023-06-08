@@ -20,12 +20,12 @@ const TurnSteps = () => {
           description={'Confirmá la disponibilidad horario del profesional en la agenda disponible en su perfil.'}
         />
         <TurnStepCard
-          image={'/images/step3.webp'}
+          image={'/images/step4.webp'}
           title={'3. Registra tu turno'}
           description={'Una vez registrado el turno, recibiras la confirmación por correo y recordatorios por mensajes de texto.'}
         />
         <TurnStepCard
-          image={'/images/step4.webp'}
+          image={'/images/step3.webp'}
           title={'4. Ingresa a tu consulta'}
           description={'El día de tu consulta ingresa al link de la reunión que recibiste por correo. Te recomendamos estar conectado 5min antes.'}
         />
