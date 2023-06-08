@@ -55,7 +55,7 @@ export const FormRegister = () => {
                 required: true,
                 maxLength: {
                   value: 20,
-                  message: 'maximo 20 caracteres'
+                  message: 'máximo 20 caracteres.'
                 }
               })
             }
@@ -80,7 +80,7 @@ export const FormRegister = () => {
                 required: 'campo requerido',
                 maxLength: {
                   value: 30,
-                  message: `maximo 30 caracteres`
+                  message: `máximo 30 caracteres.`
                 }
               })
             }
@@ -124,11 +124,11 @@ export const FormRegister = () => {
                 required: 'campo requerido',
                 maxLength: {
                   value: 8,
-                  message: 'este campo debe tener 8 caracteres'
+                  message: 'El DNI debe tener 8 caracteres.'
                 },
                 minLength: {
                   value: 8,
-                  message: 'este campo debe tener 8 caracteres'
+                  message: 'El DNI debe tener 8 caracteres.'
                 }
               })
             }
@@ -178,6 +178,10 @@ export const FormRegister = () => {
                 minLength: {
                   value: 10,
                   message: 'La contraseña debe tener al menos 10 caracteres.'
+                },
+                maxLength: {
+                  value: 20,
+                  message: 'La contraseña puede tener hasta 20 caracteres.'
                 }
               })
             }
@@ -189,6 +193,11 @@ export const FormRegister = () => {
           </p>
         )}
         {errors.password?.type === 'minLength' && (
+          <p role='alert' className='form-register-alert'>
+            {errors.password?.message}
+          </p>
+        )}
+        {errors.password?.type === 'maxLength' && (
           <p role='alert' className='form-register-alert'>
             {errors.password?.message}
           </p>
