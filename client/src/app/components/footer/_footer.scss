@@ -11,13 +11,18 @@
   font-family: $font-family;
   padding-bottom: 7rem;
   &-title{
-    font-size: clamp(1.5rem, 2vw, 4rem);
+    font-size: clamp(2rem, 2vw, 4rem);
     font-weight: 700;
     color:#fff;
   }&-cont{
     display: flex;
     flex-direction: column;
     margin-bottom: 0.5rem;
+  }&-li{
+    margin: 0;
+  }&-search{
+    font-size: 20px;
+    font-weight: 700;
   }
   @media (min-width: 48rem) {
     padding: clamp(3rem, 5vw, 10rem) clamp(1rem, 3vw, 6rem) clamp(3rem, 5vw, 10rem) clamp(1rem, 3vw, 6rem);
