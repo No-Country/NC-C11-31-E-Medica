@@ -1,44 +1,43 @@
-'use client'
-import GlobalContext from '@/app/context/global/Global-context'
-import Link from 'next/link'
-import { useContext } from 'react'
-import DropdownMenu from './DropdownMenu'
+"use client";
+import GlobalContext from "@/app/context/global/Global-context";
+import Link from "next/link";
+import { useContext } from "react";
+import DropdownMenu from "./DropdownMenu";
 
 const Navbar = ({ valueNavbar }) => {
-  const {userData, setUserData} = useContext(GlobalContext);
+  const { userData, setUserData } = useContext(GlobalContext);
 
- //const userData = localStorage.getItem("user")
-  console.log(userData)
-  const logOut = () =>{
+  //const userData = localStorage.getItem("user")
+  console.log(userData);
+  const logOut = () => {
     localStorage.removeItem("user");
-    setUserData({})
-  }
+    setUserData({});
+  };
 
   return (
-    <nav className={`nav ${valueNavbar ? 'openNavbar' : 'closeNavbar'}`}>
+    <nav className={`nav ${valueNavbar ? "openNavbar" : "closeNavbar"}`}>
       {userData?.firstName ? (
-        <ul className='nav-list'>
+        <ul className="nav-list">
           <li>
-            <DropdownMenu logOut={logOut}/>
+            <DropdownMenu logOut={logOut} />
           </li>
         </ul>
-    ) : (
-        <ul className='nav-list'>
-        <li>
-          <Link href='/register' className='nav-link'>
-            Registro
-          </Link>
-        </li>
-        <li>
-          <Link href='/login' className='nav-link'>
-            Ingresar
-          </Link>
-        </li>
-      </ul>
-        )}
+      ) : (
+        <ul className="nav-list">
+          <li>
+            <Link href="/register" className="nav-link">
+              Registro
+            </Link>
+          </li>
+          <li>
+            <Link href="/login" className="nav-link">
+              Ingresar
+            </Link>
+          </li>
+        </ul>
+      )}
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
-
+export default Navbar;

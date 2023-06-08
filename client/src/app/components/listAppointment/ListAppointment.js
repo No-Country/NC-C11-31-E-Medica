@@ -1,21 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import { Report } from "notiflix/build/notiflix-report-aio";
 import Image from "next/image";
-function ListAppointment({ appointmentsAdd }) {
-  const { specialists, resource, patients } = appointmentsAdd;
-  const { appointments } = patients;
-  const { start_time } = resource.resource;
-  const [appointmentDate, setAppointmentDate] = useState(start_time);
-  useEffect(() => {
-    const date = new Date(appointmentDate);
-    const setDate = date.toLocaleString();
-    setAppointmentDate(setDate);
-  }, []);
+function ListAppointment({ appointmentsToAdd = [] }) {
   const router = useRouter();
-
-  if (appointmentsAdd) {
+  if (appointmentsToAdd.length > 0) {
     return (
       <div className="listAppointment">
         <div className="cardIcons">
@@ -28,43 +17,51 @@ function ListAppointment({ appointmentsAdd }) {
 
           <h2>Próximas citas pendientes</h2>
         </div>
-        {appointments.map(() => {
-          return (
-            <div
-              key={specialists._id}
-              className="cardAppointment"
-              onClick={() => {
-                router.push("/videocalling");
-              }}
-            >
-              <div className="cardName">
-                <Image
-                  src={specialists.picture}
-                  alt="Specialist"
-                  className="cardImg"
-                  width={80}
-                  height={90}
-                />
-                <div className="specialistName">
-                  <h3>{specialists.firstName + " " + specialists.lastName}</h3>
-                  <p>
-                    <strong>Medicina general</strong>
-                  </p>
+        <div className="cardList">
+          {appointmentsToAdd.map((appointment) => {
+            const { specialists, resource = {}, _id } = appointment;
+            const { start_time = new Date() } = resource.resource;
+            const formatedDate = new Date(start_time)
+              .toLocaleString(undefined, { hour12: true })
+              .replace(/\s/g, " ");
+            return (
+              <div
+                key={specialists._id}
+                className="cardAppointment"
+                onClick={() => {
+                  router.push(`/appointmentDetail/${_id}`);
+                }}
+              >
+                <div className="cardName">
+                  <Image
+                    src={specialists.picture}
+                    alt="Specialist"
+                    className="cardImg"
+                    width={80}
+                    height={90}
+                  />
+                  <div className="specialistName">
+                    <h3>
+                      {specialists.firstName + " " + specialists.lastName}
+                    </h3>
+                    <p>
+                      <strong>Medicina general</strong>
+                    </p>
+                  </div>
                 </div>
+                <ul className="cardInfo">
+                  <li>
+                    <strong>Fecha: </strong> {formatedDate}
+                  </li>
+                  <li>
+                    <strong>Motivo: </strong>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </li>
+                </ul>
               </div>
-              <ul className="cardInfo">
-                <li>
-                  <strong>Fecha: </strong> {appointmentDate}
-                </li>
-                <li>
-                  <strong>Motivo: </strong>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </li>
-              </ul>
-            </div>
-          );
-        })}
-
+            );
+          })}
+        </div>
         <div className="cardIcons">
           <Image
             src="/images/advisorIcon.png"

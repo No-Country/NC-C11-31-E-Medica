@@ -1,21 +1,25 @@
+"use client";
 import ListAppointment from "../components/listAppointment/ListAppointment";
 import { getAppointmentInfo } from "../services/appointmentInfo";
+import GlobalContext from "@/app/context/global/Global-context";
+import { useContext } from "react";
 
 const page = async () => {
-  const patientId = "646fc7980fce23dd174c16d8";
+  const { userData } = useContext(GlobalContext);
+  const patientId = userData._id || "646fc7980fce23dd174c16d8";
   const baseURL = "https://nc-c11-31-e-medica-production.up.railway.app";
-  const patients = await fetch(`${baseURL}/patient/${patientId}`).then((res) =>
-    res.json()
+  const patient = await fetch(`${baseURL}/patient/${patientId}`, {
+    cache: "no-store",
+  }).then((res) => res.json());
+  const { appointments } = patient;
+
+  const appointmentIdsPromise = appointments.map((e) =>
+    getAppointmentInfo(e._id)
   );
-  const { appointments } = patients;
-  const [appointment] = appointments;
-
-  const appointmentIds = [appointment._id];
-  const appointmentInfo = await getAppointmentInfo([appointmentIds]);
-
+  const appointmentsInfo = await Promise.all(appointmentIdsPromise);
   return (
     <>
-      <ListAppointment appointmentsAdd={appointmentInfo} />
+      <ListAppointment appointmentsToAdd={appointmentsInfo} />
     </>
   );
 };

@@ -8,12 +8,11 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: '**/e-medica.s3.sa-east-1.amazonaws.com',
+        protocol: "https",
+        hostname: "**/e-medica.s3.sa-east-1.amazonaws.com",
       },
     ],
-  }
-}
-
+  },
+};
 
 module.exports = nextConfig;

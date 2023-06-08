@@ -1,19 +1,9 @@
 "use client";
-import { getAppointmentInfo } from "@/app/services/appointmentInfo";
 import Link from "next/link";
 import Image from "next/image";
 
-async function CallingDetail() {
-  const patientId = "646fc7980fce23dd174c16d8";
-  const baseURL = "https://nc-c11-31-e-medica-production.up.railway.app";
-  const patients = await fetch(`${baseURL}/patient/${patientId}`).then((res) =>
-    res.json()
-  );
-  const { appointments } = patients; // citas del paciente
-  const [appointment] = appointments;
-  const { _id: id, status } = appointment;
-  const appointmentInfo = await getAppointmentInfo(id); //llamada a la API
-  const { specialists, resource } = appointmentInfo;
+async function AppointmentDetail({ appointmentInfo }) {
+  const { specialists, resource, status, _id: id } = appointmentInfo;
   const { picture, firstName, lastName, specialty } = specialists;
   const { created_at } = resource.resource; // dia en que se creo la cita
   const date = new Date(created_at);
@@ -36,7 +26,6 @@ async function CallingDetail() {
     date.getDate(),
     date.getHours(),
   ];
-
   return (
     <main className="videocalling">
       <h2 className="tittleCalling">Te estamos prepando la reunión . . .</h2>
@@ -47,7 +36,6 @@ async function CallingDetail() {
             El día de la fecha martes {day} de {monthNames[month]} a las{" "}
             {hours + ":00"} agendaste un turno con el especialista:
           </p>
-
           <ul className="specialistInfo">
             <Image
               className="pictureSpecialist"
@@ -70,7 +58,7 @@ async function CallingDetail() {
         </article>
         <article className="calling">
           <div className="divInfo2">
-            <Link href={`/videocalling/${id}`}>
+            <Link href={`/videoCalling/${id}`}>
               <button className="buttonsV">Entrar Videollamada</button>
             </Link>
             <Link href="/">
@@ -90,4 +78,4 @@ async function CallingDetail() {
   );
 }
 
-export default CallingDetail;
+export default AppointmentDetail;
