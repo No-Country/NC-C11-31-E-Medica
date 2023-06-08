@@ -7,7 +7,7 @@ import postDataRegister from '../hook/post-data-register'
 import { Report } from 'notiflix'
 import { useRouter } from 'next/navigation'
 
-export const FormRegister = async () => {
+export const FormRegister = () => {
   const [stateForm, setStateForm] = useState(false)
 
   const router = useRouter()
