@@ -30,7 +30,7 @@ const Header = () => {
     <header className="header">
       <div className="header-mobile">
         <Link className="header-title" href="/">
-          E-medica
+          E-Médica
         </Link>
         <div className="header-cont-input">
           <input
