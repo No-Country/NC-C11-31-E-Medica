@@ -16,9 +16,9 @@ const DropdownMenu = (props) => {
           <FontAwesomeIcon icon={faUser} />  
         </Dropdown.Toggle>  
         <Dropdown.Menu>  
-          <Dropdown.Item href="#/action-1">Mi perfil</Dropdown.Item>  
-          <Dropdown.Item href="#/action-2">Mis citas</Dropdown.Item>  
-          <Dropdown.Item href="#/action-3" onClick={props.logOut}>Salir</Dropdown.Item>  
+          <Dropdown.Item href="/">Mi perfil</Dropdown.Item>  
+          <Dropdown.Item href="/listAppointment">Mis citas</Dropdown.Item>  
+          <Dropdown.Item href="/" onClick={props.logOut}>Salir</Dropdown.Item>  
         </Dropdown.Menu>  
       </Dropdown>  
     </Container>  
