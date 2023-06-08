@@ -10,6 +10,7 @@ const RootLayout = ({ children }) => {
     <html lang="en">
       <head>
         <title>E-Medica</title>
+        <link rel="icon" href="/images/favicon.ico" sizes="any" />
         <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"></link>
         <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
       </head>
