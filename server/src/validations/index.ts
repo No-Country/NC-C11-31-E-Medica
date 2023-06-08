@@ -7,9 +7,9 @@ export const patientValidation = [
   body('gender').notEmpty().withMessage('El género es obligatorio'),
   body('dni').notEmpty().withMessage('El DNI es obligatorio'),
   body('email').notEmpty().withMessage('El email es obligatorio').isEmail().withMessage('El email no es válido'),
-  body('password').notEmpty().withMessage('La contraseña es obligatoria y debe tener al menos diez caracteres.').isStrongPassword({
-    minLength: 10
-  }).withMessage('La constraseña no es válida')
+  // body('password').notEmpty().withMessage('La contraseña es obligatoria y debe tener al menos diez caracteres.').isStrongPassword({
+  //   minLength: 10
+  // }).withMessage('La constraseña no es válida')
   // body('appointments').withMessage('El ID de la consulta es obligatorio.').custom(value => {
   //   if (!Types.ObjectId.isValid(value)) {
   //     throw new Error('ID de consulta inválido.')
