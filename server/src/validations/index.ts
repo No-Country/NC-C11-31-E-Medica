@@ -7,11 +7,8 @@ export const patientValidation = [
   body('gender').notEmpty().withMessage('El género es obligatorio'),
   body('dni').notEmpty().withMessage('El DNI es obligatorio'),
   body('email').notEmpty().withMessage('El email es obligatorio').isEmail().withMessage('El email no es válido'),
-  body('password').notEmpty().withMessage('La contraseña es obligatoria y debe tener al menos diez caracteres, una mayúscula, una minúscula y un número.').isStrongPassword({
-    minLength: 10,
-    minLowercase: 1,
-    minUppercase: 1,
-    minNumbers: 1
+  body('password').notEmpty().withMessage('La contraseña es obligatoria y debe tener al menos diez caracteres.').isStrongPassword({
+    minLength: 10
   }).withMessage('La constraseña no es válida')
   // body('appointments').withMessage('El ID de la consulta es obligatorio.').custom(value => {
   //   if (!Types.ObjectId.isValid(value)) {
@@ -63,11 +60,8 @@ export const specialistValidation = [
   body('dni').notEmpty().withMessage('El dni es obligatorio.'),
   body('rup').notEmpty().withMessage('El rup es obligatorio.'),
   body('email').notEmpty().withMessage('El email es obligatorio.'),
-  body('password').notEmpty().withMessage('La contraseña es obligatoria y debe tener al menos diez caracteres, una mayúscula, una minúscula y un número.').isStrongPassword({
-    minLength: 10,
-    minLowercase: 1,
-    minUppercase: 1,
-    minNumbers: 1
+  body('password').notEmpty().withMessage('La contraseña es obligatoria y debe tener al menos diez caracteres.').isStrongPassword({
+    minLength: 10
   }).withMessage('La constraseña no es válida'),
   body('signatureLink').notEmpty().withMessage('La imagen de la firma es obligatoria.'),
   body('mercadoPago').notEmpty().withMessage('El enlace de mercadoPago es obligatorio.'),
