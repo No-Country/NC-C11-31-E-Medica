@@ -1,4 +1,4 @@
-const postDataRegister = (data) => {
+const postDataRegister = async (data) => {
   console.log(data)
   const opciones = {
     method: 'POST',
@@ -8,16 +8,12 @@ const postDataRegister = (data) => {
     body: JSON.stringify(data)
   }
   console.log(opciones.body)
-
-  fetch('http://ec2-18-228-59-5.sa-east-1.compute.amazonaws.com/patient', opciones)
+  return await fetch('https://nc-c11-31-e-medica-production.up.railway.app/patient', opciones)
     .then((response) => response.json())
     .then((response) => {
-      let respuesta = console.log(response)
-      console.log(respuesta)
+      return response
     })
-    .catch((err) => console.log('se a producido un error:' + err))
-
-  return
+    .catch((err) => console.log('se ha producido un error: ' + err))
 }
 
 export default postDataRegister
