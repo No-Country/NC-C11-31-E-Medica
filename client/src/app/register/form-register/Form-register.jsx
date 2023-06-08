@@ -24,6 +24,7 @@ export const FormRegister = async () => {
   } = useForm()
 
   const onSubmit = async (data) => {
+    delete data.confirmPassword
     console.log(data)
     const newUserData = await postDataRegister(data)
     console.log('newUserData', newUserData)
