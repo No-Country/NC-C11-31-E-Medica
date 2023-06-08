@@ -93,6 +93,10 @@
         margin-left: 6rem;
         margin-right: 6rem;
 
+        h6 {
+            font-size: 40px;
+        }
+
         &-card-image {
             width: 15rem;
             height: 15rem;
@@ -114,14 +118,37 @@
         }
 
         &-button2 {
-            display: none;
+            width: 30%
+        }
+
+        &-description {
+            margin-top: 1rem;
+
+            h4 {
+                margin-bottom: 0.5rem;
+                font-size: 30px
+            }
+
+            p {
+                font-size: 20px;
+            }
         }
     }
 
     .specialist-detail-card {
         background-color: transparent;
         align-items: center;
+
+        .doctor-name {
+            font-size: 30px;
+        }
+
+        .doctor-specialty {
+            font-size: 24px;
+        }
+
     }
+
 
     .specialist-detail-cont {
         display: flex;
