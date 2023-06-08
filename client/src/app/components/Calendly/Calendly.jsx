@@ -1,7 +1,5 @@
-import React from "react";
 import { postAppointment } from "@/app/services/appointmentInfo";
-import { useCalendlyEventListener, InlineWidget } from "react-calendly";
-
+import { useCalendlyEventListener } from "react-calendly";
 const Calendly = ({ calendlyLink, patientId, specialistId, specialtyId }) => {
   useCalendlyEventListener({
     onProfilePageViewed: () => console.log("onProfilePageViewed"),
@@ -16,12 +14,17 @@ const Calendly = ({ calendlyLink, patientId, specialistId, specialtyId }) => {
       }
     }
   });
-
+  const handleClick = async () => {
+    window.Calendly.initPopupWidget({ url: calendlyLink });
+    return false;
+  }
   return (
-    <div className="App">
-      <InlineWidget url={calendlyLink} />
-    </div>
-  );
+    <>
+      <button className='specialist-detail-button specialist-detail-button2' onClick={handleClick}>
+        Agendar
+      </button>
+    </>
+  )
 };
 
 export default Calendly;

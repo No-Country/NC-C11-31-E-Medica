@@ -1,4 +1,5 @@
 @use '../../styles/globals/variables' as *;
+
 .header {
   color: black;
   width: 100%;
@@ -6,8 +7,6 @@
   font-size: clamp(0.9rem, 1.5vw, 3rem);
   background-color: #ffffff;
   position: fixed;
-  left: 0;
-  bottom: 0;
   z-index: 2;
 
   @media (min-width: 768px) {
@@ -28,13 +27,16 @@
     align-items: center;
     z-index: 2;
   }
-  &-title {
-    font-size: clamp(1.5rem, 2vw, 4rem);
-    font-weight: 700;
+
+  &-logo {
+    margin: -5px 0;
+    padding: 0;
   }
+
   &-cont-input {
     display: none;
     gap: 0.625rem;
+
     @media (min-width: 768px) {
       display: flex;
     }
@@ -48,6 +50,7 @@
     font-size: clamp(1rem, 1.2vw, 2.4rem);
     padding: clamp(0.3125rem, 0.5vw, 1rem);
     width: clamp(19rem, 30vw, 60rem);
+
     &:focus {
       outline: none;
     }
@@ -65,29 +68,35 @@
     transition: transform 0.3s;
     cursor: pointer;
   }
+
   &-path-1 {
     position: absolute;
     transform: rotateY(0deg);
     transition: transform ease-in-out 0.5s, opacity ease-in-out 0.5s;
   }
+
   &-path-2 {
     top: 0;
     position: absolute;
     opacity: 1;
     transition: ease-in-out 0.5s;
   }
+
   &-path-3 {
     transform: rotate(0deg);
     transition: ease-in-out 0.5s;
   }
+
   &-open-path-1 {
     transform: translateX(0.4rem) translateY(0.1rem) rotate(45deg);
     transform-origin: top left;
   }
+
   &-open-path-2 {
     transform: translateX(-100%);
     opacity: 0;
   }
+
   &-open-path-3 {
     transform: translateX(0.4rem) translateY(0.1rem) rotate(-45deg);
     transform-origin: bottom left;
