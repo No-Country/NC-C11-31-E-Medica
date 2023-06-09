@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChildReaching, faBrain, faHandshakeAngle, faHandHoldingHeart, faDice,  faHeartPulse, faComments, faPersonPregnant, faFaceSmileBeam, faXRay, faNotesMedical, faHouseChimneyMedical, faPersonDress, faUsersLine, faPersonCane, faSuitcaseMedical} from '@fortawesome/free-solid-svg-icons'
+import { faChildReaching, faBrain, faHandshakeAngle, faHandHoldingHeart, faDice, faHeartPulse, faComments, faPersonPregnant, faFaceSmileBeam, faXRay, faNotesMedical, faHouseChimneyMedical, faPersonDress, faUsersLine, faPersonCane, faSuitcaseMedical } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 
 export const CardSpecialties = ({ specielty, id }) => {
@@ -22,7 +22,9 @@ export const CardSpecialties = ({ specielty, id }) => {
 
   return (
     <div className='CardSpecialtiesContainer'>
-      <FontAwesomeIcon className='CardSpecialtiesContainer-icon' icon={icons[specielty]} />
+      <Link href={`/specialists/${id}`}>
+        <FontAwesomeIcon className='CardSpecialtiesContainer-icon' icon={icons[specielty]} />
+      </Link>
       <Link href={`/specialists/${id}`}>{specielty}</Link>
     </div>
   )

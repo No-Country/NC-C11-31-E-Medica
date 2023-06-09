@@ -7,7 +7,6 @@ export default function getSpecialty() {
         .then(response => {
             const data = response
             const specialties = data.map(specialty => ({ name: specialty.name, id: specialty._id }))
-            console.log('specialties:', specialties)
             return specialties
         })
 }

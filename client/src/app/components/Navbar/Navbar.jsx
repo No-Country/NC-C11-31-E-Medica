@@ -5,11 +5,9 @@ import { useContext } from 'react'
 import DropdownMenu from './DropdownMenu'
 
 const Navbar = ({ valueNavbar }) => {
-  const {userData, setUserData} = useContext(GlobalContext);
+  const { userData, setUserData } = useContext(GlobalContext);
 
- //const userData = localStorage.getItem("user")
-  console.log(userData)
-  const logOut = () =>{
+  const logOut = () => {
     localStorage.removeItem("user");
     setUserData({})
   }
@@ -19,23 +17,23 @@ const Navbar = ({ valueNavbar }) => {
       {userData?.firstName ? (
         <ul className='nav-list'>
           <li>
-            <DropdownMenu logOut={logOut}/>
+            <DropdownMenu logOut={logOut} />
           </li>
         </ul>
-    ) : (
+      ) : (
         <ul className='nav-list'>
-        <li>
-          <Link href='/register' className='nav-link'>
-            Registro
-          </Link>
-        </li>
-        <li>
-          <Link href='/login' className='nav-link'>
-            Ingresar
-          </Link>
-        </li>
-      </ul>
-        )}
+          <li>
+            <Link href='/register' className='nav-link'>
+              Registro
+            </Link>
+          </li>
+          <li>
+            <Link href='/login' className='nav-link'>
+              Ingresar
+            </Link>
+          </li>
+        </ul>
+      )}
     </nav>
   )
 }

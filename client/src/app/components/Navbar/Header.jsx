@@ -20,8 +20,6 @@ const Header = () => {
       const data = api.data;
       const result = data.map((e) => {
         if (e.specialty.name.toLowerCase().includes(search.toLowerCase())) {
-          console.log(e.specialty.name);
-          console.log(e);
         }
       });
       return result;

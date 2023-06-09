@@ -8,7 +8,6 @@ export default async function getSpecialists() {
             .then((res) => res.json())
             .then((response) => {
                 const specialistsData = response
-                console.log('specialistsData', specialistsData)
                 return specialistsData
             })
     } catch (error) {

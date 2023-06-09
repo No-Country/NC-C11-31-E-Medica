@@ -25,10 +25,8 @@ export const FormRegister = () => {
 
   const onSubmit = async (data) => {
     delete data.confirmPassword
-    console.log(data)
     const newUserData = await postDataRegister(data)
-    console.log('newUserData', newUserData)
-    if(!newUserData) {
+    if (!newUserData) {
       Report.failure(
         'El registro no fue exitoso.',
         'Si el problema persiste, intentá más tarde.',
@@ -205,27 +203,27 @@ export const FormRegister = () => {
           </p>
         )}
         <FormInput
-        valueInput={{
-          label: 'Confirmar contraseña',
-          type: 'password',
-          Form: {
-            ...register('confirmPassword', {
-              required: 'Campor requerido',
-              validate: value => watch('password') === value
-            })
-          }
-        }}
-      />
-      {errors.confirmPassword?.type === 'required' && (
-        <p role='alert' className='form-register-alert'>
-          Campo requerido
-        </p>
-      )}
-      {errors.confirmPassword?.type === 'validate' && (
-        <p role='alert' className='form-register-alert'>
-          Las contraseñas deben coincidir.
-        </p>
-      )}
+          valueInput={{
+            label: 'Confirmar contraseña',
+            type: 'password',
+            Form: {
+              ...register('confirmPassword', {
+                required: 'Campor requerido',
+                validate: value => watch('password') === value
+              })
+            }
+          }}
+        />
+        {errors.confirmPassword?.type === 'required' && (
+          <p role='alert' className='form-register-alert'>
+            Campo requerido
+          </p>
+        )}
+        {errors.confirmPassword?.type === 'validate' && (
+          <p role='alert' className='form-register-alert'>
+            Las contraseñas deben coincidir.
+          </p>
+        )}
         <button className='form-register-back' onClick={changeStateForm}>
           Volver
         </button>

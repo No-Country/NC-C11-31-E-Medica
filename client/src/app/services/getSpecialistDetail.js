@@ -6,7 +6,6 @@ export default function getSpecialistDetail(finalEndpoint) {
         .then(res => res.json())
         .then(response => {
             const data = response
-            console.log('data:', data)
             return data
         })
 }

@@ -2,13 +2,12 @@ import { postAppointment } from "@/app/services/appointmentInfo";
 import { useCalendlyEventListener } from "react-calendly";
 const Calendly = ({ calendlyLink, patientId, specialistId, specialtyId }) => {
   useCalendlyEventListener({
-    onProfilePageViewed: () => console.log("onProfilePageViewed"),
-    onDateAndTimeSelected: () => console.log("onDateAndTimeSelected"),
-    onEventTypeViewed: () => console.log("onEventTypeViewed"),
+    onProfilePageViewed: () => undefined,
+    onDateAndTimeSelected: () => undefined,
+    onEventTypeViewed: () => undefined,
     onEventScheduled: async (e) => {
       const calendlyUri = e.data.payload.event.uri
       const newAppointment = await postAppointment(calendlyUri, patientId, specialistId, specialtyId)
-      console.log(newAppointment);
       if (typeof window !== 'undefined') {
         window.location.href = "/";
       }

@@ -8,10 +8,8 @@ import Calendly from '@/app/components/Calendly/Calendly';
 const SpecialistDetail = () => {
   const params = useParams()
   const [dataSpecialistDetail, setDataSpecialistDetail] = useState()
-  const [isCalendly, setIsCalendly] = useState()
 
   useEffect(() => {
-    console.log('useffect ejecutado')
     getSpecialistDetail(params.id).then(data => setDataSpecialistDetail(data))
   }, [params.id])
 

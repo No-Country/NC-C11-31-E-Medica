@@ -1,5 +1,4 @@
 const postDataRegister = async (data) => {
-  console.log(data)
   const opciones = {
     method: 'POST',
     headers: {
@@ -7,7 +6,6 @@ const postDataRegister = async (data) => {
     },
     body: JSON.stringify(data)
   }
-  console.log(opciones.body)
   return await fetch('https://nc-c11-31-e-medica-production.up.railway.app/patient', opciones)
     .then((response) => response.json())
     .then((response) => {
