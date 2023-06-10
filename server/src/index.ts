@@ -26,7 +26,7 @@ const swaggerDocs = YAML.load('./swagger.yaml')
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 // routes
-app.use('/', router)
+app.use('/', templateRouter)
 
 app.listen(app.get('port'), () => {
   console.log('Server on port', app.get('port'))
