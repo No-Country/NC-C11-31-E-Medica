@@ -4,7 +4,9 @@
 
 # **E-Médica** #
 <div align="center">
+  <a>
   <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/12c125ef-3130-4cde-95d6-1c5be99484db"   width="500">
+  </a>
 </div>
 
 ### Acerca del proyecto 📜 ###
