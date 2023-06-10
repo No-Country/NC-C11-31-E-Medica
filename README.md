@@ -18,7 +18,7 @@ E-Médica es una plataforma para el agendamiento y la realización de consultas 
 - Figma: https://www.figma.com/file/ShT1bO2dJmAejRr4yApRP4/Nocountry-c11-31?type=design&node-id=0%3A1&t=c99vDJLH0fXkBwtT-1
 
 ### Stack de tecnologías 🖥️ ###
- <a>
+ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
   <img src="https://user-images.githubusercontent.com/108427945/220447577-2d40e53b-d911-4919-9df8-1a832e7264e1.png" width="50" height="50" >
  </a>
  <a href="https://www.typescriptlang.org/">
