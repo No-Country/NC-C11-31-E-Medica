@@ -13,7 +13,7 @@ E-Médica es una plataforma para el agendamiento y la realización de consultas 
 ### Enlaces importantes 🔗 ###
 - Deploy - client (dev): https://dev.d2mgpjd3ipukhz.amplifyapp.com/ 
 - Deploy - API (dev): https://nc-c11-31-e-medica-production.up.railway.app/
-- Video promocional: https://www.canva.com/design/DAFk6u57wXE/watch
+- Video promocional: https://www.canva.com/design/DAFk6u57wXE/qkWtVP4SFztdutxlWdG2Ag/watch?utm_content=DAFk6u57wXE&utm_campaign=designshare&utm_medium=link&ut
 - Presentación: https://www.figma.com/proto/ShT1bO2dJmAejRr4yApRP4/Nocountry-c11-31?type=design&node-id=560-1912&scaling=contain&page-id=78%3A156&starting-point-node-id=560%3A1912
 - Figma: https://www.figma.com/file/ShT1bO2dJmAejRr4yApRP4/Nocountry-c11-31?type=design&node-id=0%3A1&t=c99vDJLH0fXkBwtT-1
 
