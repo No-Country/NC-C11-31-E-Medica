@@ -16,18 +16,27 @@
 E-Médica es una plataforma para el agendamiento y la realización de consultas médicas virtuales 🩺. Agiliza el proceso de búsqueda 🔍, agendamiento 🕮 y consulta 👨‍⚕️, pues permite encontrar profesionales de la salud según su especialidad ⚕️, eliminando la necesidad de desplazarse físicamente 🚗, cuando no es necesario, y permitiendo que los usuarios conozcan la agenda del especialista en tiempo real 📆.
 
 ### Enlaces importantes 🔗 ###
-- API: https://github.com/juanleiton/PI-Videogames_api
-- Client: https://github.com/juanleiton/PI-Videogames_client
+- API: 
+- Client: 
 
 ### Stack de tecnologías 🖥️ ###
  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
   <img src="https://user-images.githubusercontent.com/108427945/220447577-2d40e53b-d911-4919-9df8-1a832e7264e1.png" width="50" height="50" >
+ </a>
+ <a href="https://www.typescriptlang.org/">
+   <img src="https://user-images.githubusercontent.com/108427945/220797241-e4531353-02ae-4f36-960e-a90259867b9f.png" width="50" height="50" >
  </a>
  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
   <img src="https://user-images.githubusercontent.com/108427945/220448197-9361ad94-2867-4aca-8bcd-3a4ddb2b499c.png" width="50" height="50" >
  </a>
  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
   <img src="https://user-images.githubusercontent.com/108427945/220448406-7bcd41a4-e0c3-4d97-8901-6ec45c3effa5.png" width="50" height="50" >
+ </a>
+ <a href="https://www.mongodb.com/">
+   <img src="https://user-images.githubusercontent.com/108427945/220798061-16bd9b8a-e763-4004-b95a-1bfecd456404.png" width="50" height="50" >
+ </a>
+ <a href="https://mongoosejs.com/">
+   <img src="https://user-images.githubusercontent.com/108427945/220798508-6728ea7d-e461-4df5-a24a-f6a378dca838.png" width="50" height="50" >
  </a>
  <a href="https://nodejs.org/en/">
   <img src="https://user-images.githubusercontent.com/108427945/220450396-5786cd98-e2ce-47e8-b15f-056a251bd01b.png" width="50" height="50" >
@@ -37,6 +46,9 @@ E-Médica es una plataforma para el agendamiento y la realización de consultas 
  </a>
  <a href="https://reactjs.org/">
   <img src="https://user-images.githubusercontent.com/108427945/220451016-cfb63adb-0aa4-493a-bef0-e090e301b3b1.png" width="50" height="50" >
+ </a>
+ <a href="https://nextjs.org/">
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/53cf1403-17ad-4dc2-bae2-961cbe4bb179" width="50" height="50" >
  </a>
 
 ### El equipo 🚩 ###
