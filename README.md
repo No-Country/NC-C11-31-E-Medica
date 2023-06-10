@@ -1,4 +1,5 @@
 <div align="left">
+ ![image](https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/aaf2779a-7d4d-402b-8369-aa0d6a20d9f3)
  <a href="https://www.nocountry.tech/">
     <img src="https://github.com/juanleiton/juanleiton/assets/108427945/4f23f52f-8a08-4216-a8ab-6c49b32bae52" width="100">
  </a>
