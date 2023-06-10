@@ -1,12 +1,12 @@
 <div align="left">
- <a href="https://www.nocountry.tech">
-    <img src="https://github.com/juanleiton/SilkRoad/assets/108427945/b05067a4-fea5-43c2-a78a-3660770ca57f" width="100" >
+ <a href="https://www.nocountry.tech/">
+    <img src="https://github.com/juanleiton/juanleiton/assets/108427945/4f23f52f-8a08-4216-a8ab-6c49b32bae52" width="100" >
  </a>
 </div>
 
 # **E-Médica** #
 <div align="center">
-  <a href="https://dev.d2mgpjd3ipukhz.amplifyapp.com">
+  <a href="https://dev.d2mgpjd3ipukhz.amplifyapp.com/">
     <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/12c125ef-3130-4cde-95d6-1c5be99484db"   width="500">
   </a>
 </div>
