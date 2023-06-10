@@ -1,14 +1,10 @@
 <div align="left">
- <a href="https://www.nocountry.tech/">
-    <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/80082a3a-10ac-4cb8-8665-6ab98efbae88" width="100">
- </a>
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/80082a3a-10ac-4cb8-8665-6ab98efbae88" width="100">
 </div>
 
 # **E-Médica** #
 <div align="center">
-  <a href="https://dev.d2mgpjd3ipukhz.amplifyapp.com/">
-    <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/12c125ef-3130-4cde-95d6-1c5be99484db"   width="500">
-  </a>
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/12c125ef-3130-4cde-95d6-1c5be99484db"   width="500"<
 </div>
 
 ### Acerca del proyecto 📜 ###
