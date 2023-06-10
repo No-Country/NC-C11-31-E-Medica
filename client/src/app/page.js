@@ -22,4 +22,6 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default function Page() {
+  return <div>Hola Mundo</div>;
+}
