@@ -5,7 +5,6 @@
 </div>
 
 # **E-Médica** #
-### Plataforma para el agendamiento y la realización de consultas médicas virtuales ###
 <div align="center">
   <a href="https://dev.d2mgpjd3ipukhz.amplifyapp.com/">
     <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/12c125ef-3130-4cde-95d6-1c5be99484db"       width="500">
@@ -32,6 +31,9 @@ E-Médica es una plataforma para el agendamiento y la realización de consultas 
  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
   <img src="https://user-images.githubusercontent.com/108427945/220448406-7bcd41a4-e0c3-4d97-8901-6ec45c3effa5.png" width="50" height="50" >
  </a>
+ <a href="https://sass-lang.com/">
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/a8de593a-fa52-4859-acc8-8fe53ea4ff25" width="50" height="50" >
+ </a>
  <a href="https://www.mongodb.com/">
    <img src="https://user-images.githubusercontent.com/108427945/220798061-16bd9b8a-e763-4004-b95a-1bfecd456404.png" width="50" height="50" >
  </a>
@@ -49,9 +51,6 @@ E-Médica es una plataforma para el agendamiento y la realización de consultas 
  </a>
  <a href="https://nextjs.org/">
   <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/53cf1403-17ad-4dc2-bae2-961cbe4bb179" width="50" height="50" >
- </a>
- <a href="https://sass-lang.com/">
-  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/a8de593a-fa52-4859-acc8-8fe53ea4ff25" width="50" height="50" >
  </a>
  <a href="https://railway.app/">
   <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/d4f1c843-00d0-4a67-b5a3-780e35afd882" width="50" height="50" >
