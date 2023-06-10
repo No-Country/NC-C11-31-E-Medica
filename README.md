@@ -15,8 +15,11 @@
 E-Médica es una plataforma para el agendamiento y la realización de consultas médicas virtuales 🩺. Agiliza el proceso de búsqueda 🔍, agendamiento 🕮 y consulta 👨‍⚕️, pues permite encontrar profesionales de la salud según su especialidad ⚕️, eliminando la necesidad de desplazarse físicamente 🚗, cuando no es necesario, y permitiendo que los usuarios conozcan la agenda del especialista en tiempo real 📆.
 
 ### Enlaces importantes 🔗 ###
-- API: 
-- Client: 
+- Deploy - client (dev): https://dev.d2mgpjd3ipukhz.amplifyapp.com/ 
+- Deploy - API (dev): https://nc-c11-31-e-medica-production.up.railway.app/
+- Video promocional: https://www.canva.com/design/DAFk6u57wXE/watch
+- Presentación: https://www.figma.com/proto/ShT1bO2dJmAejRr4yApRP4/Nocountry-c11-31?type=design&node-id=560-1912&scaling=contain&page-id=78%3A156&starting-point-node-id=560%3A1912
+- Figma: https://www.figma.com/file/ShT1bO2dJmAejRr4yApRP4/Nocountry-c11-31?type=design&node-id=0%3A1&t=c99vDJLH0fXkBwtT-1
 
 ### Stack de tecnologías 🖥️ ###
  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
