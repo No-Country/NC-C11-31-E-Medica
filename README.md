@@ -1,5 +1,5 @@
 <div align="left">
- <a href="https://www.nocountry.tech/" target="_blank">
+ <a href="https://www.nocountry.tech/">
     <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/80082a3a-10ac-4cb8-8665-6ab98efbae88" width="100">
  </a>
 </div>
@@ -63,3 +63,9 @@ E-Médica es una plataforma para el agendamiento y la realización de consultas 
  </a>
 
 ### El equipo 🚩 ###
+- Juan Pablo Núñez Mazzuco - UX/UI Designer
+- Rocío Livingston - UX/UI Designer
+- Trinidad Atrio Abeledo - Frontend Developer
+- José Cardozo - Frontend Developer
+- Christian Dangelo Rodrigo Robles Font - Backend Developer
+- Juan Leiton - Backend Developer
