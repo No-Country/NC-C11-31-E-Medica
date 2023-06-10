@@ -1,6 +1,6 @@
 <div align="left">
  <a href="https://www.nocountry.tech/">
-    <img src="https://github.com/juanleiton/juanleiton/assets/108427945/4f23f52f-8a08-4216-a8ab-6c49b32bae52" width="100" >
+    <img src="https://github.com/juanleiton/juanleiton/assets/108427945/4f23f52f-8a08-4216-a8ab-6c49b32bae52" width="100">
  </a>
 </div>
 
