@@ -1,6 +1,6 @@
 <div align="left">
  <a href="https://www.nocountry.tech">
-    <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/9160f86b-3e28-4fef-81b6-d28b162df692" width="100" >
+    <img src="https://github.com/juanleiton/SilkRoad/assets/108427945/b05067a4-fea5-43c2-a78a-3660770ca57f" width="100" >
  </a>
 </div>
 
