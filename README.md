@@ -46,7 +46,7 @@ E-Médica es una plataforma para el agendamiento y la realización de consultas 
   <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/94aa5cc5-41fb-4733-986e-802012d27bca" width="50" height="50" >
 </span>
 <span>
-  <img src="https://user-images.githubusercontent.com/108427945/220451016-cfb63adb-0aa4-493a-bef0-e090e301b3b1.png" width="50" height="50" >
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/3691ef6a-dcf3-4069-a837-c8732287d434" width="50" height="50" >
 </span>
 <span>
   <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/53cf1403-17ad-4dc2-bae2-961cbe4bb179" width="50" height="50" >
