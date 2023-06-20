@@ -17,46 +17,49 @@ E-Médica es una plataforma para el agendamiento y la realización de consultas 
 - Presentación: https://www.figma.com/proto/ShT1bO2dJmAejRr4yApRP4/Nocountry-c11-31?type=design&node-id=560-1912&scaling=contain&page-id=78%3A156&starting-point-node-id=560%3A1912
 - Figma: https://www.figma.com/file/ShT1bO2dJmAejRr4yApRP4/Nocountry-c11-31?type=design&node-id=0%3A1&t=c99vDJLH0fXkBwtT-1
 
-### Stack de tecnologías 🖥️ ###
- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
-  <img src="https://user-images.githubusercontent.com/108427945/220447577-2d40e53b-d911-4919-9df8-1a832e7264e1.png" width="50" height="50" >
- </a>
- <a href="https://www.typescriptlang.org/">
-   <img src="https://user-images.githubusercontent.com/108427945/220797241-e4531353-02ae-4f36-960e-a90259867b9f.png" width="50" height="50" >
- </a>
- <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
-  <img src="https://user-images.githubusercontent.com/108427945/220448197-9361ad94-2867-4aca-8bcd-3a4ddb2b499c.png" width="50" height="50" >
- </a>
- <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
-  <img src="https://user-images.githubusercontent.com/108427945/220448406-7bcd41a4-e0c3-4d97-8901-6ec45c3effa5.png" width="50" height="50" >
- </a>
- <a href="https://sass-lang.com/">
+### Tecnologías 🖥️ ###
+JavaScript, TypeScript, HTML, CSS, Sass, MongoDB, Mongoose, NodeJS, Express, React, NextJS, Railway, AWS Amplify.
+<div>
+<span>
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/8a94f07d-fdb5-4e42-a79b-015db14ec5b2" width="50" height="50" >
+</span>
+<span>
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/5e534a20-84ed-4731-a693-18a437cb64e6" width="50" height="50" >
+</span>
+<span>
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/cfccada3-cba6-4b1a-9a31-ebe7630c4bdb" width="50" height="50" >
+</span>
+<span>
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/68dafa7d-63bf-4f04-a45e-9bbed4cd1780" width="50" height="50" >
+</span>
+<span>
   <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/a8de593a-fa52-4859-acc8-8fe53ea4ff25" width="50" height="50" >
- </a>
- <a href="https://www.mongodb.com/">
-   <img src="https://user-images.githubusercontent.com/108427945/220798061-16bd9b8a-e763-4004-b95a-1bfecd456404.png" width="50" height="50" >
- </a>
- <a href="https://mongoosejs.com/">
-   <img src="https://user-images.githubusercontent.com/108427945/220798508-6728ea7d-e461-4df5-a24a-f6a378dca838.png" width="50" height="50" >
- </a>
- <a href="https://nodejs.org/en/">
-  <img src="https://user-images.githubusercontent.com/108427945/220450396-5786cd98-e2ce-47e8-b15f-056a251bd01b.png" width="50" height="50" >
- </a>
- <a href="https://expressjs.com/">
-  <img src="https://user-images.githubusercontent.com/108427945/220450657-a17aca01-f90d-4843-9137-20bca9668a22.png" width="50" height="50" >
- </a>
- <a href="https://reactjs.org/">
-  <img src="https://user-images.githubusercontent.com/108427945/220451016-cfb63adb-0aa4-493a-bef0-e090e301b3b1.png" width="50" height="50" >
- </a>
- <a href="https://nextjs.org/">
+</span>
+<span>
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/a0142b8d-e80c-4cb2-ab40-f2a0aaad633a" width="50" height="50" >
+</span>
+<span>
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/8a603086-7872-4351-a9b2-db3fcf26c5a4" width="50" height="50" >
+</span>
+<span>
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/8708e23e-0e67-4ce1-8e12-8436fc9cf59c" width="50" height="50" >
+</span>
+<span>
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/94aa5cc5-41fb-4733-986e-802012d27bca" width="50" height="50" >
+</span>
+<span>
+  <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/3691ef6a-dcf3-4069-a837-c8732287d434" width="50" height="50" >
+</span>
+<span>
   <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/53cf1403-17ad-4dc2-bae2-961cbe4bb179" width="50" height="50" >
- </a>
- <a href="https://railway.app/">
+</span>
+<span>
   <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/d4f1c843-00d0-4a67-b5a3-780e35afd882" width="50" height="50" >
- </a>
- <a href="https://aws.amazon.com/amplify/hosting/?nc1=h_ls">
+</span>
+<span>
   <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/dcfa840a-7dae-4e4f-b99b-de80cbb59916" width="50" height="50" >
- </a>
+</span>
+</div>
 
 ### El equipo 🚩 ###
 - Juan Pablo Núñez Mazzuco - UX/UI Designer
