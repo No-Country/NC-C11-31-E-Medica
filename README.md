@@ -20,11 +20,11 @@ E-Médica es una plataforma para el agendamiento y la realización de consultas 
 ### Tecnologías 🖥️ ###
 <div>
   <ul>
-    - JavaScript
-    - TypeScript
-    - HTML
-    - CSS
-    - Sass
+    <li>JavaScript</li>
+    <li>TypeScript</li>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>Sass</li>
   </ul>
   <ul>
     - MongoDB
