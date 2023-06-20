@@ -27,11 +27,11 @@ E-Médica es una plataforma para el agendamiento y la realización de consultas 
     <li>Sass</li>
   </ul>
   <ul>
-    - MongoDB
-    - Mongoose
-    - NodeJS
-    - Express
-    - React
+    <li>MongoDB</li>
+    <li>Mongoose</li>
+    <li>NodeJS</li>
+    <li>Express</li>
+    <li>React</li>
   </ul>
 </div>
 
