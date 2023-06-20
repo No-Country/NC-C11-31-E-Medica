@@ -19,6 +19,7 @@ E-Médica es una plataforma para el agendamiento y la realización de consultas 
 
 ### Tecnologías 🖥️ ###
 JavaScript, TypeScript, HTML, CSS, Sass, MongoDB, Mongoose, NodeJS, Express, React
+<div>
 <span>
   <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/8a94f07d-fdb5-4e42-a79b-015db14ec5b2" width="50" height="50" >
 </span>
@@ -58,6 +59,7 @@ JavaScript, TypeScript, HTML, CSS, Sass, MongoDB, Mongoose, NodeJS, Express, Rea
 <span>
   <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/dcfa840a-7dae-4e4f-b99b-de80cbb59916" width="50" height="50" >
 </span>
+</div>
 
 ### El equipo 🚩 ###
 - Juan Pablo Núñez Mazzuco - UX/UI Designer
