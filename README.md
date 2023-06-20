@@ -18,7 +18,7 @@ E-Médica es una plataforma para el agendamiento y la realización de consultas 
 - Figma: https://www.figma.com/file/ShT1bO2dJmAejRr4yApRP4/Nocountry-c11-31?type=design&node-id=0%3A1&t=c99vDJLH0fXkBwtT-1
 
 ### Tecnologías 🖥️ ###
-JavaScript, TypeScript, HTML, CSS, Sass, MongoDB, Mongoose, NodeJS, Express, React
+JavaScript, TypeScript, HTML, CSS, Sass, MongoDB, Mongoose, NodeJS, Express, React, NextJS, Railway, AWS Amplify.
 <div>
 <span>
   <img src="https://github.com/No-Country/NC-C11-31-E-Medica/assets/108427945/8a94f07d-fdb5-4e42-a79b-015db14ec5b2" width="50" height="50" >
